@@ -63,9 +63,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SchoolERP\SchoolERP.csproj">
+    <ProjectReference Include="..\SchoolERP\2 - SchoolERPUI.csproj">
       <Project>{096353A0-38C5-443C-8C91-6E284B045404}</Project>
-      <Name>SchoolERP</Name>
+      <Name>2 - SchoolERPUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
