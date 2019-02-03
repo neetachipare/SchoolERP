@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SchoolERP.Controllers
+namespace SchoolERP.Areas.SuperAdmin.Controllers
 {
     public class MasterController : Controller
     {
-        // GET: Master
+        // GET: SuperAdmin/Master
         public ActionResult Index()
         {
             return View();
