@@ -4,12 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-
-namespace SchoolERP.Controllers
+namespace SchoolERP.Areas.SuperAdmin.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        // GET: SuperAdmin/Home
         public ActionResult Index()
         {
             return View();
