@@ -89,6 +89,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Scripts\CommonScript\Service.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Login\ForgetPassword.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Login\LoginController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Login\LoginModule.js" />
     <Content Include="Content\angularjs\plugins\ng-table\css\ng-table.min.css" />
     <Content Include="Content\angularjs\plugins\ng-table\js\ng-table.min.js" />
     <Content Include="Content\angularjs\scripts\angular.min.js" />
@@ -396,12 +400,18 @@
     <Content Include="Scripts\ProjectScripts\Login\ForgetPassword.js" />
     <Content Include="Scripts\ProjectScripts\Login\LoginController.js" />
     <Content Include="Scripts\ProjectScripts\Login\LoginModule.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MasterController.cs" />
+    <Compile Include="Areas\SuperAdmin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\SuperAdmin\Controllers\InstituteController.cs" />
+    <Compile Include="Areas\SuperAdmin\Controllers\MasterController.cs" />
+    <Compile Include="Areas\SuperAdmin\Controllers\ModuleController.cs" />
+    <Compile Include="Areas\SuperAdmin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\SuperAdmin\SuperAdminAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -494,6 +504,13 @@
     <Content Include="Content\assets\vendors\base\fonts\summernote\summernote.eot" />
     <Content Include="Content\assets\vendors\base\fonts\summernote\summernote.ttf" />
     <Content Include="Content\assets\vendors\base\fonts\summernote\summernote.woff" />
+    <Content Include="Areas\SuperAdmin\Views\Home\ForgetPass.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Institute\InstituteRegistration.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Master\SchoolMaster.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Master\ViewSchoolMaster.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Shared\MasterLayout.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\web.config" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Home\ForgetPass.cshtml" />
