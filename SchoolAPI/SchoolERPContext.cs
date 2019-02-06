@@ -22,6 +22,7 @@ namespace SchoolAPI
         public virtual DbSet<TblUserLogin> TblUserLogins { get; set; }
         public virtual DbSet<TblUserModule> TblUserModules { get; set; }
         public virtual DbSet<TblUserRole> TblUserRoles { get; set; }
+        public virtual DbSet<ViewModuleMaster> ViewModuleMasters { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
