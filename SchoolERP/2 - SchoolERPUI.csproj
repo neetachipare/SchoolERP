@@ -513,7 +513,7 @@
     <Content Include="Areas\SuperAdmin\Views\Master\ViewSchoolMaster.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\Shared\MasterLayout.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\web.config" />
-    <Content Include="Areas\SuperAdmin\Views\Module\ModuleMaster.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Module\Index.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Home\ForgetPass.cshtml" />

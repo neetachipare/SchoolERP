@@ -4,12 +4,12 @@ function Service($http) {
 
     this.Post = function (url, data) {
         console.log(data)
-        alert('update4')
+        alert('update5')
         // Set the Content-Type 
-        $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-       // $http.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
-       // $http.defaults.headers.post["Access-Control-Allow-Methods"] = "GET,PUT,POST,DELETE,OPTIONS";
-        //$http.defaults.headers.post["Access-Control-Allow-Headers"] = "Content-Type, Authorization, Content-Length, X-Requested-With"
+        //$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+         $http.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+         $http.defaults.headers.post["Access-Control-Allow-Methods"] = "GET,PUT,POST,DELETE,OPTIONS";
+         $http.defaults.headers.post["Access-Control-Allow-Headers"] = "Content-Type, Authorization, Content-Length, X-Requested-With"
         // Delete the Requested With Header
        // delete $http.defaults.headers.common['X-Requested-With'];
 
