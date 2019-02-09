@@ -10,15 +10,15 @@ using System.Web.Http;
 
 namespace SchoolAPI.API
 {
-    public class ModuleController : ApiController
+    public class TemplateTypeController : ApiController
     {
         [HttpPost]
-        public object SaveModule([FromBody] ModuleParam PR)
+        public object SaveTemplateType([FromBody] TemplateTypeParam PR)
         {
             try
             {
-                CreateModuleBL OBJSAVE = new CreateModuleBL();
-                var result = OBJSAVE.SaveModule(PR);
+                TemplateTypeBL OBJSAVE = new TemplateTypeBL();
+                var result = OBJSAVE.SaveTemplateType(PR);
                 return result;
             }
             catch (Exception e)
@@ -30,13 +30,13 @@ namespace SchoolAPI.API
         [HttpPost]
         //public object GetModuleMaster([FromBody]ModuleParam objid)
 
-        public object GetModuleMaster([FromBody]ModuleParam objid)
+        public object GetTemplateTypeMaster([FromBody]TemplateTypeParam objid)
         {
             try
             {
                 var status = objid.Status;
-                CreateModuleBL obj = new CreateModuleBL();
-                var ERPModule = obj.GetModuleList(status);
+                TemplateTypeBL obj = new TemplateTypeBL();
+                var ERPModule = obj.GetTemplateTypeList(status);
                 return ERPModule;
             }
             catch (Exception ex)
@@ -46,12 +46,12 @@ namespace SchoolAPI.API
         }
 
         [HttpPost]
-        public object GetSingleModuleInfo([FromBody]ModuleParam OBJGR)
+        public object GetSingleTemplateTypeInfo([FromBody]TemplateTypeParam OBJGR)
         {
             try
             {
-                CreateModuleBL obj = new CreateModuleBL();
-                var SingleGR = obj.GetSingleModule(OBJGR);
+                TemplateTypeBL obj = new TemplateTypeBL();
+                var SingleGR = obj.GetSingleTemplateType(OBJGR);
                 return SingleGR;
             }
             catch (Exception ex)
@@ -62,12 +62,12 @@ namespace SchoolAPI.API
 
 
         [HttpPost]
-        public object DeleteModule([FromBody] ModuleParam MP)
+        public object DeleteTemplateType([FromBody] TemplateTypeParam MP)
         {
             try
             {
-                CreateModuleBL obj = new CreateModuleBL();
-                var result = obj.DeleteModule(MP);
+                TemplateTypeBL obj = new TemplateTypeBL();
+                var result = obj.DeleteTemplateType(MP);
                 return result;
             }
             catch (Exception e)
@@ -77,6 +77,5 @@ namespace SchoolAPI.API
             }
 
         }
-
     }
 }

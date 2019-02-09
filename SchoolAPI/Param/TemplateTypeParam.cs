@@ -5,11 +5,10 @@ using System.Web;
 
 namespace SchoolAPI.Param
 {
-    public class ModuleParam
+    public class TemplateTypeParam
     {
-        public int ModuleId { get; set; }
-        public string ModuleName { get; set; }
-        public int ModuleOrder { get; set; }
+        public int TemplateTypeId { get; set; }
+        public string TemplateType { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
 
@@ -19,8 +18,7 @@ namespace SchoolAPI.Param
 
         public int Status { get; set; }
 
-        public string ActionName { get; set; }
-
         public string BtnStatus { get; set; }
+
     }
 }
