@@ -13,5 +13,10 @@ namespace SchoolERP.Areas.SuperAdmin.Controllers
         {
             return View();
         }
+
+        public ActionResult AddMenu()
+        {
+            return View();
+        }
     }
 }
