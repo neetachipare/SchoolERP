@@ -7,7 +7,7 @@ using System.Web.Http;
 using SchoolAPI.Param;
 using SchoolAPI.ResultModel;
 using SchoolAPI.BusinessLayer;
-using _3___DAL;
+//using _3___DAL;
 
 namespace SchoolAPI.Controllers
 {
@@ -32,6 +32,7 @@ namespace SchoolAPI.Controllers
 
 
         }
+
         [HttpPost]
         public object ForgetPassword(ForgetPassword obj)
         {

@@ -10,29 +10,40 @@ namespace SchoolAPI.Models
     public partial class TblSchool
     {
         [Key]
-        public long SchoolId { get; set; }
+        public int SchoolId { get; set; }
 
         [StringLength(100)]
         public string SchoolName { get; set; }
 
-        [StringLength(50)]
+        [StringLength(15)]
         public string PhoneNo { get; set; }
 
+        [StringLength(15)]
+        public string LandlineNo { get; set; }
+
         [StringLength(100)]
+        public string EmailId { get; set; }
+
+        [StringLength(200)]
         public string Address { get; set; }
 
         [StringLength(100)]
         public string ContactPerson { get; set; }
 
+        [StringLength(50)]
+        public string Designation { get; set; }
+
         public DateTime? ValidityStartDate { get; set; }
 
         public DateTime? ValidityEndDate { get; set; }
 
-        public long? PayrollTemplateId { get; set; }
+        public int? PayrollTemplateId { get; set; }
 
-        public long? FeeTemplate { get; set; }
+        public int? FeeTemplateId { get; set; }
 
-        public long? ExamTemplate { get; set; }
+        public int? ExamTemplateId { get; set; }
+
+        public int? LoginTemplateId { get; set; }
 
         public long? CreatedBy { get; set; }
 
@@ -42,6 +53,25 @@ namespace SchoolAPI.Models
 
         public DateTime? ModifiedDate { get; set; }
 
-        public long? Status { get; set; }
+        [StringLength(5)]
+        public string UserPrefix { get; set; }
+
+        [StringLength(20)]
+        public string UserName { get; set; }
+
+        [StringLength(100)]
+        public string Password { get; set; }
+
+        public int? BoardId { get; set; }
+
+        public int? Language { get; set; }
+
+        [StringLength(50)]
+        public string Logo { get; set; }
+
+        [StringLength(50)]
+        public string Banner { get; set; }
+
+        public byte? Status { get; set; }
     }
 }

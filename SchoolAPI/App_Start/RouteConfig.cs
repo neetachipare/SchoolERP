@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace SchoolERP
+namespace SchoolAPI
 {
     public class RouteConfig
     {
@@ -16,8 +16,9 @@ namespace SchoolERP
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
 }
+
