@@ -109,15 +109,18 @@
   <ItemGroup>
     <Compile Include="API\LoginController.cs" />
     <Compile Include="API\ModuleController.cs" />
+    <Compile Include="API\TemplateMasterController.cs" />
+    <Compile Include="API\TemplateTypeController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BusinessLayer\CreateModuleBL.cs" />
     <Compile Include="BusinessLayer\TblModuleMasters.cs" />
+    <Compile Include="BusinessLayer\TemplateMasterBL.cs" />
+    <Compile Include="BusinessLayer\TemplateTypeBL.cs" />
     <Compile Include="BusinessLayer\UserBusiness.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CryptIt.cs" />
-    <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\TblModuleMaster.cs" />
     <Compile Include="Models\TblRoleMaster.cs" />
     <Compile Include="Models\TblSchool.cs" />
@@ -128,9 +131,13 @@
     <Compile Include="Models\TblUserModule.cs" />
     <Compile Include="Models\TblUserRole.cs" />
     <Compile Include="Models\ViewModuleMaster.cs" />
+    <Compile Include="Models\ViewTemplateMaster.cs" />
+    <Compile Include="Models\ViewTemplateType.cs" />
     <Compile Include="Param\Email.cs" />
     <Compile Include="Param\ForgetPassword.cs" />
     <Compile Include="Param\ModuleParam.cs" />
+    <Compile Include="Param\TemplateMasterParam.cs" />
+    <Compile Include="Param\TemplateTypeParam.cs" />
     <Compile Include="Param\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultModel\Error.cs" />

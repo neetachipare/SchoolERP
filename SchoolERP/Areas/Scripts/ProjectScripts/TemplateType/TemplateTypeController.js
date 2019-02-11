@@ -1,45 +1,44 @@
-﻿var app = angular.module('ERP').controller('ModuleController', ModuleController);
+﻿var app = angular.module('ERP').controller('TemplateTypeController', TemplateTypeController);
 
-function ModuleController($scope, Service) {
+function TemplateTypeController($scope, Service) {
 
     var form = $(".student-admission-wrapper");
     $scope.ViewGetStudentInfoes = {};
     $scope.UserCredentialModel = {};
     $scope.btnactive = 1;
-  
+
 
     $scope.Initialize = function () {
-        debugger; 
+        debugger;
         $scope.UserCredentialModel.Status = $scope.btnactive;
-        Service.Post("Module/GetModuleMaster", $scope.UserCredentialModel).then(function (result) {
+        Service.Post("TemplateType/GetTemplateTypeMaster", $scope.UserCredentialModel).then(function (result) {
             debugger;
             $scope.ViewGetStudentInfoes = result.data;
-            $scope.Modules = result.data.ResultData;
+            $scope.TemplateTypes = result.data.ResultData;
             //console.log(result.data);
 
         })
     }
 
-    $scope.ShowHide = function (ModuleId) {
+    $scope.ShowHide = function (TemplateTypeId) {
         debugger;
         $scope.btnUpdate = true;
         $scope.btnSave = false;
         $scope.IsVisible = true;
         var data = {
 
-            ModuleId: ModuleId
+            TemplateTypeId: TemplateTypeId
 
         };
 
-        Service.Post("Module/GetSingleModuleInfo", JSON.stringify(data), $scope.UserCredentialModel).then(function (result) {
+        Service.Post("TemplateType/GetSingleTemplateTypeInfo", JSON.stringify(data), $scope.UserCredentialModel).then(function (result) {
 
             debugger;
 
             $scope.ViewGetStudentInfoes = result.data;
 
-            $scope.ModuleName = result.data.ModuleName;
-            $scope.ModuleOrder = result.data.ModuleOrder;
-            $scope.ModuleId = result.data.ModuleId;
+            $scope.TemplateType = result.data.TemplateType;
+            $scope.TemplateTypeId = result.data.TemplateTypeId;
             // $scope.Students = result.data.ResultData;
 
             $scope.Initialize();
@@ -57,27 +56,25 @@ function ModuleController($scope, Service) {
 
     $scope.Clear = function () {
 
-        $scope.ModuleName = null;
-        $scope.ModuleOrder = null;
-        $scope.ModuleId = null;
+        $scope.TemplateType = null;
+        $scope.TemplateTypeId = null;
         $scope.IsVisible = false;
         // $scope.Initialize();
     }
 
-    $scope.AddUpdate = function (ModuleId, ModuleName, ModuleOrder, BtnStatus) {
+    $scope.AddUpdate = function (TemplateTypeId, TemplateType, BtnStatus) {
         var data = {
-            ModuleId: ModuleId,
-            ModuleName: ModuleName,
-            ModuleOrder: ModuleOrder,
+            TemplateTypeId: TemplateTypeId,
+            TemplateType: TemplateType,
             BtnStatus: BtnStatus
         };
         if ($scope.form.$valid) {
-            Service.Post("Module/SaveModule", JSON.stringify(data)).then(function (response) {
+            Service.Post("TemplateType/SaveTemplateType", JSON.stringify(data)).then(function (response) {
 
                 if (response.data.IsSucess) {
                     debugger;
 
-                   
+
 
                     //CustomizeApp.UpdateMessage();
                     $scope.Clear();
@@ -86,8 +83,8 @@ function ModuleController($scope, Service) {
                     alert(response.data.ResultData);
                     // window.location = "./ParentGrievance"
 
-                        //alert(result.data);
-                  
+                    //alert(result.data);
+
                 }
                 else {
                     debugger;
@@ -102,27 +99,27 @@ function ModuleController($scope, Service) {
     }
 
 
-    $scope.Delete = function (ModuleId) {
+    $scope.Delete = function (TemplateTypeId) {
         debugger;
         var data = {
 
-            ModuleId: ModuleId
+            TemplateTypeId: TemplateTypeId
         };
 
         if (event.target.checked == false) {
-            var confirm = window.confirm("Do you want to deactive the module?");
+            var confirm = window.confirm("Do you want to deactive the Template Type?");
 
         }
         else {
-            var confirm = window.confirm("Do you want to active the module?");
+            var confirm = window.confirm("Do you want to active the Template Type?");
         }
         if (confirm == true) {
-            Service.Post("Module/DeleteModule", JSON.stringify(data)).then(function (response) {
+            Service.Post("TemplateType/DeleteTemplateType", JSON.stringify(data)).then(function (response) {
 
                 debugger;
                 if (response.data)
                     $scope.Initialize();
-                    alert(response.data.ResultData);
+                alert(response.data.ResultData);
             });
         }
         $scope.Clear();
