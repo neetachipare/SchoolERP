@@ -13,7 +13,8 @@ namespace SchoolERP.Areas.SuperAdmin.Controllers
         {
             return View();
         }
-        public ActionResult ModuleMaster()
+ 
+        public ActionResult ModuleMaster() 
         {
             return View();
         }
