@@ -89,12 +89,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Scripts\CommonScript\Service.js" />
-    <Content Include="Areas\Scripts\ProjectScripts\Login\ForgetPassword.js" />
-    <Content Include="Areas\Scripts\ProjectScripts\Login\LoginController.js" />
-    <Content Include="Areas\Scripts\ProjectScripts\Login\LoginModule.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Module\Menu.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Module\MenuController.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Module\Module.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Module\ModuleController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateMaster.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateType.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateTypeController.js" />
+    <Content Include="Areas\SuperAdmin\Scripts\CommonScript\Module.js" />
+    <Content Include="Areas\SuperAdmin\Scripts\ProjectScripts\Login\ForgetPassword.js" />
+    <Content Include="Areas\SuperAdmin\Scripts\ProjectScripts\Login\LoginController.js" />
+    <Content Include="Areas\SuperAdmin\Scripts\ProjectScripts\Login\LoginModule.js" />
+    <Content Include="Areas\SuperAdmin\Scripts\ProjectScripts\School\SchoolController.js" />
+    <Content Include="Areas\SuperAdmin\Scripts\ProjectScripts\School\SchoolModule.js" />
     <Content Include="Content\angularjs\plugins\ng-table\css\ng-table.min.css" />
     <Content Include="Content\angularjs\plugins\ng-table\js\ng-table.min.js" />
     <Content Include="Content\angularjs\scripts\angular.min.js" />
@@ -413,10 +420,12 @@
     <Compile Include="Areas\SuperAdmin\Controllers\MasterController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\ModuleController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\SuperAdmin\Controllers\TemplateTypeController.cs" />
     <Compile Include="Areas\SuperAdmin\SuperAdminAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LoginController\LoginController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -514,6 +523,7 @@
     <Content Include="Areas\SuperAdmin\Views\Shared\MasterLayout.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\web.config" />
     <Content Include="Areas\SuperAdmin\Views\Module\Index.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\TemplateType\Index.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Home\ForgetPass.cshtml" />
@@ -522,6 +532,8 @@
     <Content Include="Views\Master\SchoolMaster.cshtml" />
     <Content Include="Views\Master\ViewSchoolMaster.cshtml" />
     <Content Include="Views\Shared\Master%27sLayout.cshtml" />
+    <Content Include="Views\Login\ForgetPass.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -531,6 +543,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Scripts\CommonScript\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\3 - DAL\3 - DAL.csproj">

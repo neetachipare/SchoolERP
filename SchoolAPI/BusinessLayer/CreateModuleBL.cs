@@ -1,5 +1,6 @@
 ﻿using SchoolAPI.Models;
 using SchoolAPI.Param;
+using SchoolAPI.Param.SchoolAPI.Param;
 using SchoolAPI.ResultModel;
 using System;
 using System.Collections.Generic;

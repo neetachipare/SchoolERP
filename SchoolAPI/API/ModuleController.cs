@@ -42,7 +42,11 @@ namespace SchoolAPI.API
                 var Result = MB.DeleteMenu(PM);
                 return Result; 
             }
-        }
+			catch (Exception e)
+			{
+				return new Error() { IsError = true, Message = e.Message };
+			}
+		}
         
         public object SaveModule([FromBody] ModuleParam PR)
         {
@@ -85,7 +89,11 @@ namespace SchoolAPI.API
                 return result; 
 
             }
-        }
+			catch (Exception e)
+			{
+				return new Error() { IsError = true, Message = e.Message };
+			}
+		}
         [HttpPost]
         //public object GetModuleMaster([FromBody]ModuleParam objid)
 
@@ -104,15 +112,21 @@ namespace SchoolAPI.API
             }
         }
 
-        [HttpPost] 
-        public object GetChildMenuNames()
-        {
-            try
-            {
-                ModuleMasterBL obj = new ModuleMasterBL();
-                var result = obj.GetChildMenu();
-                return result; 
-        public object GetSingleModuleInfo([FromBody]ModuleParam OBJGR)
+		[HttpPost]
+		public object GetChildMenuNames()
+		{
+			try
+			{
+				ModuleMasterBL obj = new ModuleMasterBL();
+				var result = obj.GetChildMenu();
+				return result;
+			}
+			catch (Exception e)
+			{
+				return new Error() { IsError = true, Message = e.Message };
+			}
+		}
+			public object GetSingleModuleInfo([FromBody]ModuleParam OBJGR)
         {
             try
             {
