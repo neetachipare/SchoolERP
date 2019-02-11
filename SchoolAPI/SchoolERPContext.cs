@@ -12,7 +12,8 @@ namespace SchoolAPI
             : base("name=SchoolERPContext")
         {
         }
-
+        public virtual DbSet<ViewTemplateMaster> ViewTemplateMasters { get; set; }
+        public virtual DbSet<ViewTemplateType> ViewTemplateTypes { get; set; }
         public virtual DbSet<TblModuleMaster> TblModuleMasters { get; set; }
         public virtual DbSet<TblRoleMaster> TblRoleMasters { get; set; }
         public virtual DbSet<TblSchool> TblSchools { get; set; }
@@ -22,6 +23,7 @@ namespace SchoolAPI
         public virtual DbSet<TblUserLogin> TblUserLogins { get; set; }
         public virtual DbSet<TblUserModule> TblUserModules { get; set; }
         public virtual DbSet<TblUserRole> TblUserRoles { get; set; }
+        public virtual DbSet<ViewModuleMaster> ViewModuleMasters { get; set; }
 
         public virtual DbSet<View_Template> View_Template { get; set; }
 

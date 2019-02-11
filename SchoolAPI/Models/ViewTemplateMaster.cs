@@ -6,18 +6,16 @@ namespace SchoolAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("TblModuleMaster")]
-    public partial class TblModuleMaster
+    [Table("ViewTemplateMaster")]
+    public partial class ViewTemplateMaster
     {
         [Key]
-        public long ModuleId { get; set; }
+        public long TemplateId { get; set; }
 
-        [StringLength(100)]
-        public string ModuleName { get; set; }
+        [StringLength(50)]
+        public string Name { get; set; }
 
-        public long? ParentModuleId { get; set; }
-
-        public long? ModuleOrder { get; set; }
+        public long? TemplateTypeId { get; set; }
 
         public long? CreatedBy { get; set; }
 
@@ -27,6 +25,6 @@ namespace SchoolAPI.Models
 
         public DateTime? ModifiedDate { get; set; }
 
-        public int Status { get; set; }
+        public int? Status { get; set; }
     }
 }

@@ -6,14 +6,10 @@ using System.Web.Mvc;
 
 namespace SchoolERP.Areas.SuperAdmin.Controllers
 {
-    public class ModuleController : Controller
+    public class TemplateTypeController : Controller
     {
-        // GET: SuperAdmin/Module
+        // GET: SuperAdmin/TemplateType
         public ActionResult Index()
-        {
-            return View();
-        }
-        public ActionResult ModuleMaster()
         {
             return View();
         }

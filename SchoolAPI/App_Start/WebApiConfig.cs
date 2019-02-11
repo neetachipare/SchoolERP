@@ -19,7 +19,7 @@ namespace SchoolAPI
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             config.Routes.MapHttpRoute("API Default", "api/{controller}/{action}/{id}/{name}",
               new { id = RouteParameter.Optional, name = RouteParameter.Optional });
-
+ 
         }
-    }
+    } 
 }
