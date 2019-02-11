@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 namespace SchoolAPI.Param
-{
+{ 
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -30,5 +30,6 @@ namespace SchoolAPI.Param
 
             public string BtnStatus { get; set; }
         }
+ 
     }
 }

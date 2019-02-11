@@ -1,19 +1,22 @@
-﻿using System;
+using SchoolAPI.BusinessLayer;
+using SchoolAPI.Param;
+using SchoolAPI.ResultModel;
+using System; 
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
+using System.Web.Http; 
 using SchoolAPI.BusinessLayer;
 using SchoolAPI.Param;
 using SchoolAPI.Param.SchoolAPI.Param;
-using SchoolAPI.ResultModel;
+using SchoolAPI.ResultModel; 
 
 namespace SchoolAPI.API
 {
     public class ModuleController : ApiController
     {
-        [HttpPost]
+        [HttpPost] 
         public object SaveUpdate([FromBody] ModuleParam PM)
         {
             try
@@ -37,11 +40,21 @@ namespace SchoolAPI.API
             {
                 ModuleMasterBL MB = new ModuleMasterBL();
                 var Result = MB.DeleteMenu(PM);
-                return Result;
+                return Result; 
+            }
+        }
+        
+        public object SaveModule([FromBody] ModuleParam PR)
+        {
+            try
+            {
+                CreateModuleBL OBJSAVE = new CreateModuleBL();
+                var result = OBJSAVE.SaveModule(PR);
+                return result; 
             }
             catch (Exception e)
             {
-                return new Error() { IsError = true, Message = e.Message };
+                return new Error() { IsError = true, Message = e.Message }; 
             }
         }
 
@@ -69,7 +82,21 @@ namespace SchoolAPI.API
             {
                 ModuleMasterBL obj = new ModuleMasterBL();
                 var result = obj.GetModuleNames();
-                return result;
+                return result; 
+
+            }
+        }
+        [HttpPost]
+        //public object GetModuleMaster([FromBody]ModuleParam objid)
+
+        public object GetModuleMaster([FromBody]ModuleParam objid)
+        {
+            try
+            {
+                var status = objid.Status;
+                CreateModuleBL obj = new CreateModuleBL();
+                var ERPModule = obj.GetModuleList(status);
+                return ERPModule; 
             }
             catch (Exception ex)
             {
@@ -77,21 +104,28 @@ namespace SchoolAPI.API
             }
         }
 
-        [HttpPost]
+        [HttpPost] 
         public object GetChildMenuNames()
         {
             try
             {
                 ModuleMasterBL obj = new ModuleMasterBL();
                 var result = obj.GetChildMenu();
-                return result;
+                return result; 
+        public object GetSingleModuleInfo([FromBody]ModuleParam OBJGR)
+        {
+            try
+            {
+                CreateModuleBL obj = new CreateModuleBL();
+                var SingleGR = obj.GetSingleModule(OBJGR);
+                return SingleGR; 
             }
             catch (Exception ex)
             {
                 return new Error() { IsError = true, Message = ex.Message };
             }
-        }
-
+        } 
+        
         [HttpPost]
         public object GetMenuUnderModule([FromBody] ModuleParam P)
         {
@@ -127,19 +161,35 @@ namespace SchoolAPI.API
         [HttpPost]
         public object GetChildMenuName([FromBody]ModuleParam M)
         {
-        try
+            try
             {
                 ModuleMasterBL obj = new ModuleMasterBL();
                 var result = obj.GetMenuNames(M);
                 return result;
             }
-            catch(Exception e)
-            {
+            catch(Exception e) 
+             {
                 return new Error() { IsError = true, Message = e.Message };
 
             }
         }
 
+        [HttpPost]
+        public object DeleteModule([FromBody] ModuleParam MP)
+        {
+            try
+            {
+                CreateModuleBL obj = new CreateModuleBL();
+                var result = obj.DeleteModule(MP);
+                return result;
+            }
+            catch (Exception e) 
+            {
+                return new Error() { IsError = true, Message = e.Message };
+
+            } 
+        } 
+ 
 
     }
 }

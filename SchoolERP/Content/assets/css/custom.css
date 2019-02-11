@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 @font-face {
@@ -270,8 +270,10 @@ body{
 /*-----------------------Start Student Admission Page---------------------------*/
 
 
-.m-portlet .m-portlet__head .m-portlet__head-caption .m-portlet__head-title .m-portlet__head-text{
-	font-family: 'Roboto-Bold';
+.m-portlet .m-portlet__head .m-portlet__head-caption .m-portlet__head-title .m-portlet__head-text {
+    font-family: 'Roboto-Medium';
+    font-size: 1.6rem;
+    color: #000;
 }
 .student-admission-wrapper .select2{
 	width:100%!important;
@@ -283,10 +285,13 @@ body{
 /*-----------------------End Student Admission Page---------------------------*/
 
 /*-----------------------Start Common CSS Page---------------------------*/
+html, body {
+    font-size:15px;
+}
 
 .btn,
-.btn.m-btn--custom{
-	font-family: 'Poppins-Regular';
+.btn.m-btn--custom {
+    font-family: 'Poppins-Regular';
 }
 .action-link a{
 	font-size:110%;
@@ -296,6 +301,66 @@ body{
 	text-decoration:none;
 }
 .action-link a i{
-	font-size:1.5rem;
+	font-size:1.6rem;
+}
+.action-link .print-icon {
+    color: #34bfa3;
+}
+.action-link .view-icon {
+    color: #5867dd;
+}
+.action-link .edit-icon {
+    color: #36a3f7;
+}
+.action-link .delete-icon {
+    color: #f4516c;
+}
+.action-link a:hover i {
+    color: #000;
+}
+.m-portlet .m-portlet__body {
+    color: #333;
+}
+.m-tooltip {
+    font-family: 'Poppins-Regular';
+    color: #000000;
+}
+.btn {
+    padding: .80rem 1rem;
+}
+.fa-strong-bold{
+    font-weight:bold;
 }
 /*-----------------------End Common CSS Page---------------------------*/
+
+/*-----------------------Start Datatable CSS---------------------------*/
+.table.dataTable thead {
+    background-color: #00c5dc;
+}
+.table.dataTable thead > tr > th {
+    color: #FFF;
+    font-family: 'Poppins-SemiBold';
+    text-transform: uppercase;
+    border-color: #00c5dc;
+}
+
+/*-----------------------End Datatable CSS---------------------------*/
+
+/*-----------------------Start Theme Changes CSS---------------------------*/
+
+.m-portlet .m-portlet__body {
+    padding: 1.2rem 2.2rem;
+}
+
+/*-----------------------End Theme Changes CSS---------------------------*/
+
+/*-----------------------Start form Block---------------------------*/
+
+.form-block-wrapper .m-portlet__foot .btn-secondary {
+    margin-left:10px;
+}
+.m-portlet.m-portlet--accent.m-portlet--head-solid-bg .m-portlet__head .m-portlet__head-text{
+    color:#fff;
+}
+
+/*-----------------------End form Block---------------------------*/
