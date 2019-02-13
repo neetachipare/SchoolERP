@@ -97,6 +97,10 @@
     <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateType.js" />
     <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateTypeController.js" />
     <Content Include="Areas\SuperAdmin\Scripts\CommonScript\Module.js" />
+    <Content Include="Areas\SuperAdmin\Scripts\Language\Language.js" />
+    <Content Include="Areas\SuperAdmin\Scripts\Language\LanguageModule.js" />
+    <Content Include="Areas\SuperAdmin\Scripts\ProjectScripts\Board\Board.js" />
+    <Content Include="Areas\SuperAdmin\Scripts\ProjectScripts\Board\BoardModule.js" />
     <Content Include="Areas\SuperAdmin\Scripts\ProjectScripts\Login\ForgetPassword.js" />
     <Content Include="Areas\SuperAdmin\Scripts\ProjectScripts\Login\LoginController.js" />
     <Content Include="Areas\SuperAdmin\Scripts\ProjectScripts\Login\LoginModule.js" />
@@ -524,6 +528,9 @@
     <Content Include="Areas\SuperAdmin\Views\web.config" />
     <Content Include="Areas\SuperAdmin\Views\Module\Index.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\TemplateType\Index.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Master\Board.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Master\Language.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Module\AddMenu.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Home\ForgetPass.cshtml" />

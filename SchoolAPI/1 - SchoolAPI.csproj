@@ -122,6 +122,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CryptIt.cs" />
+    <Compile Include="Models\TblBoard.cs" />
+    <Compile Include="Models\TblLanguage.cs" />
     <Compile Include="Models\TblModuleMaster.cs" />
     <Compile Include="Models\TblRoleMaster.cs" />
     <Compile Include="Models\TblSchool.cs" />
@@ -137,9 +139,11 @@
     <Compile Include="Models\View_MenuList.cs" />
     <Compile Include="Models\View_Template.cs" />
     <Compile Include="Param\ActiveParam.cs" />
+    <Compile Include="Param\BoardParam.cs" />
     <Compile Include="Param\Email.cs" />
     <Compile Include="Param\ForgetPassword.cs" />
     <Compile Include="Param\GetSchool.cs" />
+    <Compile Include="Param\LanguageParam.cs" />
     <Compile Include="Param\ModuleParam.cs" />
     <Compile Include="Param\School.cs" />
     <Compile Include="Param\TemplateMasterParam.cs" />
