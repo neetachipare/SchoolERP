@@ -126,7 +126,9 @@ namespace SchoolAPI.API
 				return new Error() { IsError = true, Message = e.Message };
 			}
 		}
-			public object GetSingleModuleInfo([FromBody]ModuleParam OBJGR)
+
+		[HttpPost]
+		public object GetSingleModuleInfo([FromBody]ModuleParam OBJGR)
         {
             try
             {
