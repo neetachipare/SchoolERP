@@ -15,9 +15,10 @@
     <!--<link rel="shortcut icon" href="~/Content/favicon.ico">-->
     <!--begin::Global Theme Styles -->
     <!--begin::Global Theme Styles -->
+    <script src="~/Content/assets/plugins/jquery/dist/jquery.min.js"></script>
     <link href="~/Content/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/assets/demo/demo12/base/style.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/assets/vendors/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/assets/vendors/custom/datatables/datatables.bundle.rtl.css")" rel="stylesheet" type="text/css" />
     <link href="~/Content/assets/css/custom.css" rel="stylesheet" type="text/css" />
     <!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 </head>
@@ -165,9 +166,9 @@
                                                         <th>Name Of The School</th>
                                                         <th>Address</th>
                                                         <th>Contact Number</th>
-                                                        <th>User Prefix</th>
-                                                        <th>Board</th>
-                                                        <th>Language</th>
+                                                        <th>Email Id</th>
+                                                        <th>User Prefix</th>                                                        
+                                                        <th>Contact Person</th>
                                                         <th>Action</th>
                                                         <th>Status</th>
 
@@ -185,18 +186,19 @@
                                                            {{data.PhoneNo}}
                                                        </td>
                                                        <td>
+                                                           {{data.EmailId}}
+                                                       </td>
+                                                       <td>
                                                            {{data.UserPrefix}}
                                                        </td>
                                                        <td>
-                                                           {{data.BoardId}}
+                                                           {{data.ContactPerson}}
                                                        </td>
-                                                       <td>
-                                                           {{data.Language}}
-                                                       </td>
+                                                      
                                                        <td>
                                                            <div class="action-link">
-                                                               <a class="print-icon" href="javascript:void(0);" data-toggle="m-tooltip" title="Print" data-html="true"><i class="la la-print"></i></a>
-                                                               <a class="view-icon" href="javascript:void(0);" data-toggle="m-tooltip" title="View"><i class="la la-eye"></i></a>
+                                                               @*<a class="print-icon" href="javascript:void(0);" data-toggle="m-tooltip" title="Print" data-html="true"><i class="la la-print"></i></a>
+    <a class="view-icon" href="javascript:void(0);" data-toggle="m-tooltip" title="View"><i class="la la-eye"></i></a>*@
                                                                <a class="edit-icon" ng-click="Verify(data.SchoolId)" data-toggle="m-tooltip" title="Edit" ><i class="la la-edit"></i></a>
                                                                @*<a class="delete-icon" ng-click="Delete(data.SchoolId)" data-toggle="m-tooltip" title="Deactive"><i class="la la-trash-o"></i></a>*@
 
@@ -300,7 +302,7 @@
                                 1) Use m-form--label-align-left class to alight the form input lables to the right
                                 2) Use m-form--state class to highlight input control borders on form validation
                                 -->
-                                <form name="form" class="m-form m-form--label-align-left- m-form--state-" id="m_form">
+                                <form  name="form" class="m-form m-form--label-align-left- m-form--state-" id="m_form">
 
                                     <!--begin: Form Body -->
                                     <div class="m-portlet__body student-admission-wrapper">
@@ -375,12 +377,17 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-xl-6">
-                                                                <div class="form-group row">
-                                                                    <label class="col-xl-4 col-lg-4 col-form-label">LANGUAGE<span class="required-star">*</span></label>
+                                                                <div class="form-group row" ng-init="GetLanguage()">
+                                                                    <label class="col-xl-4 col-lg-4 col-form-label">Language<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
-                                                                        <input type="text" name="language" id="language" class="form-control m-input" placeholder="Language" ng-model="Language" value="{{Language}}">
+                                                                        <select class="form-control" value="{{LanguageId}}" ng-model="LanguageId">
+                                                                            <option value="" selected>--Select--</option>
+                                                                            <option ng-repeat="s in data" value="{{s.LanguageId}}">{{s.Language}}</option>
+
+                                                                        </select>
                                                                     </div>
                                                                 </div>
+                                                             
                                                             </div>
                                                             <div class="col-xl-6">
                                                                 <div class="form-group row">
@@ -399,7 +406,7 @@
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">VALIDATY START DATE<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
                                                                         <div class="input-group date">
-                                                                            <input type="text" class="form-control m-input" readonly placeholder="Select date" id="m_datepicker_3" ng-model="ValidityStartDate"  value="{{ValidityStartDate}}"/>
+                                                                            <input type="date" class="form-control m-input"  placeholder="Select date"  ng-model="ValidityStartDate"  value="{{ValidityStartDate}}"/>
                                                                             <div class="input-group-append">
                                                                                 <span class="input-group-text">
                                                                                     <i class="la la-calendar-check-o"></i>
@@ -414,7 +421,7 @@
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">VALIDATY END DATE <span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
                                                                         <div class="input-group date">
-                                                                            <input type="text" class="form-control m-input" readonly placeholder="Select date" id="m_datepicker_2" ng-model="ValidityEndDate" value="{{ValidityEndDate}}"/>
+                                                                            <input type="date" class="form-control m-input"  placeholder="Select date"  ng-model="ValidityEndDate" value="{{ValidityEndDate}}"/>
                                                                             <div class="input-group-append">
                                                                                 <span class="input-group-text">
                                                                                     <i class="la la-calendar-check-o"></i>
@@ -428,18 +435,30 @@
 
                                                         <div class="row">
                                                             <div class="col-xl-6">
-                                                                <div class="form-group row">
+                                                                <div class="form-group row" ng-init="GetFee()">
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">FEE TEMPLATE<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
-                                                                        <input type="text" name="feetemplate" id="feetemplate" class="form-control m-input" ng-model="FeeTemplateId" value="{{FeeTemplateId}}">
+                                                                        <select class="form-control"  value="{{FeeTemplateId}}" ng-model="FeeTemplateId">
+                                                                            <option value="" selected>--Select--</option>
+                                                                            <option ng-repeat="s in Fee" value="{{s.TemplateTypeId}}">{{s.Name}}</option>
+
+                                                                        </select>
                                                                     </div>
                                                                 </div>
+                                
                                                             </div>
                                                             <div class="col-xl-6">
-                                                                <div class="form-group row">
+                                                                <div class="form-group row" ng-init="GetLogin()">
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">LOGIN TEMPLATE<span class="required-star">*</span></label>
-                                                                    <div class="col-xl-8 col-lg-8">
+                                                                    @*<div class="col-xl-8 col-lg-8">
                                                                         <input type="text" name="" class="form-control m-input" placeholder="" ng-model="LoginTemplateId" value="{{LoginTemplateId}}">
+                                                                    </div>*@
+                                                                    <div class="col-xl-8 col-lg-8">
+                                                                        <select class="form-control" value="{{LoginTemplateId}}" ng-model="LoginTemplateId">
+                                                                            <option value="" selected>--Select--</option>
+                                                                            <option ng-repeat="s in Login" value="{{LoginTemplateId}}">{{s.Name}}</option>
+
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -449,16 +468,30 @@
                                                             <div class="col-xl-6">
                                                                 <div class="form-group row">
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">EXAM TEMPLATE<span class="required-star">*</span></label>
-                                                                    <div class="col-xl-8 col-lg-8">
+                                                                    @*<div class="col-xl-8 col-lg-8">
                                                                         <input type="text" name="" class="form-control m-input" placeholder="" value="{{ExamTemplateId}}" ng-model="ExamTemplateId">
+                                                                    </div>*@
+                                                                    <div class="col-xl-8 col-lg-8">
+                                                                        <select class="form-control" value="{{ExamTemplateId}}" ng-model="ExamTemplateId">
+                                                                            <option value="" selected>--Select--</option>
+                                                                            <option ng-repeat="s in Exam" value="{{ExamTemplateId}}">{{s.Name}}</option>
+
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6">
-                                                                <div class="form-group row">
+                                                                <div class="form-group row" ng-init="GetPayroll()">
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">PAYROLL TEMPLATE<span class="required-star">*</span></label>
-                                                                    <div class="col-xl-8 col-lg-8">
+                                                                    @*<div class="col-xl-8 col-lg-8">
                                                                         <input type="text" name="" class="form-control m-input" placeholder="" value="{{PayrollTemplateId}}" ng-model="PayrollTemplateId">
+                                                                    </div>*@
+                                                                    <div class="col-xl-8 col-lg-8">
+                                                                        <select class="form-control" value="{{PayrollTemplateId}}" ng-model="PayrollTemplateId">
+                                                                            <option value="" selected>--Select--</option>
+                                                                            <option ng-repeat="s in Payroll" value="{{PayrollTemplateId}}">{{s.Name}}</option>
+
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -555,10 +588,14 @@
 
                                                         <div class="row">
                                                             <div class="col-xl-6">
-                                                                <div class="form-group row">
-                                                                    <label class="col-xl-4 col-lg-4 col-form-label">BOARD<span class="required-star">*</span></label>
+                                                                <div class="form-group row" ng-init="GetBoard()">
+                                                                    <label class="col-xl-4 col-lg-4 col-form-label">Board<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
-                                                                        <input type="text" name="Board" class="form-control m-input" placeholder="Board"  ng-model="BoardId" value="{{BoardId}}">
+                                                                        <select class="form-control" value="{{BoardId}}" ng-model="BoardId">
+                                                                            <option value="" selected>--Select--</option>
+                                                                            <option ng-repeat="s in board" value="{{s.BoardId}}">{{s.BoardName}}</option>
+
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -592,6 +629,7 @@
                                                                 <span>Submit</span>
                                                             </span>
                                                         </button>
+                                                      
                                                         <button type="submit" class="btn btn-secondary m-btn m-btn--custom m-btn--icon" ng-disabled="isenabled"  data-wizard-action="submit" ng-click="AddUpdate()">
                                                             <span>
                                                                 <i class="la la-check"></i>&nbsp;&nbsp;
@@ -604,6 +642,9 @@
                                                                 <i class="la la-arrow-right"></i>
                                                             </span>
                                                         </a>
+                                                        <button class="btn btn-secondary" ng-click="Clear()">
+                                                            <i class="fa fa-times"> </i>  Cancel
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -643,7 +684,7 @@
     <script src="~/Content/assets/demo/demo12/base/scripts.bundle.js" type="text/javascript"></script>
     <!--end::Global Theme Bundle -->
     <!--begin::Global Theme Bundle -->
-    <script src="~/Content/assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/assets/vendors/custom/datatables/datatables.bundle.js")" type="text/javascript"></script>
     <script src="~/Content/assets/demo/demo12/custom/crud/forms/widgets/bootstrap-datepicker.js" type="text/javascript"></script>
     <script src="~/Content/assets/demo/demo12/custom/crud/wizard/wizard.js" type="text/javascript"></script>
     <script src="~/Content/assets/demo/demo12/custom/crud/forms/widgets/select2.js" type="text/javascript"></script>
@@ -651,24 +692,24 @@
 
   <!--end::Global Theme Bundle -->
 
-    <script type="text/javascript">
-                //$(document).ready(function () {
-                //    var table = $('#student-admission-view').DataTable({
+    @*<script type="text/javascript">
+                $(document).ready(function () {
+                    var table = $('#student-admission-view').DataTable({
 
-                //        "columns": [
-                //            { "width": "15%", "sClass": "text-center" },
-                //            { "width": "35%" },
-                //            { "width": "10%", "sClass": "text-center" },
-                //            { "width": "15%", "sClass": "text-center" },
-                //            { "width": "10%", "sClass": "text-center" },
-                //            { "width": "15%", "bSortable": false, "sClass": "text-center" },
-                //        ],
+                        "columns": [
+                            { "width": "15%", "sClass": "text-center" },
+                            { "width": "35%" },
+                            { "width": "10%", "sClass": "text-center" },
+                            { "width": "15%", "sClass": "text-center" },
+                            { "width": "10%", "sClass": "text-center" },
+                            { "width": "15%", "bSortable": false, "sClass": "text-center" },
+                        ],
 
 
-                //    });
-                //});
+                    });
+                });
 
-    </script>
+    </script>*@
 
 </body>
 
