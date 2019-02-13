@@ -9,6 +9,9 @@ using System.Data.SqlClient;
 using SchoolAPI.Param;
 using SchoolAPI.BusinessLayer;
 using SchoolAPI.ResultModel;
+using System.Web;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace SchoolAPI.API
 {
@@ -17,12 +20,13 @@ namespace SchoolAPI.API
         SchoolERPContext db = new SchoolERPContext();
 
         [HttpPost]
-        public object AddSchool([FromBody]School obj)
+        public object AddSchool()
         {
             try
             {
-                    SchoolBusiness save = new SchoolBusiness();
-                var result = save.SaveSchool(obj);
+                School school = new School();
+                SchoolBusiness save = new SchoolBusiness();
+                var result = save.SaveSchool(school);
                 return result;
             }
             catch (Exception e)
@@ -163,5 +167,174 @@ namespace SchoolAPI.API
             }
 
         }
+
+        [HttpPost]
+        public object AddBoard([FromBody]BoardParam obj)
+        {
+            try
+            {
+                SchoolBusiness save = new SchoolBusiness();
+                var result = save.SaveBoard(obj);
+                return result;
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+
+            }
+
+
+
+        }
+        [HttpPost]
+        public object GetBoardInfo(UserCredential uc)
+        {
+            try
+            {
+                SchoolBusiness board = new SchoolBusiness();
+                var Result = board.GetBoard(uc);
+
+                return Result;
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+
+            }
+
+        }
+        [HttpPost]
+        public object GetSingleBoardInfo(BoardParam b)
+        {
+            try
+            {
+                SchoolBusiness board = new SchoolBusiness();
+                var Result = board.GetSingleBoard(b);
+
+                return Result;
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+
+            }
+
+        }
+        [HttpPost]
+        public object UpdateBoard(BoardParam b)
+        {
+            try
+            {
+                SchoolBusiness board = new SchoolBusiness();
+                var Result = board.BoardUpdate(b);
+
+                return Result;
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+
+            }
+
+        }
+        [HttpPost]
+        public object DeleteBoard([FromBody] BoardParam PM)
+        {
+            try
+            {
+                SchoolBusiness b = new SchoolBusiness();
+                var Result = b.DeleteBoard(PM);
+                return Result;
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+            }
+        }
+
+        [HttpPost]
+        public object AddLanguage([FromBody]LanguageParam obj)
+        {
+            try
+            {
+                SchoolBusiness save = new SchoolBusiness();
+                var result = save.SaveLanguage(obj);
+                return result;
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+
+            }
+
+
+
+        }
+        [HttpPost]
+        public object GetLanguageInfo(UserCredential uc)
+        {
+            try
+            {
+                SchoolBusiness language = new SchoolBusiness();
+                var Result = language.GetLanguage(uc);
+
+                return Result;
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+
+            }
+
+        }
+        [HttpPost]
+        public object GetSingleLanuageInfo(LanguageParam b)
+        {
+            try
+            {
+                SchoolBusiness language = new SchoolBusiness();
+                var Result = language.GetSingleLanguage(b);
+
+                return Result;
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+
+            }
+
+        }
+        [HttpPost]
+        public object UpdateLanguage(LanguageParam b)
+        {
+            try
+            {
+                SchoolBusiness board = new SchoolBusiness();
+                var Result = board.LanguageUpdate(b);
+
+                return Result;
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+
+            }
+
+        }
+        [HttpPost]
+        public object DeleteLanguage([FromBody] LanguageParam PM)
+        {
+            try
+            {
+                SchoolBusiness b = new SchoolBusiness();
+                var Result = b.DeleteLanguage(PM);
+                return Result;
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+            }
+        }
+
     }
 }

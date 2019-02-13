@@ -7,6 +7,7 @@ using SchoolAPI.Param;
 using SchoolAPI.Models;
 using SchoolAPI.ResultModel;
 using System.Configuration;
+using System.IO;
 
 namespace SchoolAPI.BusinessLayer
 {
@@ -14,28 +15,45 @@ namespace SchoolAPI.BusinessLayer
     public class SchoolBusiness
     {
         SchoolERPContext db = new SchoolERPContext();
-        public object SaveSchool(School school)
+        public object SaveSchool(School s)
         {
-           
+            var Logo = System.Web.HttpContext.Current.Request.Files["file"];
+            var Banner = System.Web.HttpContext.Current.Request.Files["file1"];
+
+            var json = System.Web.HttpContext.Current.Request.Form["data"];
+            School school = Newtonsoft.Json.JsonConvert.DeserializeObject<School>(json);
+
+
             if (school.UserName == null)
             {
                 return new Error() { IsError = true, Message = "Required Username" };
             }
-
-            TblSchool obj = new TblSchool();
-            var httpRequest = HttpContext.Current.Request;
-            if (httpRequest.Files.Count > 0)
+            var info = db.TblSchools.FirstOrDefault(r => r.SchoolName == school.SchoolName);
+            if (info != null)
             {
-                string UploadBaseUrl = ConfigurationManager.AppSettings["UploadBaseURL"];
-                string fileName = string.Empty;
-                var filePath = string.Empty;
-                string savePath = string.Empty;
-                foreach (string file in httpRequest.Files)
+                return new Error() { IsError = true, Message = "Duplicate Entry Not Allowed" };
+            }
+             TblSchool obj = new TblSchool();
+            var httpRequest = HttpContext.Current.Request;
+            string UploadBaseUrl = ConfigurationManager.AppSettings["UploadBaseURL"];
+            string fileLogo = string.Empty;
+            string fileBanner = string.Empty;
+            var filePath = string.Empty;
+            string savePath = string.Empty;
+
+            for (int i = 0; i < httpRequest.Files.Count; i++)
                 {
-                    var postedFile = httpRequest.Files[file];
-                    fileName = postedFile.FileName;
-                    filePath = ConfigurationManager.AppSettings["UploadDir"] + Guid.NewGuid() + fileName;
-                    savePath = HttpContext.Current.Server.MapPath(filePath); postedFile.SaveAs(savePath);
+                var file = httpRequest.Files[i];
+                filePath = ConfigurationManager.AppSettings["UploadDir"] + Guid.NewGuid() + file.FileName;
+                //if (!Directory.Exists(filePath))
+                //{
+                  //  DirectoryInfo di = Directory.CreateDirectory(filePath);
+                //}
+                savePath = HttpContext.Current.Server.MapPath(filePath);
+                file.SaveAs(savePath);               
+
+            }
+                    
                     obj.SchoolName = school.SchoolName;
                     obj.PhoneNo = school.PhoneNo;
                     obj.Address = school.Address;
@@ -50,22 +68,22 @@ namespace SchoolAPI.BusinessLayer
                     obj.LoginTemplateId = school.LoginTemplateId;
                     obj.ExamTemplateId = school.ExamTemplateId;
                     obj.CreatedBy = 1;
-                    obj.CreatedDate = school.CreatedDate;
+                    obj.CreatedDate = System.DateTime.Today.Date;
                     obj.ModifiedBy = 1;
-                    obj.ModifiedDate = school.ModifiedDate;
+                    obj.ModifiedDate = System.DateTime.Today.Date;
                     obj.UserPrefix = school.UserPrefix;
                     obj.UserName = school.UserName;
                     obj.Password = school.Password;
                     obj.BoardId = school.BoardId;
                     obj.Language = school.Language;
-                    obj.Logo = UploadBaseUrl + filePath.Replace("~/", "");
-                    obj.Banner = school.Banner;
+            obj.Logo = Logo.FileName;
+            obj.Banner = Banner.FileName;
                     obj.Status = 1;
 
                     db.TblSchools.Add(obj);
                     db.SaveChanges();
-                }
-            }
+                
+            
             //user.code = Convert.ToInt32(HttpContext.Current.Session["Code"]);
             return new Result
             {
@@ -183,27 +201,59 @@ namespace SchoolAPI.BusinessLayer
         
         public object GetFeeTemplate()
         {
-
-            var tem = db.View_Template.Where(r => r.TemplateType=="").ToList();
-            return new Result() { IsSucess = true, ResultData = tem };
+            try
+            {
+                var tem = db.View_Template.Where(r => r.TemplateType == "FEE TEMPLATE").ToList();
+                return new Result() { IsSucess = true, ResultData = tem };
+            }
+            catch(Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+            }
+           
 
         }
         public object GetPayrollTemplate()
         {
-            var tem1 = db.View_Template.Where(r => r.TemplateType == "").ToList();
-            return new Result() { IsSucess = true, ResultData = tem1 };
+            try
+            {
+                var tem1 = db.View_Template.Where(r => r.TemplateType == "PAYROLL TEMPLATE").ToList();
+                return new Result() { IsSucess = true, ResultData = tem1 };
+            }
+           catch(Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+            }
 
         }
         public object GetLoginTemplate()
         {
-            var tem2 = db.View_Template.Where(r => r.TemplateType == "").ToList();
-            return new Result() { IsSucess = true, ResultData = tem2 };
+            try
+            {
+                var tem2 = db.View_Template.Where(r => r.TemplateType == "LOGIN TEMPLATE").ToList();
+                return new Result() { IsSucess = true, ResultData = tem2 };
+            }
+            catch(Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+
+            }
+
 
         }
         public object GetExamTemplate()
         {
-            var tem2 = db.View_Template.Where(r => r.TemplateType == "").ToList();
-            return new Result() { IsSucess = true, ResultData = tem2 };
+            try
+            {
+                var tem2 = db.View_Template.Where(r => r.TemplateType == "EXAM TEMPLATE").ToList();
+                return new Result() { IsSucess = true, ResultData = tem2 };
+
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+
+            }
 
         }
         public object Delete(UpdateSchool s)
@@ -228,6 +278,272 @@ namespace SchoolAPI.BusinessLayer
                 return new Error() { IsError = true, Message = e.Message };
             }
         }
+        public object SaveBoard(BoardParam b)
+        {
+            if(b.BoardName==null)
+            {
+                return new Error() { IsError = true, Message = "Required BoardName" };
+            }
+            var data = db.TblBoards.FirstOrDefault(r => r.BoardName == b.BoardName);
+            if (data != null)
+            {
+                return new Error() { IsError = true, Message = "Duplicate Entry Not Allowed" };
+            }
+            try
+            {
+                TblBoard obj = new TblBoard();
+                obj.BoardName = b.BoardName;
+                obj.Status = 1;
+                obj.CreatedBy = 1;
+                obj.CreatedDate = System.DateTime.Today.Date;
+                obj.ModifiedBy = null;
+                obj.ModifiedDate= System.DateTime.Today.Date;
+                db.TblBoards.Add(obj);
+                db.SaveChanges();
+                return new Result() { IsSucess = true, ResultData = "Created Board" };
+            }
+            catch(Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+            }
+          
+        }
+        public object BoardUpdate(BoardParam b)
+        {
+            if (b.BoardName == null)
+            {
+                return new Error() { IsError = true, Message = "Required BoardName" };
+            }
+            var data = db.TblBoards.Where(r => r.BoardId == b.BoardId).FirstOrDefault();
+            try
+            {
+                TblBoard obj = new TblBoard();
+                data.BoardName = b.BoardName;
+                data.ModifiedBy = null;
+                data.ModifiedDate = System.DateTime.Today.Date;
+                db.SaveChanges();
+                return new Result() { IsSucess = true, ResultData = "Update Board" };
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+            }
+
+        }
+        public object GetBoard(UserCredential obj)
+        {
+            try
+            {
+                List<TblBoard> board = null;
+
+                if (obj.Status == "0")
+                {
+                    board = db.TblBoards.Where(r => r.Status == 0).ToList();
+                }
+                else
+                {
+
+                    board = db.TblBoards.Where(r => r.Status == 1).ToList();
+
+                }
+                if (obj.Status == null)
+                {
+                    board = db.TblBoards.Where(r => r.Status == 1).ToList();
+
+                }
+
+                if (board == null)
+                {
+                    return new Error() { IsError = true, Message = "No Records Found !!" };
+                }
+                return board;
+
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+            }
+         
+
+        }
+        public object GetSingleBoard(BoardParam b)
+        {
+            try
+            {
+                var board = db.TblBoards.Where(r=>r.BoardId==b.BoardId).FirstOrDefault();
+                return new Result() { IsSucess = true, ResultData = board };
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+            }
+
+
+        }
+
+        public object SaveLanguage(LanguageParam b)
+        {
+            if (b.Language == null)
+            {
+                return new Error() { IsError = true, Message = "Required Language" };
+            }
+            var data = db.TblLanguages.FirstOrDefault(r => r.Language == b.Language);
+            if (data != null)
+            {
+                return new Error() { IsError = true, Message = "Duplicate Entry Not Allowed" };
+            }
+            try
+            {
+                TblLanguage obj = new TblLanguage();
+                obj.Language = b.Language;
+                obj.Status = 1;
+                obj.CreatedBy = 1;
+                obj.CreatedDate = System.DateTime.Today.Date;
+                obj.ModifiedBy = null;
+                obj.ModifiedDate = System.DateTime.Today.Date;
+                db.TblLanguages.Add(obj);
+                db.SaveChanges();
+                return new Result() { IsSucess = true, ResultData = "Created Language" };
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+            }
+
+        }
+        public object DeleteBoard(BoardParam PM)
+        {
+            try
+            {
+
+
+                TblBoard obj= db.TblBoards.Where(r => r.BoardId == PM.BoardId).FirstOrDefault();
+
+
+                if (obj.Status == 1)
+                {
+                    obj.Status = 0;
+                }
+                else
+                {
+                    obj.Status = 1;
+                }
+
+                db.SaveChanges();
+
+                return new Result() { IsSucess = true, ResultData = "Board Deactivated Successfully." };
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+
+            }
+
+        }
+
+        //language
+        public object GetLanguage(UserCredential obj)
+        {
+            try
+            {
+                List<TblLanguage> language = null;
+
+                if (obj.Status == "0")
+                {
+                    language = db.TblLanguages.Where(r => r.Status == 0).ToList();
+                }
+                else
+                {
+
+                    language = db.TblLanguages.Where(r => r.Status == 1).ToList();
+
+                }
+                if (obj.Status == null)
+                {
+                    language = db.TblLanguages.Where(r => r.Status == 1).ToList();
+
+                }
+
+                if (language == null)
+                {
+                    return new Error() { IsError = true, Message = "No Records Found !!" };
+                }
+                return language;
+
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+            }
+
+
+        }
+        public object GetSingleLanguage(LanguageParam b)
+        {
+            try
+            {
+                var language = db.TblLanguages.Where(r => r.LanguageId == b.LanguageId).FirstOrDefault();
+                return new Result() { IsSucess = true, ResultData = language };
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+            }
+
+
+        }
+        public object LanguageUpdate(LanguageParam b)
+        {
+            if (b.Language == null)
+            {
+                return new Error() { IsError = true, Message = "Required Language" };
+            }
+            var data = db.TblLanguages.Where(r => r.LanguageId == b.LanguageId).FirstOrDefault();
+            try
+            {
+                TblBoard obj = new TblBoard();
+                data.Language = b.Language;
+                data.ModifiedBy = null;
+                data.ModifiedDate = System.DateTime.Today.Date;
+                db.SaveChanges();
+                return new Result() { IsSucess = true, ResultData = "Update Language" };
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+            }
+
+        }
+        public object DeleteLanguage(LanguageParam PM)
+        {
+            try
+            {
+
+
+                TblLanguage obj = db.TblLanguages.Where(r => r.LanguageId == PM.LanguageId).FirstOrDefault();
+
+
+                if (obj.Status == 1)
+                {
+                    obj.Status = 0;
+                }
+                else
+                {
+                    obj.Status = 1;
+                }
+
+                db.SaveChanges();
+
+                return new Result() { IsSucess = true, ResultData = "Language Deactivated Successfully." };
+            }
+            catch (Exception e)
+            {
+                return new Error() { IsError = true, Message = e.Message };
+
+            }
+
+        }
+
 
     }
 }

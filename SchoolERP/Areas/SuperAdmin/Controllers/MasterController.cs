@@ -23,5 +23,13 @@ namespace SchoolERP.Areas.SuperAdmin.Controllers
         {
             return View();
         }
+        public ActionResult Board()
+        {
+            return View();
+        }
+        public ActionResult Language()
+        {
+            return View();
+        }
     }
 }

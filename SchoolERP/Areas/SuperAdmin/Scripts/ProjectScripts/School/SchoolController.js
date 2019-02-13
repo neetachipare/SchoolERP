@@ -11,7 +11,8 @@ function SchoolController($scope, Service) {
     $scope.isenabled = false;
     $scope.isActive = false;
     $scope.Initialize = function () {
-        debugger;     
+        debugger;  
+        alert('Hello')
         Data = {
            Status: $scope.btnactive
         }
@@ -33,7 +34,7 @@ function SchoolController($scope, Service) {
         $scope.isenabled = true;
     }
     $scope.Add = function () {
-        //debugger;
+        debugger;
         $scope.isDisabled = true;
         $scope.isenabled = false;
         Info = {
@@ -44,7 +45,7 @@ function SchoolController($scope, Service) {
             ValidityStartDate : $scope.ValidityStartDate,
             ValidityEndDate : $scope.ValidityEndDate,
             PayrollTemplateId : $scope.PayrollTemplateId,
-            FeeTemplateId : $scope.FeeTemplateId,
+            FeeTemplateId: $scope.FeeTemplateId,
             ExamTemplateId : $scope.ExamTemplateId,
             LoginTemplateId : $scope.LoginTemplateId,
             UserPrefix : $scope.UserPrefix,
@@ -52,20 +53,26 @@ function SchoolController($scope, Service) {
             Password : $scope.Password,
             BoardId : $scope.BoardId,
             Language : $scope.Language,
-            Logo : $scope.Logo,
-            Banner: $scope.Banner,
             Designation: $scope.Designation,
             EmailId: $scope.EmailId,
             LandlineNo: $scope.LandlineNo
 
         };
-       
-        Service.PostFile("SchoolMaster/AddSchool",Info).then(function (rd) {
+
+        var payload = new FormData();
+        payload.append("data", JSON.stringify(Info));
+        payload.append("file1", $scope.Logo);
+        payload.append("file", $scope.Banner);
+      
+
+        Service.PostFile("SchoolMaster/AddSchool",payload).then(function (rd) {
             alert('Hii')
+            $scope.IsVisible = false;
+            $scope.Visible = true;
             if (rd.data.IsSucess) {
                 alert('Success')
                 $scope.Initialize();
-                $scope.Visible = true;
+               
 
             }
 
@@ -107,25 +114,92 @@ function SchoolController($scope, Service) {
             if (rd.data.IsSucess) {
                 alert('Success')
                 $scope.Initialize();
+                $scope.IsVisible = false;
                 $scope.Visible = true;
+                
             }
 
         })
 
     }
-    $scope.GetTemplate = function () {
+    $scope.GetFee = function () {
 
-        Service.Post("api/Grievance/GetUnAssignedGrievanceType").then(function (result) {
+        Service.Post("SchoolMaster/FeeTemplateInformation").then(function (result) {
             debugger;
             // $scope.ParamUserLogin.Name = result.data.Name
-            $scope.tbl_grievance_list = result.data;
-            $scope.Grievance = result.data.ResultData;
+            $scope.tbl_Template = result.data;
+            $scope.Fee = result.data.ResultData;
             console.log(result.data);
 
         })
 
     }
-    
+    $scope.GetLogin = function () {
+
+        Service.Post("SchoolMaster/LoginTemplateInformation").then(function (result) {
+            debugger;
+            // $scope.ParamUserLogin.Name = result.data.Name
+            $scope.tbl_Template = result.data;
+            $scope.Login = result.data.ResultData;
+            console.log(result.data);
+
+        })
+
+    }
+    $scope.GetPayroll = function () {
+
+        Service.Post("SchoolMaster/PayrollTemplateInformation").then(function (result) {
+            debugger;
+            // $scope.ParamUserLogin.Name = result.data.Name
+            $scope.tbl_Template = result.data;
+            $scope.Payroll = result.data.ResultData;
+            console.log(result.data);
+
+        })
+
+    }
+    $scope.GetExam = function () {
+
+        Service.Post("SchoolMaster/ExamTemplateInformation").then(function (result) {
+            debugger;
+            // $scope.ParamUserLogin.Name = result.data.Name
+            $scope.tbl_Template = result.data;
+            $scope.Exam = result.data.ResultData;
+            console.log(result.data);
+
+        })
+
+    }
+    $scope.Clear = function () {
+
+        $scope.IsVisible = false;
+        $scope.Visible = true;
+        $scope.SchoolName = "";
+        $scope.PhoneNo = "";
+     $scope.SchoolName="";
+     $scope.PhoneNo = "";
+     $scope.Address = "";
+     $scope.ContactPerson = "";
+     $scope.Designation = "";
+     $scope.EmailId = "";
+     $scope.LandlineNo = "";
+     $scope.ValidityStartDate = "";
+     $scope.ValidityEndDate = "";
+     $scope.PayrollTemplateId = "";
+     $scope.FeeTemplateId = "";
+     $scope.ExamTemplateId = "";
+     $scope.LoginTemplateId = "";
+     $scope.UserPrefix = "";
+     $scope.UserName = "";
+     $scope.Password = "";
+     $scope.BoardId = "";
+     $scope.Language = "";
+     $scope.Logo = "";
+     $scope.Banner = "";
+     $scope.SchoolId = "";
+        $scope.Initialize();
+       
+    }
     $scope.Verify = function (SchoolId) {
         debugger;    
         
@@ -182,5 +256,27 @@ function SchoolController($scope, Service) {
             }
         })
 
+    }
+    $scope.GetLanguage = function () {
+        debugger;
+        $scope.UserCredentialModel = {};
+        Service.Post("SchoolMaster/GetLanguageInfo", $scope.UserCredentialModel).then(function (result) {
+            debugger;
+            $scope.ViewGetStudentInfoes = result.data;
+            $scope.data = result.data;
+            //console.log(result.data);
+
+        })
+    }
+    $scope.GetBoard = function () {
+        debugger;
+        $scope.UserCredentialModel = {};
+        Service.Post("SchoolMaster/GetBoardInfo", $scope.UserCredentialModel).then(function (result) {
+            debugger;
+            $scope.ViewGetStudentInfoes = result.data;
+            $scope.board = result.data;
+            //console.log(result.data);
+
+        })
     }
 }
