@@ -181,7 +181,9 @@ function MenuController($scope, Service) {
             $scope.ModuleOrder = result.data.ModuleOrder;
             $scope.Status = result.data.Status;
             $scope.ActionName = result.data.ActionName;
-           // $scope.GetChildMenus(result.data.ParentModuleId);
+            
+                $scope.GetChildMenus(result.data.ParentModuleId);
+            
             $scope.IsVisible = true;
            // $scope.Initialize();
         })
