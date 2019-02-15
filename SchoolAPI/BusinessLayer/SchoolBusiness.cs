@@ -122,40 +122,64 @@ namespace SchoolAPI.BusinessLayer
 
         public object UpdateSchoolInfo(UpdateSchool school)
         {
-
-            if (school.SchoolName == null)
+            var httpRequest = HttpContext.Current.Request;
+            var Logo = System.Web.HttpContext.Current.Request.Files["logo"];
+            var Banner = System.Web.HttpContext.Current.Request.Files["banner"];
+           
+            var json = System.Web.HttpContext.Current.Request.Form["data"];
+            UpdateSchool info = Newtonsoft.Json.JsonConvert.DeserializeObject<UpdateSchool>(json);
+            if (info.SchoolName == null)
             {
                 return new Error() { IsError = true, Message = "Requird Name" };
             }
-            var data = db.TblSchools.FirstOrDefault(r => r.SchoolId == school.SchoolId);
-            if(data==null)
+            //var datas = db.TblSchools.FirstOrDefault(r => r.SchoolName == info.SchoolName);
+            //if (datas != null)
+            //{
+            //    return new Error() { IsError = true, Message = "Duplicate Entry Not Allowed" };
+            //}
+            var data = db.TblSchools.Where(r => r.SchoolId == info.SchoolId).FirstOrDefault();
+           
+            TblSchool obj = new TblSchool();
+            string UploadBaseUrl = ConfigurationManager.AppSettings["UploadBaseURL"];
+            string fileLogo = string.Empty;
+            string fileBanner = string.Empty;
+            var filePath = string.Empty;
+            string savePath = string.Empty;
+
+            for (int i = 0; i < httpRequest.Files.Count; i++)
             {
-                return new Error() { IsError = true, Message = "Check School Name" };
+                var file = httpRequest.Files[i];
+                filePath = ConfigurationManager.AppSettings["UploadDir"] + Guid.NewGuid() + file.FileName;
+                //if (!Directory.Exists(filePath))
+                //{
+                //  DirectoryInfo di = Directory.CreateDirectory(filePath);
+                //}
+                savePath = HttpContext.Current.Server.MapPath(filePath);
+                file.SaveAs(savePath);
 
             }
-            else
-            {
-                data.SchoolId = school.SchoolId;
-            data.SchoolName = school.SchoolName;
-            data.PhoneNo = school.PhoneNo;
-            data.Address = school.Address;
-            data.ContactPerson = school.ContactPerson;
-            data.PayrollTemplateId = school.PayrollTemplateId;
-            data.FeeTemplateId = school.FeeTemplateId;
-            data.LoginTemplateId = school.LoginTemplateId;
-            data.ExamTemplateId = school.ExamTemplateId;
+
+            data.SchoolId = info.SchoolId;
+            data.SchoolName = info.SchoolName;
+            data.PhoneNo = info.PhoneNo;
+            data.Address = info.Address;
+            data.ContactPerson = info.ContactPerson;
+            data.PayrollTemplateId = info.PayrollTemplateId;
+            data.FeeTemplateId = info.FeeTemplateId;
+            data.LoginTemplateId = info.LoginTemplateId;
+            data.ExamTemplateId = info.ExamTemplateId;
             data.ModifiedBy = 1;
                 data.ModifiedDate = System.DateTime.Today.Date;
-            data.UserPrefix = school.UserPrefix;
-            data.UserName = school.UserName;
-            data.Password = school.Password;
-            data.BoardId = school.BoardId;
-            data.Language = school.Language;
-            data.LandlineNo = school.LandlineNo;
-            data.EmailId = school.EmailId;
-             data.Designation = school.Designation;
-            data.Logo = school.Logo;
-            data.Banner = school.Banner;
+            data.UserPrefix = info.UserPrefix;
+            data.UserName = info.UserName;
+            data.Password = info.Password;
+            data.BoardId = info.BoardId;
+            data.Language = info.Language;
+            data.LandlineNo = info.LandlineNo;
+            data.EmailId = info.EmailId;
+             data.Designation = info.Designation;
+            data.Logo = Logo.FileName;
+            data.Banner = Banner.FileName;
                 data.CreatedBy = data.CreatedBy;
                 data.CreatedDate = data.CreatedDate;
            // db.TblSchools.Add(data);
@@ -167,7 +191,7 @@ namespace SchoolAPI.BusinessLayer
                 ResultData = "School Updated!"
             };
 
-            }
+            
 
         }
         public object GetSchool(ActiveParam s)

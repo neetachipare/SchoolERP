@@ -12,7 +12,7 @@ function SchoolController($scope, Service) {
     $scope.isActive = false;
     $scope.Initialize = function () {
         debugger;  
-        alert('Hello')
+        
         Data = {
            Status: $scope.btnactive
         }
@@ -62,15 +62,15 @@ function SchoolController($scope, Service) {
         var payload = new FormData();
         payload.append("data", JSON.stringify(Info));
         payload.append("file1", $scope.Logo);
-        payload.append("file", $scope.Banner);
-      
+        payload.append("file", $scope.Banner);     
 
         Service.PostFile("SchoolMaster/AddSchool",payload).then(function (rd) {
             alert('Hii')
             $scope.IsVisible = false;
             $scope.Visible = true;
             if (rd.data.IsSucess) {
-                alert('Success')
+                alert(rd.data.ResultData);
+                $scope.Close();
                 $scope.Initialize();
                
 
@@ -104,19 +104,22 @@ function SchoolController($scope, Service) {
             Password: $scope.Password,
             BoardId: $scope.BoardId,
             Language: $scope.Language,
-            Logo: $scope.Logo,
-            Banner: $scope.Banner,
-            SchoolId: $scope.SchoolId
+             SchoolId: $scope.SchoolId
         };
-       
-        Service.Post("SchoolMaster/UpdateSchool", JSON.stringify(Info)).then(function (rd) {
+        var payload = new FormData();
+        payload.append("data", JSON.stringify(Info));
+        payload.append("logo", $scope.Logo);
+        payload.append("banner", $scope.Banner);
+
+        Service.PostFile("SchoolMaster/UpdateSchool",payload).then(function (rd) {
             alert('Hii')
+            $scope.IsVisible = false;
+            $scope.Visible = true;
             if (rd.data.IsSucess) {
-                alert('Success')
-                $scope.Initialize();
-                $scope.IsVisible = false;
-                $scope.Visible = true;
-                
+                alert(rd.data.ResultData);
+                $scope.Refresh();
+
+
             }
 
         })
@@ -200,6 +203,7 @@ function SchoolController($scope, Service) {
         $scope.Initialize();
        
     }
+   
     $scope.Verify = function (SchoolId) {
         debugger;    
         
@@ -278,5 +282,31 @@ function SchoolController($scope, Service) {
             //console.log(result.data);
 
         })
+    }
+    $scope.Refresh = function () {
+        $scope.SchoolName = "";
+        $scope.PhoneNo = "";
+        $scope.SchoolName = "";
+        $scope.PhoneNo = "";
+        $scope.Address = "";
+        $scope.ContactPerson = "";
+        $scope.Designation = "";
+        $scope.EmailId = "";
+        $scope.LandlineNo = "";
+        $scope.ValidityStartDate = "";
+        $scope.ValidityEndDate = "";
+        $scope.PayrollTemplateId = "";
+        $scope.FeeTemplateId = "";
+        $scope.ExamTemplateId = "";
+        $scope.LoginTemplateId = "";
+        $scope.UserPrefix = "";
+        $scope.UserName = "";
+        $scope.Password = "";
+        $scope.BoardId = "";
+        $scope.Language = "";
+        $scope.Logo = "";
+        $scope.Banner = "";
+        $scope.SchoolId = "";
+        $scope.Initialize();
     }
 }

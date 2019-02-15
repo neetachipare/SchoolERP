@@ -85,12 +85,13 @@ namespace SchoolAPI.API
 
         }
         [HttpPost]
-        public object UpdateSchool(UpdateSchool obj)
+        public object UpdateSchool()
         {
             try
             {
+                UpdateSchool school = new UpdateSchool();
                 SchoolBusiness update = new SchoolBusiness();
-                var result = update.UpdateSchoolInfo(obj);
+                var result = update.UpdateSchoolInfo(school);
                 return result;
             }
             catch (Exception e)

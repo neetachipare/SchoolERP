@@ -6,12 +6,15 @@ function LoginController($scope, Service) {
    
         $scope.ValidateUser = function () {
             debugger;
-            Username = $scope.User.UserName;
-            Password = $scope.User.Password;
-            Service.Post("Login/ValidateUserLogin").then(function (rd) {
-                alert('Hii')
+            data = {
+                Username:$scope.User.UserName,
+                Password :$scope.User.Password
+            }
+                         
+            Service.Post("Login/ValidateUserLogin",data).then(function (rd) {
+               
             if (rd.data.IsSucess) {
-                alert('Success')
+                location.href = "SuperAdmin/Master/ViewSchoolMaster";
             }
 
         })
