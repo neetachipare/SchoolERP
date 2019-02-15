@@ -15,7 +15,7 @@ namespace SchoolAPI.Models
         [StringLength(100)]
         public string ModuleName { get; set; }
 
-        public long? ParentModuleId { get; set; }
+        public long ParentModuleId { get; set; }
 
         public long? ModuleOrder { get; set; }
 
@@ -27,6 +27,6 @@ namespace SchoolAPI.Models
 
         public DateTime? ModifiedDate { get; set; }
 
-        public long? Status { get; set; }
+        public int Status { get; set; }
     }
 }
