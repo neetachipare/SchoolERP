@@ -6,14 +6,18 @@ namespace SchoolAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("TblRoleMaster")]
-    public partial class TblRoleMaster
+    public partial class View_Sub_Menu
     {
         [Key]
-        public long RoleId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long ModuleId { get; set; }
 
-        [StringLength(50)]
-        public string Role { get; set; }
+        [StringLength(100)]
+        public string ModuleName { get; set; }
+
+        public long? ParentModuleId { get; set; }
+
+        public long? ModuleOrder { get; set; }
 
         public long? CreatedBy { get; set; }
 

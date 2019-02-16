@@ -24,14 +24,16 @@ namespace SchoolAPI
         public virtual DbSet<TblTemplateTypeMaster> TblTemplateTypeMasters { get; set; }
         public virtual DbSet<TblUserLogin> TblUserLogins { get; set; }
         public virtual DbSet<TblUserModule> TblUserModules { get; set; }
-        public virtual DbSet<TblUserRole> TblUserRoles { get; set; }
+        public virtual DbSet<TblUserRole> TblUserRoles { get; set; } 
+        public virtual DbSet<View_Sub_Menu> View_Sub_Menu { get; set; }
+        public virtual DbSet<TblMenu> TblMenus { get; set; }
+        public virtual DbSet<Vw_MenuSubMenu> Vw_MenuSubMenu { get; set; } 
         public virtual DbSet<ViewModuleMaster> ViewModuleMasters { get; set; }
 
         public virtual DbSet<View_Template> View_Template { get; set; }
 
         public virtual DbSet<View_MenuList> View_MenuList { get; set; }
-
-
+ 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }

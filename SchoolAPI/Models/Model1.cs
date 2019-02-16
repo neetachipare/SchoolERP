@@ -11,8 +11,9 @@ namespace SchoolAPI.Models
             : base("name=Model1")
         {
         }
-
-        public virtual DbSet<ViewModuleMaster> ViewModuleMasters { get; set; }
+ 
+        public virtual DbSet<Vw_MenuSubMenu> Vw_MenuSubMenu { get; set; } 
+        public virtual DbSet<ViewModuleMaster> ViewModuleMasters { get; set; } 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

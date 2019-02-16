@@ -6,14 +6,13 @@ namespace SchoolAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("TblRoleMaster")]
-    public partial class TblRoleMaster
+    [Table("TblMenu")]
+    public partial class TblMenu
     {
         [Key]
-        public long RoleId { get; set; }
+        public long MenuId { get; set; }
 
-        [StringLength(50)]
-        public string Role { get; set; }
+        public long? ModuleId { get; set; }
 
         public long? CreatedBy { get; set; }
 
@@ -24,5 +23,7 @@ namespace SchoolAPI.Models
         public DateTime? ModifiedDate { get; set; }
 
         public Int32 Status { get; set; }
+
+        public long? RoleId { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace SchoolERP.Areas.SuperAdmin.Controllers
     public class RoleController : Controller
     {
         // GET: SuperAdmin/Role
-        public ActionResult Index()
+        public ActionResult MenuSubMenu()
         {
             return View();
         }
