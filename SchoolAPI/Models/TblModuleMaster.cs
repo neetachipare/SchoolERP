@@ -26,7 +26,8 @@ namespace SchoolAPI.Models
         public long? ModifiedBy { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
-
-        public int Status { get; set; }
+  
+        public int Status { get; set; }  
+        public string ActionName { get; set; }  
     }
 }
