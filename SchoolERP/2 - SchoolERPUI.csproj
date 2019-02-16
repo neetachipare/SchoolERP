@@ -89,11 +89,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Scripts\ProjectScripts\MenuSubMenu\MenuSubMenuController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\MenuSubMenu\MenuSubMenuModule.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Module\Menu.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Module\MenuController.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Module\Module.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Module\ModuleController.js" />
     <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateMaster.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateMasterController.js" />
     <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateType.js" />
     <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateTypeController.js" />
     <Content Include="Areas\SuperAdmin\Scripts\CommonScript\Module.js" />
@@ -424,6 +427,7 @@
     <Compile Include="Areas\SuperAdmin\Controllers\MasterController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\ModuleController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\SuperAdmin\Controllers\TemplateMasterController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\TemplateTypeController.cs" />
     <Compile Include="Areas\SuperAdmin\SuperAdminAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
@@ -531,6 +535,9 @@
     <Content Include="Areas\SuperAdmin\Views\Master\Board.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\Master\Language.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\Module\AddMenu.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Module\ModuleMaster.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Role\MenuSubMenu.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\TemplateMaster\Index.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Home\ForgetPass.cshtml" />

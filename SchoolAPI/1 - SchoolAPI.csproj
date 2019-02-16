@@ -108,14 +108,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\LoginController.cs" />
+    <Compile Include="API\MenuSubMenuController.cs" />
     <Compile Include="API\ModuleController.cs" />
     <Compile Include="API\SchoolMasterController.cs" />
+    <Compile Include="API\TemplateMasterController.cs" />
     <Compile Include="API\TemplateTypeController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BusinessLayer\CreateModuleBL.cs" />
+    <Compile Include="BusinessLayer\MenuBussiness.cs" />
     <Compile Include="BusinessLayer\ModuleMasterBL.cs" />
     <Compile Include="BusinessLayer\SchoolBusiness.cs" />
     <Compile Include="BusinessLayer\TblModuleMasters.cs" />
+    <Compile Include="BusinessLayer\TemplateMasterBL.cs" />
     <Compile Include="BusinessLayer\TemplateTypeBL.cs" />
     <Compile Include="BusinessLayer\UserBusiness.cs" />
     <Compile Include="Global.asax.cs">
@@ -124,6 +128,7 @@
     <Compile Include="Models\CryptIt.cs" />
     <Compile Include="Models\TblBoard.cs" />
     <Compile Include="Models\TblLanguage.cs" />
+    <Compile Include="Models\TblMenu.cs" />
     <Compile Include="Models\TblModuleMaster.cs" />
     <Compile Include="Models\TblRoleMaster.cs" />
     <Compile Include="Models\TblSchool.cs" />
@@ -137,13 +142,16 @@
     <Compile Include="Models\ViewTemplateMaster.cs" />
     <Compile Include="Models\ViewTemplateType.cs" />
     <Compile Include="Models\View_MenuList.cs" />
+    <Compile Include="Models\View_Sub_Menu.cs" />
     <Compile Include="Models\View_Template.cs" />
+    <Compile Include="Models\Vw_MenuSubMenu.cs" />
     <Compile Include="Param\ActiveParam.cs" />
     <Compile Include="Param\BoardParam.cs" />
     <Compile Include="Param\Email.cs" />
     <Compile Include="Param\ForgetPassword.cs" />
     <Compile Include="Param\GetSchool.cs" />
     <Compile Include="Param\LanguageParam.cs" />
+    <Compile Include="Param\MenuSubMenuParam.cs" />
     <Compile Include="Param\ModuleParam.cs" />
     <Compile Include="Param\School.cs" />
     <Compile Include="Param\TemplateMasterParam.cs" />

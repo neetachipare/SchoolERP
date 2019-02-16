@@ -102,7 +102,7 @@ function TemplateMasterController($scope, Service) {
             if (active)
                 $scope.lst.push(s.ModuleName);
             else
-                $scope.lst.splice($scope.lst.indexOf(s), 1);
+                $scope.lst.splice($scope.lst.indexOf(s.ModuleName), 1);
             $scope.str = "";
            for (var i = 0; i < $scope.lst.length; i++)
             {
