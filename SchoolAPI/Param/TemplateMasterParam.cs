@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -23,5 +24,8 @@ namespace SchoolAPI.Param
         public int Status { get; set; }
 
         public string BtnStatus { get; set; }
+
+        //[NotMapped]
+        public string MenuListIds { get; set; }
     }
 }
