@@ -25,6 +25,6 @@ namespace SchoolAPI.Models
 
         public DateTime? ModifiedDate { get; set; }
 
-        public long? Status { get; set; }
+        public int? Status { get; set; }
     }
 }
