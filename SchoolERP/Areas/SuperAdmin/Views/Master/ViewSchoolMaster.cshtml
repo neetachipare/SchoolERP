@@ -378,10 +378,10 @@
                                                         <div class="row">
                                                             <div class="col-xl-6">
                                                                 <div class="form-group row" ng-init="GetLanguage()">
-                                                                    <label class="col-xl-4 col-lg-4 col-form-label">Language<span class="required-star">*</span></label>
+                                                                    <label class="col-xl-4 col-lg-4 col-form-label">LANGUAGE<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
                                                                         <select class="form-control" value="{{LanguageId}}" ng-model="LanguageId">
-                                                                            <option value="" selected>--Select--</option>
+                                                                            <option value="">--Select--</option>
                                                                             <option ng-repeat="s in data" value="{{s.LanguageId}}" ng-selected="{{s.selected==LanguageId}}">{{s.Language}}</option>
 
                                                                         </select>
@@ -440,9 +440,10 @@
                                                                     <div class="col-xl-8 col-lg-8">
                                                                         <select class="form-control"  value="{{FeeTemplateId}}" ng-model="FeeTemplateId">
                                                                             <option value="" selected>--Select--</option>
-                                                                            <option ng-repeat="s in Fee" value="{{s.TemplateTypeId}}" ng-selected="{{selected==FeeTemplateId}}">{{s.Name}}</option>
+                                                                            <option ng-repeat="s in Fee" value="{{s.TemplateTypeId}}" ng-selected="{{s.selected==TemplateTypeId}}">{{s.Name}}</option>
 
                                                                         </select>
+                                                                        
                                                                     </div>
                                                                 </div>
                                 
@@ -547,7 +548,7 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">CONFIRM PASSWORD<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
-                                                                        <input type="password" name="confpass" class="form-control m-input" placeholder="Confirm Password" ng-model="ConPassword" value="{{Password}}">
+                                                                        <input type="password" name="confpass" class="form-control m-input" placeholder="Confirm Password" ng-model="ConPassword" value="{{ConPassword}}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -557,7 +558,9 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">LOGO<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
-                                                                        <input type="file" name="Logo" class="form-control m-input" placeholder="" multiple="multiple" upload-file="myfile" file-model="Logo" value="{{Logo}}">
+                                                                        <input type="file" name="Logo" class="form-control m-input" onchange="preview_image(event)" multiple="multiple" upload-file="myfile" file-model="Logo"  file-value="{{Logo}}">
+                                                                    @*<a href="{{Logo}}">View</a>*@
+                                                                        <img id="output_image" ng-src="{{Logo}}" width="100"/>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -565,7 +568,9 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">BANNER<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
-                                                                        <input type="file" name="" class="form-control m-input" placeholder="" multiple="multiple" file-model="Banner" value="{{Banner}}">
+                                                                        <input type="file" name="" class="form-control m-input" onchange="preview_banner(event)" multiple="multiple" file-model="Banner"  value="{{Banner}}">
+                                                                        @*<a href="{{Banner}}">View</a>*@
+                                                                        <img id="output_image1" ng-src="{{Banner}}" ng-bind="Banner" width="100" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -587,17 +592,30 @@
                                                                                                          
 
                                                         <div class="row">
-                                                            <div class="col-xl-6">
+                                                            @*<div class="col-xl-6">
                                                                 <div class="form-group row" ng-init="GetBoard()">
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">Board<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
                                                                         <select class="form-control" value="{{BoardId}}" ng-model="BoardId">
                                                                             <option value="" selected>--Select--</option>
-                                                                            <option ng-repeat="s in board" value="{{s.BoardId}}" ng-selected="{{s.selected==BoardId}}">{{s.BoardName}}</option>
+                                                                            <option ng-repeat="b in board" value="{{b.BoardId}}" ng-selected="{{b.selected==b.BoardId}}">{{b.BoardName}}</option>
 
                                                                         </select>
                                                                     </div>
                                                                 </div>
+                                                            </div>*@
+                                                            <div class="col-xl-6">
+                                                                <div class="form-group row" ng-init="GetBoard()">
+                                                                    <label class="col-xl-4 col-lg-4 col-form-label"> <span class="required-star">*</span></label>
+                                                                    <div class="col-xl-8 col-lg-8">
+                                                                        <select class="form-control" value="{{BoardId}}" ng-model="BoardId">
+                                                                            <option selected>--Select--</option>
+                                                                            <option ng-repeat="s in board" ng-selected="{{s.Selected==BoardId}}" value="{{s.BoardId}}">{{s.BoardName}}</option>
+
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
                                                             </div>
                                                           
                                                         </div>
@@ -710,6 +728,24 @@
                 });
 
     </script>*@
+    <script type='text/javascript'>
+        function preview_image(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('output_image');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+        function preview_banner(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('output_image1');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 
 </body>
 
