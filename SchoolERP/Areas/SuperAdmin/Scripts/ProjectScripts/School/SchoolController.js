@@ -238,6 +238,7 @@ function SchoolController($scope, Service) {
             $scope.UserPrefix = rd.data.ResultData.UserPrefix;
             $scope.UserName = rd.data.ResultData.UserName;
             $scope.Password = rd.data.ResultData.Password;
+            $scope.ConPassword = rd.data.ResultData.Password;
             $scope.BoardId = rd.data.ResultData.BoardId;
             $scope.Language = rd.data.ResultData.Language;
             $scope.Logo = rd.data.ResultData.Logo;
@@ -273,7 +274,7 @@ function SchoolController($scope, Service) {
         })
     }
     $scope.GetBoard = function () {
-        debugger;
+        //debugger;
         $scope.UserCredentialModel = {};
         Service.Post("SchoolMaster/GetBoardInfo", $scope.UserCredentialModel).then(function (result) {
             debugger;
@@ -309,4 +310,6 @@ function SchoolController($scope, Service) {
         $scope.SchoolId = "";
         $scope.Initialize();
     }
+
+
 }

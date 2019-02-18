@@ -66,10 +66,8 @@ namespace SchoolAPI.Models
 
         public int? Language { get; set; }
 
-        [StringLength(50)]
         public string Logo { get; set; }
 
-        [StringLength(50)]
         public string Banner { get; set; }
 
         public byte? Status { get; set; }
