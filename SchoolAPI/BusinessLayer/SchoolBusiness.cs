@@ -146,7 +146,7 @@ namespace SchoolAPI.BusinessLayer
             var filePathBanner = string.Empty;
             var filePathSave = string.Empty;
             string savePath = string.Empty;
-
+            var Upload = data.SchoolId;
            
 
             data.SchoolId = info.SchoolId;
@@ -183,35 +183,44 @@ namespace SchoolAPI.BusinessLayer
             }
             else
             {
+                var uploaddirc = Path.Combine(HttpContext.Current.Server.MapPath("/"), "SchoolUpload" + ("\\"));
+                if (!Directory.Exists(uploaddirc))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory(uploaddirc);
+                }
+                string paths = "SchoolUpload";
                 for (int i = 0; i < httpRequest.Files.Count; i++)
                 {
-                    //if (!Directory.Exists(filePath))
-                    //{
-                    //  DirectoryInfo di = Directory.CreateDirectory(filePath);
-                    //}
+                    var uploadpath = Path.Combine(HttpContext.Current.Server.MapPath("/"),paths,Upload.ToString()+("\\"));
+                    if (!Directory.Exists(uploadpath))
+                    {
+                        DirectoryInfo di = Directory.CreateDirectory(uploadpath);
+                    }
                     if (i == 0 && Logo!=null)
                     {                        
                         var file = httpRequest.Files[i];
-                        filePathSave = ConfigurationManager.AppSettings["UploadDir"] + Guid.NewGuid();
+                        var Guids=Guid.NewGuid();
+                        filePathSave = uploadpath + Guids;
                         filePath = filePathSave + file.FileName;
 
-                        savePath = HttpContext.Current.Server.MapPath(filePath);
-                        file.SaveAs(savePath);
-                        data.Logo = UploadBaseUrl + filePath;
-                        string Logo1 = data.Logo.Replace("~/", "");
-                        data.Logo = Logo1;
+                        savePath = uploadpath;
+                        file.SaveAs(filePath);
+                        data.Logo = UploadBaseUrl + paths + ("/") + Upload.ToString() + ("/") + Guids + file.FileName;
+                        //string Logo1 = data.Logo.Replace("~/", "");
+                        //data.Logo = Logo1;
                     }
                     else
                     {
                         var file = httpRequest.Files[i];
-                        filePathSave = ConfigurationManager.AppSettings["UploadDir"] + Guid.NewGuid();
+                        var GuidsBanner= Guid.NewGuid();
+                        filePathSave = uploadpath + GuidsBanner;
                         filePathBanner = filePathSave + file.FileName;
 
-                        savePath = HttpContext.Current.Server.MapPath(filePathBanner);
-                        file.SaveAs(savePath);
-                        data.Banner = UploadBaseUrl + filePathBanner;
-                        string Banner1 = data.Banner.Replace("~/", "");
-                        data.Banner = Banner1;
+                        savePath = uploadpath;
+                        file.SaveAs(filePathBanner);
+                        data.Banner = UploadBaseUrl + paths + ("/") + Upload.ToString() + ("\\") + GuidsBanner + file.FileName;
+                        //string Banner1 = data.Banner.Replace("~/", "");
+                        //data.Banner = Banner1;
                     }
 
 

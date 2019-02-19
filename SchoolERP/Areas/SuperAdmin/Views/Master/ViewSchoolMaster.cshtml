@@ -606,22 +606,18 @@
                                                             </div>*@
                                                             <div class="col-xl-6">
                                                                 <div class="form-group row" ng-init="GetBoard()">
-                                                                    <label class="col-xl-4 col-lg-4 col-form-label"> <span class="required-star">*</span></label>
+                                                                    <label class="col-xl-4 col-lg-4 col-form-label">BOARD<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
                                                                         <select class="form-control" value="{{BoardId}}" ng-model="BoardId">
                                                                             <option selected>--Select--</option>
-                                                                            <option ng-repeat="s in board" ng-selected="{{s.Selected==BoardId}}" value="{{s.BoardId}}">{{s.BoardName}}</option>
+                                                                            <option ng-repeat="s in board" value="{{s.BoardId}}" ng-init="{{s.BoardId==BoardId}}">{{s.BoardName}}</option>
 
                                                                         </select>
                                                                     </div>
                                                                 </div>
-
-                                                            </div>
-                                                          
-                                                        </div>
-                                                        
+                                                            </div>                                                          
+                                                        </div>                                                        
                                                     </div>
-
                                                 </div>
                                             </div>
 
