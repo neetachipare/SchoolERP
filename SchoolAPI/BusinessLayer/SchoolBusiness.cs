@@ -8,6 +8,8 @@ using SchoolAPI.Models;
 using SchoolAPI.ResultModel;
 using System.Configuration;
 using System.IO;
+using New_project.Models;
+using System.Data.SqlClient;
 
 namespace SchoolAPI.BusinessLayer
 {
@@ -26,6 +28,7 @@ namespace SchoolAPI.BusinessLayer
                 School school = Newtonsoft.Json.JsonConvert.DeserializeObject<School>(json);
 
 
+ 
                 if (school.UserName == null)
                 {
                     return new Error() { IsError = true, Message = "Required Username" };
@@ -108,14 +111,17 @@ namespace SchoolAPI.BusinessLayer
                         obj.Banner = UploadBaseUrl + paths + ("/") + Upload.ToString() + ("\\") + GuidsBanner + file.FileName;
                         //string Banner1 = data.Banner.Replace("~/", "");
                         //data.Banner = Banner1;
-                    }
-
+                    } 
 
 
                 }
 
                 db.TblSchools.Add(obj);
                 db.SaveChanges();
+                CopyDB objDB = new CopyDB();
+                string name = school.SchoolName.Replace(" ", "") + "DB";
+                objDB.Copydata(name.ToUpper());
+
                 //user.code = Convert.ToInt32(HttpContext.Current.Session["Code"]);
                 return new Result
                 {
@@ -160,7 +166,8 @@ namespace SchoolAPI.BusinessLayer
         {
             var httpRequest = HttpContext.Current.Request;
             var Logo = System.Web.HttpContext.Current.Request.Files["logo"];
-            var Banner = System.Web.HttpContext.Current.Request.Files["banner"];           
+ 
+            var Banner = System.Web.HttpContext.Current.Request.Files["banner"]; 
             var json = System.Web.HttpContext.Current.Request.Form["data"];
             UpdateSchool info = Newtonsoft.Json.JsonConvert.DeserializeObject<UpdateSchool>(json);
             if (info.SchoolName == null)
@@ -173,7 +180,7 @@ namespace SchoolAPI.BusinessLayer
             //    return new Error() { IsError = true, Message = "Duplicate Entry Not Allowed" };
             //}
             var data = db.TblSchools.Where(r => r.SchoolId == info.SchoolId).FirstOrDefault();
-           
+
             TblSchool obj = new TblSchool();
             string UploadBaseUrl = ConfigurationManager.AppSettings["UploadBaseURL"];
             string fileLogo = string.Empty;
@@ -195,7 +202,7 @@ namespace SchoolAPI.BusinessLayer
             data.LoginTemplateId = info.LoginTemplateId;
             data.ExamTemplateId = info.ExamTemplateId;
             data.ModifiedBy = 1;
-                data.ModifiedDate = System.DateTime.Today.Date;
+            data.ModifiedDate = System.DateTime.Today.Date;
             data.UserPrefix = info.UserPrefix;
             data.UserName = info.UserName;
             data.Password = info.Password;
@@ -203,11 +210,12 @@ namespace SchoolAPI.BusinessLayer
             data.Language = info.Language;
             data.LandlineNo = info.LandlineNo;
             data.EmailId = info.EmailId;
+ 
              data.Designation = info.Designation;
           
-                data.CreatedBy = data.CreatedBy;
-                data.CreatedDate = data.CreatedDate;
-            if (httpRequest.Files.Count == 0)
+              data.CreatedBy = data.CreatedBy;
+              data.CreatedDate = data.CreatedDate;
+            if (httpRequest.Files.Count == 0) 
             {
                 db.SaveChanges();
                 return new Result
@@ -271,7 +279,7 @@ namespace SchoolAPI.BusinessLayer
                 };
             }
 
-            
+
 
         }
         public object GetSchool(ActiveParam s)
