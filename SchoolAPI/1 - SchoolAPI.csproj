@@ -177,6 +177,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Upload\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\3 - DAL\3 - DAL.csproj">

@@ -5,11 +5,12 @@ function SchoolController($scope, Service) {
     $scope.School = {};
     $scope.IsVisible = false;
     $scope.Visible = true;
-    $scope.btnupdate = false;
-    $scope.btnadd = false;
-    $scope.isDisabled = false;
-    $scope.isenabled = false;
+    $scope.btnupdate = true;
+    $scope.btnsave = true;
+   
     $scope.isActive = false;
+    $scope.passwordvisible = true;
+    $scope.div = true;
     $scope.Initialize = function () {
         debugger;  
         
@@ -30,13 +31,12 @@ function SchoolController($scope, Service) {
     $scope.ShowHide = function () {
         $scope.IsVisible = true;
         $scope.Visible = false;
-        $scope.isDisabled = false;
-        $scope.isenabled = true;
+        $scope.btnupdate = true;
+        $scope.btnsave = false;
     }
     $scope.Add = function () {
         debugger;
-        $scope.isDisabled = true;
-        $scope.isenabled = false;
+       
         Info = {
             SchoolName : $scope.SchoolName,
             PhoneNo : $scope.PhoneNo,
@@ -70,7 +70,7 @@ function SchoolController($scope, Service) {
             $scope.Visible = true;
             if (rd.data.IsSucess) {
                 alert(rd.data.ResultData);
-                $scope.Close();
+                $scope.Clear();
                 $scope.Initialize();
                
 
@@ -85,6 +85,7 @@ function SchoolController($scope, Service) {
         debugger;
         $scope.IsVisible = true;
         $scope.Visible = false;
+      
         Info = {
             SchoolName: $scope.SchoolName,
             PhoneNo: $scope.PhoneNo,
@@ -115,9 +116,11 @@ function SchoolController($scope, Service) {
             alert('Hii')
             $scope.IsVisible = false;
             $scope.Visible = true;
+           
             if (rd.data.IsSucess) {
                 alert(rd.data.ResultData);
                 $scope.Refresh();
+                $scope.reloadRoute();
 
 
             }
@@ -200,13 +203,14 @@ function SchoolController($scope, Service) {
      $scope.Logo = "";
      $scope.Banner = "";
      $scope.SchoolId = "";
-        $scope.Initialize();
+     $scope.Initialize();
+     //$scope.reloadRoute();
        
     }
    
     $scope.Verify = function (SchoolId) {
         debugger;    
-        
+        $scope.Initialize();
         var data = {
 
             SchoolId: SchoolId
@@ -219,7 +223,8 @@ function SchoolController($scope, Service) {
             $scope.Visible = false;
             $scope.isDisabled = true;
             $scope.btnupdate = false;
-            $scope.btnadd = false;
+            $scope.btnsave = true;
+            $scope.passwordvisible = false;
             $scope.SchoolInfo = rd.data.ResultData;
             $scope.SchoolName = rd.data.ResultData.SchoolName;
             $scope.SchoolId = rd.data.ResultData.SchoolId;
@@ -238,6 +243,7 @@ function SchoolController($scope, Service) {
             $scope.UserPrefix = rd.data.ResultData.UserPrefix;
             $scope.UserName = rd.data.ResultData.UserName;
             $scope.Password = rd.data.ResultData.Password;
+            $scope.ConPassword = rd.data.ResultData.Password;
             $scope.BoardId = rd.data.ResultData.BoardId;
             $scope.Language = rd.data.ResultData.Language;
             $scope.Logo = rd.data.ResultData.Logo;
@@ -273,7 +279,7 @@ function SchoolController($scope, Service) {
         })
     }
     $scope.GetBoard = function () {
-        debugger;
+        //debugger;
         $scope.UserCredentialModel = {};
         Service.Post("SchoolMaster/GetBoardInfo", $scope.UserCredentialModel).then(function (result) {
             debugger;
@@ -308,5 +314,12 @@ function SchoolController($scope, Service) {
         $scope.Banner = "";
         $scope.SchoolId = "";
         $scope.Initialize();
+        $scope.reloadRoute();
+    }
+
+    $scope.reloadRoute = function () {
+        debugger; 
+       
+        
     }
 }

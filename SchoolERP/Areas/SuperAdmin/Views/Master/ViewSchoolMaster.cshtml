@@ -52,7 +52,7 @@
                                 </li>
                                 <li class="m-nav__separator">-</li>
                                 <li class="m-nav__item">
-                                    <a href="javascript:void(0);" class="m-nav__link">
+                                    <a href="javascript:void(0);" class="m-nav__link" data-wizard-action="first">
                                         <span class="m-nav__link-text">ADD SCHOOL</span>
                                     </a>
                                 </li>
@@ -199,7 +199,7 @@
                                                            <div class="action-link">
                                                                @*<a class="print-icon" href="javascript:void(0);" data-toggle="m-tooltip" title="Print" data-html="true"><i class="la la-print"></i></a>
     <a class="view-icon" href="javascript:void(0);" data-toggle="m-tooltip" title="View"><i class="la la-eye"></i></a>*@
-                                                               <a class="edit-icon" ng-click="Verify(data.SchoolId)" data-toggle="m-tooltip" title="Edit" ><i class="la la-edit"></i></a>
+                                                               <a class="edit-icon" ng-click="Verify(data.SchoolId)" data-toggle="m-tooltip" title="Edit" data-wizard-action="first"><i class="la la-edit"></i></a>
                                                                @*<a class="delete-icon" ng-click="Delete(data.SchoolId)" data-toggle="m-tooltip" title="Deactive"><i class="la la-trash-o"></i></a>*@
 
                                                            </div>
@@ -308,10 +308,10 @@
                                     <div class="m-portlet__body student-admission-wrapper">
 
                                         <!--begin: Form Wizard Step 1-->
-                                        <div class="m-wizard__form-step m-wizard__form-step--current" id="m_wizard_form_step_1">
+                                        <div class="m-wizard__form-step m-wizard__form-step--current" id="m_wizard_form_step_1" ng-show="div">
                                             <div class="row">
                                                 <div class="col-xl-12">
-                                                    <div class="m-form__section m-form__section--first">
+                                                    <div  class="m-form__section m-form__section--first" >
 
                                                    
                                                         <div class="row">
@@ -378,10 +378,10 @@
                                                         <div class="row">
                                                             <div class="col-xl-6">
                                                                 <div class="form-group row" ng-init="GetLanguage()">
-                                                                    <label class="col-xl-4 col-lg-4 col-form-label">Language<span class="required-star">*</span></label>
+                                                                    <label class="col-xl-4 col-lg-4 col-form-label">LANGUAGE<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
                                                                         <select class="form-control" value="{{LanguageId}}" ng-model="LanguageId">
-                                                                            <option value="" selected>--Select--</option>
+                                                                            <option value="">--Select--</option>
                                                                             <option ng-repeat="s in data" value="{{s.LanguageId}}" ng-selected="{{s.selected==LanguageId}}">{{s.Language}}</option>
 
                                                                         </select>
@@ -440,9 +440,10 @@
                                                                     <div class="col-xl-8 col-lg-8">
                                                                         <select class="form-control"  value="{{FeeTemplateId}}" ng-model="FeeTemplateId">
                                                                             <option value="" selected>--Select--</option>
-                                                                            <option ng-repeat="s in Fee" value="{{s.TemplateTypeId}}" ng-selected="{{selected==FeeTemplateId}}">{{s.Name}}</option>
+                                                                            <option ng-repeat="s in Fee" value="{{s.TemplateTypeId}}" ng-selected="{{s.selected==TemplateTypeId}}">{{s.Name}}</option>
 
                                                                         </select>
+                                                                        
                                                                     </div>
                                                                 </div>
                                 
@@ -534,12 +535,12 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="row">
+                                                        <div class="row" ng-show="passwordvisible">
                                                             <div class="col-xl-6">
                                                                 <div class="form-group row">
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">PASSWORD<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
-                                                                        <input type="password" name="Password" id="Password" class="form-control m-input" placeholder="Password" ng-model="Password" value="{{Password}}">
+                                                                        <input type="password" name="Password" id="Password"  class="form-control m-input" placeholder="Password" ng-model="Password" value="{{Password}}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -547,7 +548,7 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">CONFIRM PASSWORD<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
-                                                                        <input type="password" name="confpass" class="form-control m-input" placeholder="Confirm Password" ng-model="ConPassword" value="{{Password}}">
+                                                                        <input type="password" name="confpass" class="form-control m-input" placeholder="Confirm Password" ng-model="ConPassword" value="{{ConPassword}}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -557,7 +558,9 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">LOGO<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
-                                                                        <input type="file" name="Logo" class="form-control m-input" placeholder="" multiple="multiple" upload-file="myfile" file-model="Logo" value="{{Logo}}">
+                                                                        <input type="file" name="Logo" class="form-control m-input" onchange="preview_image(event)" multiple="multiple" upload-file="myfile" file-model="Logo"  file-value="{{Logo}}">
+                                                                    @*<a href="{{Logo}}">View</a>*@
+                                                                        <img id="output_image" ng-src="{{Logo}}" width="100"/>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -565,7 +568,9 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">BANNER<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
-                                                                        <input type="file" name="" class="form-control m-input" placeholder="" multiple="multiple" file-model="Banner" value="{{Banner}}">
+                                                                        <input type="file" name="" class="form-control m-input" onchange="preview_banner(event)" multiple="multiple" file-model="Banner"  value="{{Banner}}">
+                                                                        @*<a href="{{Banner}}">View</a>*@
+                                                                        <img id="output_image1" ng-src="{{Banner}}" ng-bind="Banner" width="100" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -587,23 +592,32 @@
                                                                                                          
 
                                                         <div class="row">
-                                                            <div class="col-xl-6">
+                                                            @*<div class="col-xl-6">
                                                                 <div class="form-group row" ng-init="GetBoard()">
                                                                     <label class="col-xl-4 col-lg-4 col-form-label">Board<span class="required-star">*</span></label>
                                                                     <div class="col-xl-8 col-lg-8">
                                                                         <select class="form-control" value="{{BoardId}}" ng-model="BoardId">
                                                                             <option value="" selected>--Select--</option>
-                                                                            <option ng-repeat="s in board" value="{{s.BoardId}}" ng-selected="{{s.selected==BoardId}}">{{s.BoardName}}</option>
+                                                                            <option ng-repeat="b in board" value="{{b.BoardId}}" ng-selected="{{b.selected==b.BoardId}}">{{b.BoardName}}</option>
 
                                                                         </select>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                          
-                                                        </div>
-                                                        
-                                                    </div>
+                                                            </div>*@
+                                                            <div class="col-xl-6">
+                                                                <div class="form-group row" ng-init="GetBoard()">
+                                                                    <label class="col-xl-4 col-lg-4 col-form-label">BOARD<span class="required-star">*</span></label>
+                                                                    <div class="col-xl-8 col-lg-8">
+                                                                        <select class="form-control" value="{{BoardId}}" ng-model="BoardId">
+                                                                            <option selected>--Select--</option>
+                                                                            <option  ng-repeat="s in board"  value="{{s.BoardId}}">{{s.BoardName}}</option>
 
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>                                                          
+                                                        </div>                                                        
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -623,14 +637,14 @@
                                                         </a>
                                                     </div>
                                                     <div class="col-lg-6 m--align-right">
-                                                        <button type="submit" class="btn btn-primary m-btn m-btn--custom m-btn--icon" ng-disabled="isDisabled" data-wizard-action="submit" ng-click="Add()">
+                                                        <button type="submit" class="btn btn-primary m-btn m-btn--custom m-btn--icon" ng-disabled="btnsave" data-wizard-action="submit" ng-click="Add()">
                                                             <span>
                                                                 <i class="la la-check"></i>&nbsp;&nbsp;
                                                                 <span>Submit</span>
                                                             </span>
                                                         </button>
                                                       
-                                                        <button type="submit" class="btn btn-secondary m-btn m-btn--custom m-btn--icon" ng-disabled="isenabled"  data-wizard-action="submit" ng-click="AddUpdate()">
+                                                        <button type="submit" class="btn btn-secondary m-btn m-btn--custom m-btn--icon" ng-disabled="btnupdate"  data-wizard-action="submit" ng-click="AddUpdate()">
                                                             <span>
                                                                 <i class="la la-check"></i>&nbsp;&nbsp;
                                                                 <span>Update</span>
@@ -642,8 +656,8 @@
                                                                 <i class="la la-arrow-right"></i>
                                                             </span>
                                                         </a>
-                                                        <button class="btn btn-secondary" ng-click="Clear()">
-                                                            <i class="fa fa-times"> </i>  Cancel
+                                                        <button class="btn btn-secondary" data-wizard-action="first" ng-click="Clear()">
+                                                            <i class="fa fa-times" data-wizard-action="first"> </i>  Cancel
                                                         </button>
                                                     </div>
                                                 </div>
@@ -710,6 +724,24 @@
                 });
 
     </script>*@
+    <script type='text/javascript'>
+        function preview_image(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('output_image');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+        function preview_banner(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('output_image1');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 
 </body>
 
