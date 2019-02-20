@@ -17,80 +17,116 @@ namespace SchoolAPI.BusinessLayer
         SchoolERPContext db = new SchoolERPContext();
         public object SaveSchool(School s)
         {
-            var Logo = System.Web.HttpContext.Current.Request.Files["file"];
-            var Banner = System.Web.HttpContext.Current.Request.Files["file1"];
-
-            var json = System.Web.HttpContext.Current.Request.Form["data"];
-            School school = Newtonsoft.Json.JsonConvert.DeserializeObject<School>(json);
-
-
-            if (school.UserName == null)
+            try
             {
-                return new Error() { IsError = true, Message = "Required Username" };
-            }
-            var info = db.TblSchools.FirstOrDefault(r => r.SchoolName == school.SchoolName);
-            if (info != null)
-            {
-                return new Error() { IsError = true, Message = "Duplicate Entry Not Allowed" };
-            }
-             TblSchool obj = new TblSchool();
-            var httpRequest = HttpContext.Current.Request;
-            string UploadBaseUrl = ConfigurationManager.AppSettings["UploadBaseURL"];
-            string fileLogo = string.Empty;
-            string fileBanner = string.Empty;
-            var filePath = string.Empty;
-            string savePath = string.Empty;
+                var Logo = System.Web.HttpContext.Current.Request.Files["file"];
+                var Banner = System.Web.HttpContext.Current.Request.Files["file1"];
 
-            for (int i = 0; i < httpRequest.Files.Count; i++)
+                var json = System.Web.HttpContext.Current.Request.Form["data"];
+                School school = Newtonsoft.Json.JsonConvert.DeserializeObject<School>(json);
+
+
+                if (school.UserName == null)
                 {
-                var file = httpRequest.Files[i];
-                filePath = ConfigurationManager.AppSettings["UploadDir"] + Guid.NewGuid() + file.FileName;
-                //if (!Directory.Exists(filePath))
-                //{
-                  //  DirectoryInfo di = Directory.CreateDirectory(filePath);
-                //}
-                savePath = HttpContext.Current.Server.MapPath(filePath);
-                file.SaveAs(savePath);               
+                    return new Error() { IsError = true, Message = "Required Username" };
+                }
+                var info = db.TblSchools.FirstOrDefault(r => r.SchoolName == school.SchoolName);
+                if (info != null)
+                {
+                    return new Error() { IsError = true, Message = "Duplicate Entry Not Allowed" };
+                }
+                TblSchool obj = new TblSchool();
+                var httpRequest = HttpContext.Current.Request;
+                string UploadBaseUrl = ConfigurationManager.AppSettings["UploadBaseURL"];
+                string fileLogo = string.Empty;
+                string fileBanner = string.Empty;
+                var filePath = string.Empty;
+                string savePath = string.Empty;
+                var filePathBanner = string.Empty;
+                var filePathSave = string.Empty;
+                var Upload = school.SchoolName;
 
+                obj.SchoolName = school.SchoolName;
+                obj.PhoneNo = school.PhoneNo;
+                obj.Address = school.Address;
+                obj.ContactPerson = school.ContactPerson;
+                obj.LandlineNo = school.LandlineNo;
+                obj.EmailId = school.EmailId;
+                obj.Designation = school.Designation;
+                obj.ValidityStartDate = school.ValidityStartDate;
+                obj.ValidityEndDate = school.ValidityEndDate;
+                obj.PayrollTemplateId = school.PayrollTemplateId;
+                obj.FeeTemplateId = school.FeeTemplateId;
+                obj.LoginTemplateId = school.LoginTemplateId;
+                obj.ExamTemplateId = school.ExamTemplateId;
+                obj.CreatedBy = 1;
+                obj.CreatedDate = System.DateTime.Today.Date;
+                obj.ModifiedBy = 1;
+                obj.ModifiedDate = System.DateTime.Today.Date;
+                obj.UserPrefix = school.UserPrefix;
+                obj.UserName = school.UserName;
+                obj.Password = school.Password;
+                obj.BoardId = school.BoardId;
+                obj.Language = school.Language;
+                obj.Status = 1;
+
+                var uploaddirc = Path.Combine(HttpContext.Current.Server.MapPath("/"), "SchoolUpload" + ("\\"));
+                if (!Directory.Exists(uploaddirc))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory(uploaddirc);
+                }
+                string paths = "SchoolUpload";
+                for (int i = 0; i < httpRequest.Files.Count; i++)
+                {
+                    var uploadpath = Path.Combine(HttpContext.Current.Server.MapPath("/"), paths, Upload.ToString() + ("\\"));
+                    if (!Directory.Exists(uploadpath))
+                    {
+                        DirectoryInfo di = Directory.CreateDirectory(uploadpath);
+                    }
+                    if (i == 0 && Logo != null)
+                    {
+                        var file = httpRequest.Files[i];
+                        var Guids = Guid.NewGuid();
+                        filePathSave = uploadpath + Guids;
+                        filePath = filePathSave + file.FileName;
+
+                        savePath = uploadpath;
+                        file.SaveAs(filePath);
+                        obj.Logo = UploadBaseUrl + paths + ("/") + Upload.ToString() + ("/") + Guids + file.FileName;
+                        //string Logo1 = data.Logo.Replace("~/", "");
+                        //data.Logo = Logo1;
+                    }
+                    else
+                    {
+                        var file = httpRequest.Files[i];
+                        var GuidsBanner = Guid.NewGuid();
+                        filePathSave = uploadpath + GuidsBanner;
+                        filePathBanner = filePathSave + file.FileName;
+
+                        savePath = uploadpath;
+                        file.SaveAs(filePathBanner);
+                        obj.Banner = UploadBaseUrl + paths + ("/") + Upload.ToString() + ("\\") + GuidsBanner + file.FileName;
+                        //string Banner1 = data.Banner.Replace("~/", "");
+                        //data.Banner = Banner1;
+                    }
+
+
+
+                }
+
+                db.TblSchools.Add(obj);
+                db.SaveChanges();
+                //user.code = Convert.ToInt32(HttpContext.Current.Session["Code"]);
+                return new Result
+                {
+                    IsSucess = true,
+                    ResultData = "School Created!"
+                };
             }
-                    
-                    obj.SchoolName = school.SchoolName;
-                    obj.PhoneNo = school.PhoneNo;
-                    obj.Address = school.Address;
-                    obj.ContactPerson = school.ContactPerson;
-                    obj.LandlineNo = school.LandlineNo;
-                    obj.EmailId = school.EmailId;
-                    obj.Designation = school.Designation;
-                    obj.ValidityStartDate = school.ValidityStartDate;
-                    obj.ValidityEndDate = school.ValidityEndDate;
-                    obj.PayrollTemplateId = school.PayrollTemplateId;
-                    obj.FeeTemplateId = school.FeeTemplateId;
-                    obj.LoginTemplateId = school.LoginTemplateId;
-                    obj.ExamTemplateId = school.ExamTemplateId;
-                    obj.CreatedBy = 1;
-                    obj.CreatedDate = System.DateTime.Today.Date;
-                    obj.ModifiedBy = 1;
-                    obj.ModifiedDate = System.DateTime.Today.Date;
-                    obj.UserPrefix = school.UserPrefix;
-                    obj.UserName = school.UserName;
-                    obj.Password = school.Password;
-                    obj.BoardId = school.BoardId;
-                    obj.Language = school.Language;
-            obj.Logo = UploadBaseUrl + filePath.Replace("~/", "");
-            obj.Banner = UploadBaseUrl + filePath.Replace("~/", "");
-            obj.Status = 1;
-
-                    db.TblSchools.Add(obj);
-                    db.SaveChanges();
-                
-            
-            //user.code = Convert.ToInt32(HttpContext.Current.Session["Code"]);
-            return new Result
+            catch(Exception e)
             {
-
-                IsSucess = true,
-                ResultData = "School Created!"
-            };
+                return new Error { IsError = true, Message = e.Message };
+            }
 
 
 
@@ -146,7 +182,7 @@ namespace SchoolAPI.BusinessLayer
             var filePathBanner = string.Empty;
             var filePathSave = string.Empty;
             string savePath = string.Empty;
-            var Upload = data.SchoolId;
+            var Upload = data.SchoolName;
            
 
             data.SchoolId = info.SchoolId;
@@ -230,7 +266,6 @@ namespace SchoolAPI.BusinessLayer
                 db.SaveChanges();
                 return new Result
                 {
-
                     IsSucess = true,
                     ResultData = "School Updated!"
                 };
