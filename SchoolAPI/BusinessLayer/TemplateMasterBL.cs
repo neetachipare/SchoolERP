@@ -100,6 +100,29 @@ namespace SchoolAPI.BusinessLayer
                     objTempalte.ModifiedDate = DateTime.Now;
                     objTempalte.TemplateTypeId = TP.TemplateTypeId;
                     db.SaveChanges();
+
+
+
+                    var o = new TblTemplateModule { TemplateId = TP.TemplateId };
+                    db.TblTemplateModules.Attach(o);
+                    db.TblTemplateModules.Remove(o);
+                    db.SaveChanges();
+
+                    TblTemplateModule objTemplateModule = new TblTemplateModule();
+
+                    string MenuIds = TP.MenuListIds.Trim(',');
+                    string[] ids = MenuIds.Split(',');
+                    for (int i = 0; i < ids.Length; i++)
+                    {
+                        objTemplateModule.TemplateId = TP.TemplateId;
+                        objTemplateModule.ModuleId = Convert.ToInt32(ids[i]);
+                        objTemplateModule.CreatedBy = TP.CreatedBy;
+                        objTemplateModule.CreatedDate = DateTime.Now;
+                        objTemplateModule.Status = 1;
+                        db.TblTemplateModules.Add(objTemplateModule);
+                        db.SaveChanges();
+                    }
+
                     msg = "Template Master Updated Successfully!";
                 }
 
@@ -119,16 +142,16 @@ namespace SchoolAPI.BusinessLayer
             try
             {
                 // List<SchoolAPI.Models.ViewTemplateType> GetModule = null;
-                List<SchoolAPI.Models.ViewTemplateMaster> GetTemplateMaster = null;
+                List<SchoolAPI.Models.ViewDisplayTemplateMaster> GetTemplateMaster = null;
 
                 if (status == 0)
                 {
-                    GetTemplateMaster = db.ViewTemplateMasters.Where(r => r.Status != 1).ToList();
+                    GetTemplateMaster = db.ViewDisplayTemplateMasters.Where(r => r.Status != 1).ToList();
                 }
                 else
 
                 {
-                    GetTemplateMaster = db.ViewTemplateMasters.Where(r => r.Status == 1).ToList();
+                    GetTemplateMaster = db.ViewDisplayTemplateMasters.Where(r => r.Status == 1).ToList();
 
                 }
 
@@ -151,8 +174,21 @@ namespace SchoolAPI.BusinessLayer
         {
             try
             {
-                var SingleModulelist = db.ViewTemplateTypes.Where(r => r.TemplateTypeId == objgr.TemplateTypeId).FirstOrDefault();
-                return SingleModulelist;
+                var SingleTemplatelist = db.ViewDisplayTemplateMasters.Where(r => r.TemplateId == objgr.TemplateId).FirstOrDefault();
+                return SingleTemplatelist;
+            }
+            catch (Exception E)
+            {
+                return new Error() { IsError = true, Message = E.Message };
+            }
+        }
+        public object GetMenuDetails(TemplateMasterParam objgr)
+        {
+            try
+            {
+                var MenuDetails = db.ViewBindMenuListUpdates.Where(r => r.TemplateId == objgr.TemplateId).ToList();
+               
+                return MenuDetails;
             }
             catch (Exception E)
             {
@@ -176,8 +212,16 @@ namespace SchoolAPI.BusinessLayer
                 }
 
                 db.SaveChanges();
+                if(objTemplate.Status==1)
+                {
+                    return new Result() { IsSucess = true, ResultData = "Template Master Activated Successfully!" };
 
-                return new Result() { IsSucess = true, ResultData = "Template Master Updated Successfully!" };
+                }
+                else
+                {
+                    return new Result() { IsSucess = true, ResultData = "Template Master De-Activated Successfully!" };
+
+                }
             }
             catch (Exception ex)
             {

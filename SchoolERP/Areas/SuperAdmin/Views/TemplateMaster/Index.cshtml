@@ -80,11 +80,14 @@ offcanvas-default" ng-app="ERP">
                                                                    style="color:red">*</span>
                                             </label>
                                             <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12">
-                                                <select class="form-control m-input" id="exampleGrievance" ng-model="TemplateTypeId">
-                                                    <option ng-repeat="s in TemplateType" value="{{s.TemplateTypeId}}">{{s.TemplateType}}</option>
+                                                <select class="form-control m-input"  id="exampleGrievance"   ng-model="TemplateTypeId" >
+                                                 
+                    <option ng-repeat="s in TemplateType" ng-selected="s.TemplateTypeId==TemplateTypeId"   value="{{s.TemplateType}}"  >{{s.TemplateType}}</option>
 
-                                                </select>
-                                                <input type="hidden" value="{{TemplateId}}" />
+                </select>
+
+                                           
+                                                    <input type="hidden" value="{{TemplateId}}" />
                                             </div>
                                         </div>
 
@@ -127,8 +130,8 @@ offcanvas-default" ng-app="ERP">
 
                                                                 <div ng-repeat="s in Menulist" class="dropdown-item">
 
-                                                                    <label for="{{s.ModuleId}}">
-                                                                        <input id="{{s.ModuleId}}" type="checkbox" ng-model="s.Selected" ng-change="change(s,s.Selected)" ng-checked="selectAll"/><!--ng-change="change(s,active)"-->
+                                                                    <label for="{{s.ModuleId}}" >
+                                                                        <input id="{{s.ModuleId}}" type="checkbox" ng-checked="checkID(s.ModuleId)"  ng-model="s.Selected" ng-click="change(s,s.Selected)" /><!--ng-change="change(s,active)"-->
                                                                         {{s.ModuleName}}
                                                                     </label>
                                                                 </div>

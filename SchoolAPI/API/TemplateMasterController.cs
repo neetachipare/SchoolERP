@@ -91,6 +91,21 @@ namespace SchoolAPI.API
             }
         }
 
+        [HttpPost]
+        public object GetMenuDetails([FromBody]TemplateMasterParam OBJGR)
+        {
+            try
+            {
+                TemplateMasterBL obj = new TemplateMasterBL();
+                var menulist = obj.GetMenuDetails(OBJGR);
+                return menulist;
+            }
+            catch (Exception ex)
+            {
+                return new Error() { IsError = true, Message = ex.Message };
+            }
+        }
+
 
         [HttpPost]
         public object DeleteTemplateMaster([FromBody] TemplateMasterParam MP)

@@ -54,6 +54,7 @@ function TemplateMasterController($scope, Service) {
         $scope.btnUpdate = true;
         $scope.btnSave = false;
         $scope.IsVisible = true;
+        $scope.GetInfo();
         var data = {
 
             TemplateId: TemplateId
@@ -65,14 +66,30 @@ function TemplateMasterController($scope, Service) {
             debugger;
 
             $scope.ViewGetStudentInfoes = result.data;
-
             $scope.Name = result.data.Name;
-            
+            $scope.TemplateTypeId = result.data.TemplateTypeId;
             $scope.TemplateId = result.data.TemplateId;
-            // $scope.Students = result.data.ResultData;
-
+            Service.Post("TemplateMaster/GetMenuDetails", JSON.stringify(data), $scope.UserCredentialModel).then(function (result) {
+                debugger;
+                $scope.MenuDetails = result.data;
+                for (var i = 0; i < $scope.MenuDetails.length; i++)
+                {
+                    $scope.change($scope.MenuDetails[i], true);
+                }
+                
+            })
             $scope.Initialize();
         })
+    }
+
+    $scope.checkID = function (moduleid) {
+        var dat = $scope.MenuDetails.find(o=> o.ModuleId === moduleid);
+        debugger;
+        if (dat)
+        {
+            return true
+        }
+        else { return false }
     }
 
 
@@ -99,8 +116,8 @@ function TemplateMasterController($scope, Service) {
     $scope.change = function (s, active) {
 
         debugger;
-            if (active)
-                $scope.lst.push(s.ModuleName);
+        if (active)
+           $scope.lst.push(s.ModuleName);
             else
                 $scope.lst.splice($scope.lst.indexOf(s.ModuleName), 1);
             $scope.str = "";
@@ -123,6 +140,7 @@ function TemplateMasterController($scope, Service) {
                 MenuListIds += ModuleId + ",";
             }
         }
+       
         //alert(MenuListIds);
         var data = {
             TemplateId: TemplateId,
@@ -165,19 +183,19 @@ function TemplateMasterController($scope, Service) {
     };
 
 
-    $scope.Delete = function (ModuleId) {
+    $scope.Delete = function (TemplateId) {
         debugger;
         var data = {
 
-            ModuleId: ModuleId
+            TemplateId: TemplateId
         };
 
         if (event.target.checked == false) {
-            var confirm = window.confirm("Do you want to deactive the module?");
+            var confirm = window.confirm("Do you want to deactive the Template?");
 
         }
         else {
-            var confirm = window.confirm("Do you want to active the module?");
+            var confirm = window.confirm("Do you want to active the Template?");
         }
         if (confirm == true) {
             Service.Post("TemplateMaster/DeleteTemplateMaster", JSON.stringify(data)).then(function (response) {

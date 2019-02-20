@@ -31,9 +31,10 @@ namespace SchoolAPI
         public virtual DbSet<ViewModuleMaster> ViewModuleMasters { get; set; }
 
         public virtual DbSet<View_Template> View_Template { get; set; }
-
+        public virtual DbSet<ViewBindMenuListUpdate> ViewBindMenuListUpdates { get; set; }
         public virtual DbSet<View_MenuList> View_MenuList { get; set; }
- 
+        public virtual DbSet<ViewDisplayTemplateMaster> ViewDisplayTemplateMasters { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }

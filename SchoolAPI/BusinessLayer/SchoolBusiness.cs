@@ -8,6 +8,8 @@ using SchoolAPI.Models;
 using SchoolAPI.ResultModel;
 using System.Configuration;
 using System.IO;
+using New_project.Models;
+using System.Data.SqlClient;
 
 namespace SchoolAPI.BusinessLayer
 {
@@ -33,7 +35,7 @@ namespace SchoolAPI.BusinessLayer
             {
                 return new Error() { IsError = true, Message = "Duplicate Entry Not Allowed" };
             }
-             TblSchool obj = new TblSchool();
+            TblSchool obj = new TblSchool();
             var httpRequest = HttpContext.Current.Request;
             string UploadBaseUrl = ConfigurationManager.AppSettings["UploadBaseURL"];
             string fileLogo = string.Empty;
@@ -42,48 +44,50 @@ namespace SchoolAPI.BusinessLayer
             string savePath = string.Empty;
 
             for (int i = 0; i < httpRequest.Files.Count; i++)
-                {
+            {
                 var file = httpRequest.Files[i];
                 filePath = ConfigurationManager.AppSettings["UploadDir"] + Guid.NewGuid() + file.FileName;
                 //if (!Directory.Exists(filePath))
                 //{
-                  //  DirectoryInfo di = Directory.CreateDirectory(filePath);
+                //  DirectoryInfo di = Directory.CreateDirectory(filePath);
                 //}
                 savePath = HttpContext.Current.Server.MapPath(filePath);
-                file.SaveAs(savePath);               
+                file.SaveAs(savePath);
 
             }
-                    
-                    obj.SchoolName = school.SchoolName;
-                    obj.PhoneNo = school.PhoneNo;
-                    obj.Address = school.Address;
-                    obj.ContactPerson = school.ContactPerson;
-                    obj.LandlineNo = school.LandlineNo;
-                    obj.EmailId = school.EmailId;
-                    obj.Designation = school.Designation;
-                    obj.ValidityStartDate = school.ValidityStartDate;
-                    obj.ValidityEndDate = school.ValidityEndDate;
-                    obj.PayrollTemplateId = school.PayrollTemplateId;
-                    obj.FeeTemplateId = school.FeeTemplateId;
-                    obj.LoginTemplateId = school.LoginTemplateId;
-                    obj.ExamTemplateId = school.ExamTemplateId;
-                    obj.CreatedBy = 1;
-                    obj.CreatedDate = System.DateTime.Today.Date;
-                    obj.ModifiedBy = 1;
-                    obj.ModifiedDate = System.DateTime.Today.Date;
-                    obj.UserPrefix = school.UserPrefix;
-                    obj.UserName = school.UserName;
-                    obj.Password = school.Password;
-                    obj.BoardId = school.BoardId;
-                    obj.Language = school.Language;
+
+            obj.SchoolName = school.SchoolName;
+            obj.PhoneNo = school.PhoneNo;
+            obj.Address = school.Address;
+            obj.ContactPerson = school.ContactPerson;
+            obj.LandlineNo = school.LandlineNo;
+            obj.EmailId = school.EmailId;
+            obj.Designation = school.Designation;
+            obj.ValidityStartDate = school.ValidityStartDate;
+            obj.ValidityEndDate = school.ValidityEndDate;
+            obj.PayrollTemplateId = school.PayrollTemplateId;
+            obj.FeeTemplateId = school.FeeTemplateId;
+            obj.LoginTemplateId = school.LoginTemplateId;
+            obj.ExamTemplateId = school.ExamTemplateId;
+            obj.CreatedBy = 1;
+            obj.CreatedDate = System.DateTime.Today.Date;
+            obj.ModifiedBy = 1;
+            obj.ModifiedDate = System.DateTime.Today.Date;
+            obj.UserPrefix = school.UserPrefix;
+            obj.UserName = school.UserName;
+            obj.Password = school.Password;
+            obj.BoardId = school.BoardId;
+            obj.Language = school.Language;
             obj.Logo = Logo.FileName;
             obj.Banner = Banner.FileName;
-                    obj.Status = 1;
+            obj.Status = 1;
 
-                    db.TblSchools.Add(obj);
-                    db.SaveChanges();
-                
-            
+            db.TblSchools.Add(obj);
+            db.SaveChanges();
+            CopyDB objDB = new CopyDB();
+            string name = school.SchoolName.Replace(" ", "") + "DB";
+            objDB.Copydata(name.ToUpper());
+
             //user.code = Convert.ToInt32(HttpContext.Current.Session["Code"]);
             return new Result
             {
@@ -125,7 +129,7 @@ namespace SchoolAPI.BusinessLayer
             var httpRequest = HttpContext.Current.Request;
             var Logo = System.Web.HttpContext.Current.Request.Files["logo"];
             var Banner = System.Web.HttpContext.Current.Request.Files["banner"];
-           
+
             var json = System.Web.HttpContext.Current.Request.Form["data"];
             UpdateSchool info = Newtonsoft.Json.JsonConvert.DeserializeObject<UpdateSchool>(json);
             if (info.SchoolName == null)
@@ -138,7 +142,7 @@ namespace SchoolAPI.BusinessLayer
             //    return new Error() { IsError = true, Message = "Duplicate Entry Not Allowed" };
             //}
             var data = db.TblSchools.Where(r => r.SchoolId == info.SchoolId).FirstOrDefault();
-           
+
             TblSchool obj = new TblSchool();
             string UploadBaseUrl = ConfigurationManager.AppSettings["UploadBaseURL"];
             string fileLogo = string.Empty;
@@ -169,7 +173,7 @@ namespace SchoolAPI.BusinessLayer
             data.LoginTemplateId = info.LoginTemplateId;
             data.ExamTemplateId = info.ExamTemplateId;
             data.ModifiedBy = 1;
-                data.ModifiedDate = System.DateTime.Today.Date;
+            data.ModifiedDate = System.DateTime.Today.Date;
             data.UserPrefix = info.UserPrefix;
             data.UserName = info.UserName;
             data.Password = info.Password;
@@ -177,12 +181,12 @@ namespace SchoolAPI.BusinessLayer
             data.Language = info.Language;
             data.LandlineNo = info.LandlineNo;
             data.EmailId = info.EmailId;
-             data.Designation = info.Designation;
+            data.Designation = info.Designation;
             data.Logo = Logo.FileName;
             data.Banner = Banner.FileName;
-                data.CreatedBy = data.CreatedBy;
-                data.CreatedDate = data.CreatedDate;
-           // db.TblSchools.Add(data);
+            data.CreatedBy = data.CreatedBy;
+            data.CreatedDate = data.CreatedDate;
+            // db.TblSchools.Add(data);
             db.SaveChanges();
             return new Result
             {
@@ -191,7 +195,7 @@ namespace SchoolAPI.BusinessLayer
                 ResultData = "School Updated!"
             };
 
-            
+
 
         }
         public object GetSchool(ActiveParam s)
