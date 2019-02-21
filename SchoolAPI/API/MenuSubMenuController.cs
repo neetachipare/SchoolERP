@@ -7,7 +7,7 @@ using System.Web.Http;
 using SchoolAPI.Param;
 using SchoolAPI.ResultModel;
 using SchoolAPI.BusinessLayer;
-using _3___DAL;
+
 
 
 namespace SchoolAPI.API

@@ -8,8 +8,8 @@ using SchoolAPI.Models;
 using SchoolAPI.ResultModel;
 using System.Configuration;
 using System.IO;
-using New_project.Models;
 using System.Data.SqlClient;
+using New_project.Models;
 
 namespace SchoolAPI.BusinessLayer
 {
