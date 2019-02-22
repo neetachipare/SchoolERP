@@ -89,6 +89,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Scripts\CommonScript\Module.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Board\Board.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Board\BoardModule.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Languages\Language.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Languages\LanguageModule.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Login\ForgetPassword.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Login\LoginController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Login\LoginModule.js" />
     <Content Include="Areas\Scripts\ProjectScripts\MenuSubMenu\MenuSubMenuController.js" />
     <Content Include="Areas\Scripts\ProjectScripts\MenuSubMenu\MenuSubMenuModule.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Module\Menu.js" />
@@ -422,6 +430,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\SuperAdmin\Controllers\AdmissionController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\HomeController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\InstituteController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\MasterController.cs" />
@@ -538,6 +547,7 @@
     <Content Include="Areas\SuperAdmin\Views\Module\ModuleMaster.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\Role\MenuSubMenu.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\TemplateMaster\Index.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Admission\Admission.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Home\ForgetPass.cshtml" />
@@ -557,7 +567,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Scripts\CommonScript\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\3 - DAL\3 - DAL.csproj">

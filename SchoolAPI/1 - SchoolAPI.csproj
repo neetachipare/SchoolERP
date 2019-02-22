@@ -125,6 +125,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CopyDB.cs" />
     <Compile Include="Models\CryptIt.cs" />
     <Compile Include="Models\TblBoard.cs" />
     <Compile Include="Models\TblLanguage.cs" />
@@ -138,6 +139,8 @@
     <Compile Include="Models\TblUserLogin.cs" />
     <Compile Include="Models\TblUserModule.cs" />
     <Compile Include="Models\TblUserRole.cs" />
+    <Compile Include="Models\ViewBindMenuListUpdate.cs" />
+    <Compile Include="Models\ViewDisplayTemplateMaster.cs" />
     <Compile Include="Models\ViewModuleMaster.cs" />
     <Compile Include="Models\ViewTemplateMaster.cs" />
     <Compile Include="Models\ViewTemplateType.cs" />
