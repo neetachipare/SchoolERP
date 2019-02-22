@@ -52,7 +52,7 @@ function SchoolController($scope, Service) {
             UserName : $scope.UserName,
             Password : $scope.Password,
             BoardId : $scope.BoardId,
-            Language : $scope.Language,
+            Language: $scope.Language,
             Designation: $scope.Designation,
             EmailId: $scope.EmailId,
             LandlineNo: $scope.LandlineNo
@@ -165,7 +165,7 @@ function SchoolController($scope, Service) {
 
     }
     $scope.GetExam = function () {
-
+        debugger;
         Service.Post("SchoolMaster/ExamTemplateInformation").then(function (result) {
             debugger;
             // $scope.ParamUserLogin.Name = result.data.Name
