@@ -103,6 +103,8 @@
     <Content Include="Areas\Scripts\ProjectScripts\Module\MenuController.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Module\Module.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Module\ModuleController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\School\SchoolController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\School\SchoolModule.js" />
     <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateMaster.js" />
     <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateMasterController.js" />
     <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateType.js" />
@@ -430,6 +432,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\SchoolAdmin\SchoolAdminAreaRegistration.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\AdmissionController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\HomeController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\InstituteController.cs" />
