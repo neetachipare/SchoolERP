@@ -1,0 +1,1422 @@
+﻿
+@{
+    ViewBag.Title = "Admission";
+    Layout = "~/Areas/SuperAdmin/Views/Shared/MasterLayout.cshtml";
+}
+
+
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title ">Home</h3>
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="#" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">-</li>
+                    <li class="m-nav__item">
+                        <a href="javascript:void(0);" class="m-nav__link">
+                            <span class="m-nav__link-text">Admission</span>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">-</li>
+                    <li class="m-nav__item">
+                        <a href="javascript:void(0);" class="m-nav__link">
+                            <span class="m-nav__link-text">Student Admission</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <span class="m-subheader__daterange" id="m_dashboard_daterangepicker">
+                    <span class="m-subheader__daterange-label">
+                        <span class="m-subheader__daterange-title"></span>
+                        <span class="m-subheader__daterange-date m--font-brand"></span>
+                    </span>
+                    <a href="#" class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--square">
+                        <i class="la la-angle-down"></i>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+
+        <div class="m-portlet m-portlet--full-height">
+
+            <!--begin: Portlet Head-->
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            Student Admission
+                        </h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--end: Portlet Head-->
+            <!--begin: Form Wizard-->
+            <div class="m-wizard m-wizard--2 m-wizard--success" id="m_wizard">
+
+                <!--begin: Message container -->
+                <div class="m-portlet__padding-x">
+
+                    <!-- Here you can put a message or alert -->
+                </div>
+
+                <!--end: Message container -->
+                <!--begin: Form Wizard Head -->
+                <div class="m-wizard__head m-portlet__padding-x">
+
+                    <!--begin: Form Wizard Progress -->
+                    <div class="m-wizard__progress">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <!--end: Form Wizard Progress -->
+                    <!--begin: Form Wizard Nav -->
+                    <div class="m-wizard__nav">
+                        <div class="m-wizard__steps">
+                            <div class="m-wizard__step m-wizard__step--current" m-wizard-target="m_wizard_form_step_1">
+                                <a href="#" class="m-wizard__step-number">
+                                    <span><i class="fa  flaticon-placeholder"></i></span>
+                                </a>
+                                <div class="m-wizard__step-info">
+                                    <div class="m-wizard__step-title">
+                                        1. Student Info
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_2">
+                                <a href="#" class="m-wizard__step-number">
+                                    <span><i class="fa  flaticon-layers"></i></span>
+                                </a>
+                                <div class="m-wizard__step-info">
+                                    <div class="m-wizard__step-title">
+                                        2. Parent Info
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_3">
+                                <a href="#" class="m-wizard__step-number">
+                                    <span><i class="fa  flaticon-layers"></i></span>
+                                </a>
+                                <div class="m-wizard__step-info">
+                                    <div class="m-wizard__step-title">
+                                        3. Other Info
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_4">
+                                <a href="#" class="m-wizard__step-number">
+                                    <span><i class="fa  flaticon-layers"></i></span>
+                                </a>
+                                <div class="m-wizard__step-info">
+                                    <div class="m-wizard__step-title">
+                                        4. Documents
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_5">
+                                <a href="#" class="m-wizard__step-number">
+                                    <span><i class="fa  flaticon-layers"></i></span>
+                                </a>
+                                <div class="m-wizard__step-info">
+                                    <div class="m-wizard__step-title">
+                                        5. Upload Image
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!--end: Form Wizard Nav -->
+                </div>
+
+                <!--end: Form Wizard Head -->
+                <!--begin: Form Wizard Form-->
+                <div class="m-wizard__form">
+
+                    <!--
+                    1) Use m-form--label-align-left class to alight the form input lables to the right
+                    2) Use m-form--state class to highlight input control borders on form validation
+                    -->
+                    <form class="m-form m-form--label-align-left- m-form--state-" id="m_form">
+
+                        <!--begin: Form Body -->
+                        <div class="m-portlet__body student-admission-wrapper">
+
+                            <!--begin: Form Wizard Step 1-->
+                            <div class="m-wizard__form-step m-wizard__form-step--current" id="m_wizard_form_step_1">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="m-form__section m-form__section--first">
+                                            <div class="m-form__heading">
+                                                <h3 class="m-form__heading-title">Personal Information</h3>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Board<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <div class="m-radio-list">
+                                                                <label class="m-radio m-radio--bold m-radio--state-success">
+                                                                    <input type="radio" name="" value="5"> state
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">GR NO.<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="Gr No." value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Academic Year<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control m_select2" >
+                                                                <option value="">2017-2018</option>
+                                                                <option value="">2016-2017</option>
+                                                                <option value="">2015-2016</option>
+                                                                <option value="">2014-2015</option>
+                                                                <option value="">2013-2014</option>
+                                                                <option value="">2012-2013</option>
+                                                                <option value="">2011-2012</option>
+                                                                <option value="">2010-2011</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+                                            
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Admission Standard<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control " >
+                                                                <option value="">SR.KG</option>
+                                                               
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Admission Date<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <div class="input-group date">
+                                                                <input type="text" class="form-control m-input" readonly placeholder="Select date" id="m_datepicker_2" />
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text">
+                                                                        <i class="la la-calendar-check-o"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Enrollment No<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-2 col-lg-2 col-form-label">Student Full Name<span class="required-star">*</span></label>
+                                                        <div class="col-xl-3 col-lg-4">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="First Name" value="">
+                                                        </div>
+                                                        <div class="col-xl-3 col-lg-4">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="Middle Name" value="">
+                                                        </div>
+                                                        <div class="col-xl-3 col-lg-4">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="Last Name" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Father Name<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="Father Name" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Mothers Name<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="Mothers Name" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                               
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Date of Birth<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <div class="input-group date">
+                                                                <input type="text" class="form-control m-input" readonly placeholder="Select date" id="m_datepicker_2" />
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text">
+                                                                        <i class="la la-calendar-check-o"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Gender<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <div class="m-radio-inline">
+                                                                <label class="m-radio m-radio--bold m-radio--state-success">
+                                                                    <input type="radio" name="Gender" value="Male"> Male
+                                                                    <span></span>
+                                                                </label>
+                                                                <label class="m-radio m-radio--bold m-radio--state-success">
+                                                                    <input type="radio" name="Gender" value="Female"> Female
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Staff Member<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control" >
+                                                                <option value="No">No</option>
+                                                                <option value="Yes">Yes</option>
+                                                             
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Place of Birth<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="Place of Birth" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Birth State<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control m-select2" id="m_select2_4" name="">
+                                                                <option value="">2017-2018</option>
+                                                                <option value="">2016-2017</option>
+                                                                <option value="">2015-2016</option>
+                                                                <option value="">2014-2015</option>
+                                                                <option value="">2013-2014</option>
+                                                                <option value="">2012-2013</option>
+                                                                <option value="">2011-2012</option>
+                                                                <option value="">2010-2011</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Birth District<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control" Placeholder="Select Birth District">
+                                                               
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                             
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Birth Taluka<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control">
+                                                               
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Blood Group<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control">
+                                                                <option >A+</option>
+                                                                <option >B+</option>
+                                                                <option >AB+</option>
+                                                                <option >O+</option>
+                                                                <option >O-</option>
+                                                                <option >A-</option>
+                                                                <option >B-</option>
+                                                                <option >AB-</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Nationality<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="INDIAN">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Mother Tongue<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Caste<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control" >
+                                                              
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">SubCaste<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control">
+                                                             
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Religion<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control">
+                                                              
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Category<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control">
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Minority<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control">
+                                                                <option>No</option>
+                                                                <option>Yes</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Identity Mark<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Identity Mark 1<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Mobile <span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Alternate Mobile<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Adhar Card No<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Email<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Emergency Contact No<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Saral No<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group row">
+                                                    <label class="col-xl-4 col-lg-4 col-form-label">SSC Seat No.<span class="required-star">*</span></label>
+                                                    <div class="col-xl-8 col-lg-8">
+                                                        <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+
+                                            <div class="m-separator m-separator--dashed m-separator--lg">
+                                            </div>
+
+                                            <div class="m-form__section">
+                                                <div class="m-form__heading">
+                                                    <h3 class="m-form__heading-title">Sibling Details</h3>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-4 col-lg-4 col-form-label">Standard<span class="required-star">*</span></label>
+                                                            <div class="col-xl-8 col-lg-8">
+                                                                <select class="form-control">
+                                                                 
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-4 col-lg-4 col-form-label">Student<span class="required-star">*</span></label>
+                                                            <div class="col-xl-8 col-lg-8">
+                                                                <select class="form-control">
+                                                              
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                </div>
+
+                            </div>
+
+
+
+
+                            <!--end: Form Wizard Step 1-->
+                            <!--begin: Form Wizard Step 2-->
+                            <div class="m-wizard__form-step" id="m_wizard_form_step_2">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="m-form__section m-form__section--first">
+                                            <div class="m-form__heading">
+                                                <h3 class="m-form__heading-title">Father Details</h3>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Father's Full Name<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Father Adhar Card No<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Occupation<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <div class="m-radio-inline">
+                                                                <label class="m-radio m-radio--bold m-radio--state-success">
+                                                                    <input type="radio" name="Occupation" value=""> Service
+                                                                    <span></span>
+                                                                </label>
+                                                                <label class="m-radio m-radio--bold m-radio--state-success">
+                                                                    <input type="radio" name="Occupation" value=""> Business
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Qualification<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                           
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Birth Date<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <div class="input-group date">
+                                                                <input type="text" class="form-control m-input" readonly placeholder="Select date" id="m_datepicker_2" />
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text">
+                                                                        <i class="la la-calendar-check-o"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Age<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="m-separator m-separator--dashed m-separator--lg">
+                                        </div>
+
+                                        <div class="m-form__section">
+                                            <div class="m-form__heading">
+                                                <h3 class="m-form__heading-title">Mother Details</h3>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Mothers's Full Name<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Mother's Occupation<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <div class="m-radio-inline">
+                                                                <label class="m-radio m-radio--bold m-radio--state-success">
+                                                                    <input type="radio" name="MOccupation" value=""> Service
+                                                                    <span></span>
+                                                                </label>
+                                                                <label class="m-radio m-radio--bold m-radio--state-success">
+                                                                    <input type="radio" name="MOccupation" value=""> Business
+                                                                    <span></span>
+                                                                </label>
+                                                                <label class="m-radio m-radio--bold m-radio--state-success">
+                                                                    <input type="radio" name="MOccupation" value=""> House Wife
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Mother's Qualification<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Birth Date<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <div class="input-group date">
+                                                                <input type="text" class="form-control m-input" readonly placeholder="Select date" id="m_datepicker_2" />
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text">
+                                                                        <i class="la la-calendar-check-o"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Age<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Wedding Day<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <div class="input-group date">
+                                                                <input type="text" class="form-control m-input" readonly placeholder="Select date" id="m_datepicker_2" />
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text">
+                                                                        <i class="la la-calendar-check-o"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="m-separator m-separator--dashed m-separator--lg">
+                                        </div>
+
+                                        <div class="m-form__section">
+                                            <div class="m-form__heading">
+                                                <h3 class="m-form__heading-title">Permanent Address Details</h3>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Address<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <textarea class="form-control m-input" id="" rows="3"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">State<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control">
+                                                              
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">District<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control">
+                                                             
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Taluka<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <div class="row m-0">
+                                                                <select class="form-control">
+                                                                  
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Pincode<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Country<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="m-form__section">
+                                            <div class="m-form__heading">
+                                                <h3 class="m-form__heading-title">Correspondence Address Details</h3>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Address<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <textarea class="form-control m-input" id="" rows="3"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">State<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">District<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Taluka<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Pincode<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Country<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Telephone(Office)<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Fax<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Telephone(Residence)<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <!--end: Form Wizard Step 2-->
+                            <div class="m-wizard__form-step" id="m_wizard_form_step_3">
+
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="m-form__section m-form__section--first">
+                                            <div class="m-form__heading">
+                                                <h3 class="m-form__heading-title">Other information</h3>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Income Detail<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control">
+                                                           
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Bank Name<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Account Holder Name<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Account No<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Branch Name<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">IFSC Code<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">MICR Code<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="m-form__section">
+                                            <div class="m-form__heading">
+                                                <h3 class="m-form__heading-title">Last Academic Details if Any</h3>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Institution Name<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control">
+                                                          
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Course Studied<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control">
+                                                             
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Address<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <textarea class="form-control m-input" id="exampleTextarea" rows="3"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Medium<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <select class="form-control">
+                                                                <option value="">English/option>
+                                                                <option value="">Marathi</option>
+                                                                <option value="">Other</option>
+                                                            
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">UDISE No<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Year of Passing<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">LC/TC Number<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Other Details<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            </div>
+                                        <div class="m-form__section">
+                                            <div class="m-form__heading">
+                                                <h3 class="m-form__heading-title">Any Special Achievements</h3>
+                                            </div>
+                                            </div>
+
+                                        <div class="m-form__section">
+                                            <div class="m-form__heading">
+                                                <h3 class="m-form__heading-title">Other Details</h3>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Is There Any Evidence of Learning Disability<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <div class="m-radio-inline">
+                                                                <label class="m-radio m-radio--bold m-radio--state-success">
+                                                                    <input type="radio" name="Disability" value=""> Yes
+                                                                    <span></span>
+                                                                </label>
+                                                                <label class="m-radio m-radio--bold m-radio--state-success">
+                                                                    <input type="radio" name="Disability" value=""> No
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Medically Fit<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <div class="m-radio-inline">
+                                                                <label class="m-radio m-radio--bold m-radio--state-success">
+                                                                    <input type="radio" name="Fit" value=""> Yes
+                                                                    <span></span>
+                                                                </label>
+                                                                <label class="m-radio m-radio--bold m-radio--state-success">
+                                                                    <input type="radio" name="Fit" value=""> No
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Height<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Weight<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Attach Detail Explanation<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="file" name="" class="form-control m-input" onchange="preview_banner(event)" multiple="multiple" file-model="Banner" value="{{Banner}}">
+                                                            @*<a href="{{Banner}}">View</a>*@
+                                                            <img id="output_image1" ng-src="{{Banner}}" ng-bind="Banner" width="100" />
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                                    <div class="row">
+                                                        <div class="col-xl-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-4 col-lg-4 col-form-label">If Any,Please Mention Disease<span class="required-star">*</span></label>
+                                                                <div class="col-xl-8 col-lg-8">
+                                                                    <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-xl-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-4 col-lg-4 col-form-label">Special Remarks<span class="required-star">*</span></label>
+                                                                <div class="col-xl-8 col-lg-8">
+                                                                    <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-4 col-lg-4 col-form-label">Suggested Treatment<span class="required-star">*</span></label>
+                                                                <div class="col-xl-8 col-lg-8">
+                                                                    <input type="text" name="" class="form-control m-input" placeholder="" value="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-xl-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-4 col-lg-4 col-form-label">Date of Joining<span class="required-star">*</span></label>
+                                                                <div class="col-xl-8 col-lg-8">
+                                                                    <div class="col-xl-8 col-lg-8">
+                                                                        <div class="input-group date">
+                                                                            <input type="text" class="form-control m-input" readonly placeholder="Select date" id="m_datepicker_2" />
+                                                                            <div class="input-group-append">
+                                                                                <span class="input-group-text">
+                                                                                    <i class="la la-calendar-check-o"></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                            </div>
+
+                            <div class="m-wizard__form-step" id="m_wizard_form_step_4">
+
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="m-form__section m-form__section--first">
+                                            <div class="m-form__heading">
+                                                <h3 class="m-form__heading-title">Documents</h3>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                        <!--end: Form Wizard Step 4-->
+                                        <!--begin: Form Wizard Step 3-->
+                                        <div class="m-wizard__form-step" id="m_wizard_form_step_5">
+
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="m-form__section m-form__section--first">
+                                                        <div class="m-form__heading">
+                                                            <h3 class="m-form__heading-title">Upload Image</h3>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-4 col-lg-4 col-form-label">Student Image<span class="required-star">*</span></label>
+                                                        <div class="col-xl-8 col-lg-8">
+                                                            <input type="file" name="" class="form-control m-input" onchange="preview_image(event)" multiple="multiple" >
+                                                            @*<a href="{{Banner}}">View</a>*@
+                                                            <img id="output_image1" width="100" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!--end: Form Wizard Step 5-->
+                                        <!--begin: Form Actions -->
+
+                                        <div class="m-portlet__foot m-portlet__foot--fit m--margin-top-40">
+                                            <div class="m-form__actions">
+                                                <div class="row">
+                                                    <div class="col-lg-6 m--align-left">
+                                                        <a href="#" class="btn btn-secondary m-btn m-btn--custom m-btn--icon" data-wizard-action="prev">
+                                                            <span>
+                                                                <i class="la la-arrow-left"></i>&nbsp;&nbsp;
+                                                                <span>Back</span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-lg-6 m--align-right">
+                                                        <a href="#" class="btn btn-primary m-btn m-btn--custom m-btn--icon" data-wizard-action="submit">
+                                                            <span>
+                                                                <i class="la la-check"></i>&nbsp;&nbsp;
+                                                                <span>Submit</span>
+                                                            </span>
+                                                        </a>
+                                                        <a href="#" class="btn btn-warning m-btn m-btn--custom m-btn--icon" data-wizard-action="next">
+                                                            <span>
+                                                                <span>Save & Continue</span>&nbsp;&nbsp;
+                                                                <i class="la la-arrow-right"></i>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--end: Form Actions -->
+
+                                    </div>
+
+                                    <!--end: Form Body -->
+
+</form>
+                </div>
+
+                <!--end: Form Wizard Form-->
+            </div>
+
+            <!--end: Form Wizard-->
+
+
+            
+                            <!--begin: Form Wizard Step 3-->
+                            
+                            <!--end: Form Wizard Step 3-->
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type='text/javascript'>
+    function preview_image(event) {
+        alert("hii");
+        debugger;
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('output_image1');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+        
+</script>
+
+
+<script src="~/Content/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+<script src="~/Content/assets/demo/demo12/base/scripts.bundle.js" type="text/javascript"></script>
+
+<!--end::Global Theme Bundle -->
+<!--begin::Global Theme Bundle -->
+<script src="~/Content/assets/demo/demo12/custom/crud/forms/widgets/bootstrap-datepicker.js" type="text/javascript"></script>
+<script src="~/Content/assets/demo/demo12/custom/crud/wizard/wizard.js" type="text/javascript"></script>
+<script src="~/Content/assets/demo/demo12/custom/crud/forms/widgets/select2.js" type="text/javascript"></script>
+
