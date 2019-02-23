@@ -426,6 +426,8 @@
     <Content Include="Scripts\ProjectScripts\Login\ForgetPassword.js" />
     <Content Include="Scripts\ProjectScripts\Login\LoginController.js" />
     <Content Include="Scripts\ProjectScripts\Login\LoginModule.js" />
+    <Content Include="Script\angular-chart.js" />
+    <Content Include="Script\angular-chart.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -442,6 +444,7 @@
     <Compile Include="Areas\SuperAdmin\Controllers\TemplateMasterController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\TemplateTypeController.cs" />
     <Compile Include="Areas\SuperAdmin\SuperAdminAreaRegistration.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -561,6 +564,19 @@
     <Content Include="Views\Shared\Master%27sLayout.cshtml" />
     <Content Include="Views\Login\ForgetPass.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Dashboard\AttendenceWidget.cshtml" />
+    <Content Include="Views\Dashboard\BirthdayWidget.cshtml" />
+    <Content Include="Views\Dashboard\Calendar.cshtml" />
+    <Content Include="Views\Dashboard\ChartStandard.cshtml" />
+    <Content Include="Views\Dashboard\DashboardWidget.cshtml" />
+    <Content Include="Views\Dashboard\ExamMarkStatus.cshtml" />
+    <Content Include="Views\Dashboard\FeeStatusGraphWidget.cshtml" />
+    <Content Include="Views\Dashboard\GalleryWidget.cshtml" />
+    <Content Include="Views\Dashboard\TeacherTimeTableWidget.cshtml" />
+    <Content Include="Views\Dashboard\ThoughtOfTheDayWidget.cshtml" />
+    <Content Include="Views\Dashboard\TimeTableAdminWidget.cshtml" />
+    <Content Include="Views\Dashboard\TodaysFeeCollectionWidget.cshtml" />
+    <Content Include="Views\Dashboard\WelcomeWidget.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
