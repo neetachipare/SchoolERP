@@ -23,13 +23,12 @@ namespace SchoolAPI.BusinessLayer
             {
                 var Logo = System.Web.HttpContext.Current.Request.Files["file"];
                 var Banner = System.Web.HttpContext.Current.Request.Files["file1"];
-
+                var json1 = System.Web.HttpContext.Current.Request.Form["id"];
                 var json = System.Web.HttpContext.Current.Request.Form["data"];
                 School school = Newtonsoft.Json.JsonConvert.DeserializeObject<School>(json);
-
-
- 
-                if (school.UserName == null)
+                //var boardid = json1.Replace(",", "");
+               
+                    if (school.UserName == null)
                 {
                     return new Error() { IsError = true, Message = "Required Username" };
                 }
@@ -68,8 +67,7 @@ namespace SchoolAPI.BusinessLayer
                 obj.ModifiedDate = System.DateTime.Today.Date;
                 obj.UserPrefix = school.UserPrefix;
                 obj.UserName = school.UserName;
-                obj.Password = school.Password;
-                obj.BoardId = school.BoardId;
+                obj.Password = school.Password;                
                 obj.Language = school.Language;
                 obj.Status = 1;
 
@@ -116,11 +114,27 @@ namespace SchoolAPI.BusinessLayer
 
                 }
 
-                db.TblSchools.Add(obj);
+                 db.TblSchools.Add(obj);
                 db.SaveChanges();
-                CopyDB objDB = new CopyDB();
-                string name = school.SchoolName.Replace(" ", "") + "DB";
-                objDB.Copydata(name.ToUpper());
+                //CopyDB objDB = new CopyDB();
+                //string name = school.SchoolName.Replace(" ", "") + "DB";
+                //objDB.Copydata(name.ToUpper());
+                var details= db.TblSchools.FirstOrDefault(r => r.SchoolName == school.SchoolName);
+                TblBoardDetail board = new TblBoardDetail();
+                string[] ids = json1.Split(',');
+
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    board.SchoolId = details.SchoolId;
+                    board.BoardId =Convert.ToInt64(ids[i].Replace("[","").Replace("]",""));
+                    board.CreatedBy = 1;
+                    board.CreatedDate = System.DateTime.Today.Date;
+                    board.ModifiedBy = null;
+                    board.ModifiedDate = System.DateTime.Today.Date;
+                    db.TblBoardDetails.Add(board);
+                    db.SaveChanges();
+                }
+
 
                 //user.code = Convert.ToInt32(HttpContext.Current.Session["Code"]);
                 return new Result
@@ -146,7 +160,7 @@ namespace SchoolAPI.BusinessLayer
             //}
             try
             {
-                var schoolid = db.TblSchools.Where(r => r.SchoolId == obj.SchoolId).FirstOrDefault();
+                var schoolid = db.View_SchoolDetails.Where(r => r.SchoolId == obj.SchoolId).FirstOrDefault();
                 if (schoolid == null)
                 {
                     return new Error() { IsError = true, Message = "School  Not Found" };
@@ -167,7 +181,8 @@ namespace SchoolAPI.BusinessLayer
             var httpRequest = HttpContext.Current.Request;
             var Logo = System.Web.HttpContext.Current.Request.Files["logo"];
  
-            var Banner = System.Web.HttpContext.Current.Request.Files["banner"]; 
+            var Banner = System.Web.HttpContext.Current.Request.Files["banner"];
+            var json1 = System.Web.HttpContext.Current.Request.Form["id"];
             var json = System.Web.HttpContext.Current.Request.Form["data"];
             UpdateSchool info = Newtonsoft.Json.JsonConvert.DeserializeObject<UpdateSchool>(json);
             if (info.SchoolName == null)
@@ -205,16 +220,31 @@ namespace SchoolAPI.BusinessLayer
             data.ModifiedDate = System.DateTime.Today.Date;
             data.UserPrefix = info.UserPrefix;
             data.UserName = info.UserName;
-            data.Password = info.Password;
-            data.BoardId = info.BoardId;
+            data.Password = info.Password;           
             data.Language = info.Language;
             data.LandlineNo = info.LandlineNo;
-            data.EmailId = info.EmailId;
- 
-             data.Designation = info.Designation;
-          
+            data.EmailId = info.EmailId; 
+             data.Designation = info.Designation;          
               data.CreatedBy = data.CreatedBy;
               data.CreatedDate = data.CreatedDate;
+
+            TblBoardDetail board = new TblBoardDetail();
+            string[] ids = json1.Split(',');
+            //var boarddata= db.TblBoardDetails.Where(r => r.SchoolId == info.SchoolId).FirstOrDefault();
+            //var getinfo = db.TblBoardDetails.Where(r => r.SchoolId == info.SchoolId && r.BoardId==boarddata.BoardId).FirstOrDefault();
+            for (int i = 0; i < ids.Length; i++)
+            {
+                board.SchoolId = data.SchoolId;
+
+                board.BoardId = Convert.ToInt64(ids[i].Replace("[", "").Replace("]", ""));
+                board.CreatedBy = 1;
+                board.CreatedDate = System.DateTime.Today.Date;
+                board.ModifiedBy = null;
+                board.ModifiedDate = System.DateTime.Today.Date;
+                
+                db.TblBoardDetails.Add(board);
+                db.SaveChanges();
+            }
             if (httpRequest.Files.Count == 0) 
             {
                 db.SaveChanges();
@@ -286,14 +316,16 @@ namespace SchoolAPI.BusinessLayer
         {
             try
             {
-                List<TblSchool> StudentData = null;
+                //List<ViewSchoolLists> StudentData = null;
+                List<View_SchoolDetails> StudentData = null;
                 if (s.Status == "Deactive")
                 {
-                    StudentData = db.TblSchools.Where(r => r.Status == 0).ToList();
+                    StudentData = db.View_SchoolDetails.Where(r => r.Status == 0).ToList();
                 }
                 else
                 {
-                    StudentData = db.TblSchools.Where(r => r.Status == 1).ToList();
+                    StudentData = db.View_SchoolDetails.Where(r => r.Status == 1).ToList();
+                    
                 }
 
                 if (StudentData == null)
@@ -527,8 +559,6 @@ namespace SchoolAPI.BusinessLayer
         {
             try
             {
-
-
                 TblBoard obj= db.TblBoards.Where(r => r.BoardId == PM.BoardId).FirstOrDefault();
 
 

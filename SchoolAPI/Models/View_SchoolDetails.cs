@@ -6,10 +6,10 @@ namespace SchoolAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("TblSchool")]
-    public partial class TblSchool
+    public partial class View_SchoolDetails
     {
         [Key]
+        [Column(Order = 0)]
         public int SchoolId { get; set; }
 
         [StringLength(100)]
@@ -62,8 +62,6 @@ namespace SchoolAPI.Models
         [StringLength(100)]
         public string Password { get; set; }
 
-      
-
         public int? Language { get; set; }
 
         public string Logo { get; set; }
@@ -71,5 +69,13 @@ namespace SchoolAPI.Models
         public string Banner { get; set; }
 
         public byte? Status { get; set; }
+
+        [Key]
+        [Column(Order = 1)]
+        public string Board { get; set; }
+
+        [Key]
+        [Column(Order = 2)]
+        public string BoardID { get; set; }
     }
 }

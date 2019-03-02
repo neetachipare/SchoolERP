@@ -5,11 +5,12 @@ using System.Web;
 
 namespace SchoolAPI.Param
 {
-    public class GetSchool
+    public class UpdateState
     {
+
         public string UserName { get; set; }
         public string Password { get; set; }
-        public int SchoolId { get; set; }
-        //public int BoardId { get; set; }
+        public string State { get; set; }
+        public int StateId { get; set; }
     }
 }

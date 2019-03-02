@@ -13,6 +13,8 @@ namespace SchoolAPI
         {
         }
         public virtual DbSet<TblBoard> TblBoards { get; set; }
+        public virtual DbSet<TblBoardDetail> TblBoardDetails { get; set; }
+
         public virtual DbSet<TblLanguage> TblLanguages { get; set; }
         public virtual DbSet<ViewTemplateMaster> ViewTemplateMasters { get; set; }
         public virtual DbSet<ViewTemplateType> ViewTemplateTypes { get; set; }
@@ -34,6 +36,8 @@ namespace SchoolAPI
         public virtual DbSet<ViewBindMenuListUpdate> ViewBindMenuListUpdates { get; set; }
         public virtual DbSet<View_MenuList> View_MenuList { get; set; }
         public virtual DbSet<ViewDisplayTemplateMaster> ViewDisplayTemplateMasters { get; set; }
+        public virtual DbSet<ViewSchoolList> ViewSchoolLists { get; set; }
+        public virtual DbSet<View_SchoolDetails> View_SchoolDetails { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
