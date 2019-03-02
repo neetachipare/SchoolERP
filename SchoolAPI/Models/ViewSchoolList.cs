@@ -6,14 +6,26 @@ namespace SchoolAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("TblSchool")]
-    public partial class TblSchool
+    [Table("ViewSchoolList")]
+    public partial class ViewSchoolList
     {
         [Key]
+        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int SchoolId { get; set; }
 
         [StringLength(100)]
         public string SchoolName { get; set; }
+
+        public byte? Status { get; set; }
+
+        [StringLength(50)]
+        public string BoardName { get; set; }
+
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long BoardId { get; set; }
 
         [StringLength(15)]
         public string PhoneNo { get; set; }
@@ -62,14 +74,10 @@ namespace SchoolAPI.Models
         [StringLength(100)]
         public string Password { get; set; }
 
-      
-
         public int? Language { get; set; }
 
         public string Logo { get; set; }
 
         public string Banner { get; set; }
-
-        public byte? Status { get; set; }
     }
 }
