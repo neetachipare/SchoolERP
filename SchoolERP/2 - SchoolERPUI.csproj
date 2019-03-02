@@ -90,8 +90,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Scripts\CommonScript\Module.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\AcademicYear\AcademicYearController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\AcademicYear\AcademicYearModule.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Board\Board.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Board\BoardModule.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Caste\Caste.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Caste\CasteController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Caste\Category.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Caste\CategoryController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Caste\Minority.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Caste\MinorityController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Caste\Religion.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Caste\ReligionController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Caste\SubCaste.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Caste\SubCasteController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Department\Department.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Department\DepartmentController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Department\Designation.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Department\DesignationController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\District\DistrictController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\District\DistrictModule.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Languages\Language.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Languages\LanguageModule.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Login\ForgetPassword.js" />
@@ -103,12 +121,24 @@
     <Content Include="Areas\Scripts\ProjectScripts\Module\MenuController.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Module\Module.js" />
     <Content Include="Areas\Scripts\ProjectScripts\Module\ModuleController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\SchoolBoard\Board.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\SchoolBoard\BoardModule.js" />
     <Content Include="Areas\Scripts\ProjectScripts\School\SchoolController.js" />
     <Content Include="Areas\Scripts\ProjectScripts\School\SchoolModule.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\State\StateController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\State\StateModule.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Taluka\TalukaController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Taluka\TalukaModule.js" />
     <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateMaster.js" />
     <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateMasterController.js" />
     <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateType.js" />
     <Content Include="Areas\Scripts\ProjectScripts\TemplateType\TemplateTypeController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\TermCommencement\TermCommencement.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\TermCommencement\TermCommencementModule.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Term\TermController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Term\TermModule.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Unit\UnitController.js" />
+    <Content Include="Areas\Scripts\ProjectScripts\Unit\UnitModule.js" />
     <Content Include="Areas\SuperAdmin\Scripts\CommonScript\Module.js" />
     <Content Include="Areas\SuperAdmin\Scripts\Language\Language.js" />
     <Content Include="Areas\SuperAdmin\Scripts\Language\LanguageModule.js" />
@@ -434,6 +464,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\SchoolAdmin\Controllers\CasteController.cs" />
+    <Compile Include="Areas\SchoolAdmin\Controllers\DepartmentController.cs" />
+    <Compile Include="Areas\SchoolAdmin\Controllers\SchoolMasterController.cs" />
     <Compile Include="Areas\SchoolAdmin\SchoolAdminAreaRegistration.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\AdmissionController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\HomeController.cs" />
@@ -554,6 +587,23 @@
     <Content Include="Areas\SuperAdmin\Views\Role\MenuSubMenu.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\TemplateMaster\Index.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\Admission\Admission.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\Caste\Caste.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\Caste\Category.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\Caste\Minority.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\Caste\Religion.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\Caste\SubCaste.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\Department\Department.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\Department\Designation.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\AcademicYear.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\BoardMaster.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\District.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\State.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\Taluka.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\TermCommecement.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\TermMaster.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\UnitMaster.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\Shared\LayoutPage.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\web.config" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Home\ForgetPass.cshtml" />

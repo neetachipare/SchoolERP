@@ -46,7 +46,7 @@ function MenuSubMenuController($scope, Service) {
         $scope.DuplicateMsg = "";
         nodeids = [];
         $scope.btnSave = true; 
-        alert("hello4")
+        //alert("hello4")
         //$('#m_tree_3').jstree("open_all");
        
 
@@ -172,7 +172,7 @@ function MenuSubMenuController($scope, Service) {
         };
     
         $scope.btnSave = false;
-        alert("hello2")
+        //alert("hello2")
         Service.Post("MenuSubMenu/GetMenuSubMenuDemo").then(function (result) {
             $scope.ParamUserLogin.Name = result.data.ModuleName
             $scope.ParamUserLogin.state = result.data.state
