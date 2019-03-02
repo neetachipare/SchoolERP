@@ -19,11 +19,14 @@ function SchoolController($scope, Service) {
         }
        
         Service.Post("SchoolMaster/SchoolInformation", JSON.stringify(Data)).then(function (result) {
-
-           
-            $scope.ViewGetStudentInfoes = result.data;
+            debugger; 
+            $scope.lstt = [];
+            var data = result.data.ResultData;
             $scope.Students = result.data.ResultData;
-            console.log(result.data.ResultData);
+
+                return false;
+            
+            //console.log(result.data.ResultData);
 
         })
 
@@ -34,9 +37,31 @@ function SchoolController($scope, Service) {
         $scope.btnupdate = true;
         $scope.btnsave = false;
     }
+    //$scope.board = function ()
+    //{
+    //    debugger;
+    //    var tempArray = {};
+
+    //    for (var i = 0; i < board.length; i++) {
+    //        if (data[i].checked) tempArray.push(data[i]);
+    //    }
+    //    return tempArray; 
+       
+    //}
+
+
+
+
     $scope.Add = function () {
         debugger;
-       
+        $scope.lst = [];
+        for (var i = 0; i < $scope.board.length; i++) {
+            if ($scope.board[i].Selected) {
+                var fruitId = $scope.board[i].BoardId;
+                alert(fruitId);
+                $scope.lst.push(fruitId);
+            }
+        }
         Info = {
             SchoolName : $scope.SchoolName,
             PhoneNo : $scope.PhoneNo,
@@ -51,15 +76,18 @@ function SchoolController($scope, Service) {
             UserPrefix : $scope.UserPrefix,
             UserName : $scope.UserName,
             Password : $scope.Password,
-            BoardId : $scope.BoardId,
+            //BoardId: $scope.lst,
             Language: $scope.Language,
             Designation: $scope.Designation,
             EmailId: $scope.EmailId,
             LandlineNo: $scope.LandlineNo
 
         };
+        debugger;
 
+       
         var payload = new FormData();
+        payload.append("id", JSON.stringify($scope.lst));
         payload.append("data", JSON.stringify(Info));
         payload.append("file1", $scope.Logo);
         payload.append("file", $scope.Banner);     
@@ -79,13 +107,38 @@ function SchoolController($scope, Service) {
         })
 
     }
-   
+
+    $scope.lstt = [];
+    $scope.change = function (s, active) {
+        debugger;
+        if (active) {
+            $scope.lstt.push(s);
+            //$scope.checkID(s);
+        }
+        else {
+            $scope.lstt.splice($scope.lstt.indexOf(s), 1);
+        }
+       
+    };
+
    
     $scope.AddUpdate = function () {
         debugger;
         $scope.IsVisible = true;
         $scope.Visible = false;
-      
+        $scope.lstid = [];
+        for (var i = 0; i < $scope.board.length; i++) {
+            if ($scope.board[i].Selected) {
+                var id = $scope.board[i].BoardId;
+                alert(id);
+                $scope.lstid.push(id);
+                
+            }
+            
+        }
+        //if (i === 0) {
+        //    $scope.lst = [0];
+        //}
         Info = {
             SchoolName: $scope.SchoolName,
             PhoneNo: $scope.PhoneNo,
@@ -103,11 +156,12 @@ function SchoolController($scope, Service) {
             UserPrefix: $scope.UserPrefix,
             UserName: $scope.UserName,
             Password: $scope.Password,
-            BoardId: $scope.BoardId,
+            //BoardId: $scope.BoardId,
             Language: $scope.Language,
              SchoolId: $scope.SchoolId
         };
         var payload = new FormData();
+        payload.append("id", JSON.stringify($scope.lstid));
         payload.append("data", JSON.stringify(Info));
         payload.append("logo", $scope.Logo);
         payload.append("banner", $scope.Banner);
@@ -182,30 +236,30 @@ function SchoolController($scope, Service) {
         $scope.Visible = true;
         $scope.SchoolName = "";
         $scope.PhoneNo = "";
-     $scope.SchoolName="";
-     $scope.PhoneNo = "";
-     $scope.Address = "";
-     $scope.ContactPerson = "";
-     $scope.Designation = "";
-     $scope.EmailId = "";
-     $scope.LandlineNo = "";
-     $scope.ValidityStartDate = "";
-     $scope.ValidityEndDate = "";
-     $scope.PayrollTemplateId = "";
-     $scope.FeeTemplateId = "";
-     $scope.ExamTemplateId = "";
-     $scope.LoginTemplateId = "";
-     $scope.UserPrefix = "";
-     $scope.UserName = "";
-     $scope.Password = "";
-     $scope.BoardId = "";
-     $scope.Language = "";
-     $scope.Logo = "";
-     $scope.Banner = "";
-     $scope.SchoolId = "";
-     $scope.Initialize();
-     //$scope.reloadRoute();
-       
+        $scope.SchoolName = "";
+        $scope.PhoneNo = "";
+        $scope.Address = "";
+        $scope.ContactPerson = "";
+        $scope.Designation = "";
+        $scope.EmailId = "";
+        $scope.LandlineNo = "";
+        $scope.ValidityStartDate = "";
+        $scope.ValidityEndDate = "";
+        $scope.PayrollTemplateId = "";
+        $scope.FeeTemplateId = "";
+        $scope.ExamTemplateId = "";
+        $scope.LoginTemplateId = "";
+        $scope.UserPrefix = "";
+        $scope.UserName = "";
+        $scope.Password = "";
+        $scope.BoardId = "";
+        $scope.Language = "";
+        $scope.Logo = "";
+        $scope.Banner = "";
+        $scope.SchoolId = "";
+        $scope.Initialize();
+        //$scope.reloadRoute();
+
     }
    
     $scope.Verify = function (SchoolId) {
@@ -214,7 +268,7 @@ function SchoolController($scope, Service) {
         var data = {
 
             SchoolId: SchoolId
-
+            //BoardId: BoardId
         };
         Service.Post("SchoolMaster/GetSingleSchool", JSON.stringify(data)).then(function (rd) {
             alert('getsingle')
@@ -244,11 +298,41 @@ function SchoolController($scope, Service) {
             $scope.UserName = rd.data.ResultData.UserName;
             $scope.Password = rd.data.ResultData.Password;
             $scope.ConPassword = rd.data.ResultData.Password;
-            $scope.BoardId = rd.data.ResultData.BoardId;
+            $scope.BoardID = rd.data.ResultData.BoardID;
+            $scope.BoardName = rd.data.ResultData.BoardName;
             $scope.Language = rd.data.ResultData.Language;
             $scope.Logo = rd.data.ResultData.Logo;
             $scope.Banner = rd.data.ResultData.Banner;
+            //$scope.lst = [];
+            //for (var i = 0; i < $scope.BoardID.length; i++) {
+            //    var id = $scope.BoardID[i];
+            //    $scope.BoardID[i].Selected;
 
+            //    $scope.lst.push(id);
+            //    if (id === ",")
+            //    {
+            //        id = 0;
+            //    }
+            //    else {
+            //        $scope.checkID(id);
+            //    }
+               
+
+            //}
+            debugger;
+            //$scope.boardidarray = [];
+            $scope.boardidarray= $scope.BoardID.split(',');
+            for (var i = 0; i < $scope.boardidarray.length; i++) {
+                $scope.change($scope.boardidarray[i], true);
+                //$scope.checkID($scope.boardidarray[i]);
+                //if ($scope.board["BoardId"] === $scope.boardidarray[i][""])
+                //{
+                //    alert("Hiiiye");
+                //    $scope.checkID(BoardId)=true;
+                //}
+                //$scope.checkID($scope.boardidarray[i]);
+            }
+            
         })
     }
     $scope.Delete = function (SchoolId) {
@@ -322,4 +406,32 @@ function SchoolController($scope, Service) {
        
         
     }
+
+    $scope.checkID = function (BoardId) {
+        debugger;
+        if ($scope.boardidarray == undefined)
+        {
+       
+        }
+        else {
+            var count = 0;
+            for (var i = 0; i < $scope.boardidarray.length; i++) {
+                if ($scope.boardidarray[i] == BoardId) {
+                    //alert("Hiiiye");
+                    count = count + 1;
+
+                    //$scope.checkID(BoardId);
+                }
+                else
+                {  }
+            }
+            if (count > 0)
+            {
+                return true;
+            }
+            
+        }
+       
+    }
+
 }

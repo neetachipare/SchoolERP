@@ -10,5 +10,6 @@ namespace SchoolAPI.Param
         public string UserName { get; set; }
         public string Password { get; set; }
         public int SchoolId { get; set; }
+        //public int BoardId { get; set; }
     }
 }

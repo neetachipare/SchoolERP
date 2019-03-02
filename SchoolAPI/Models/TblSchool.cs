@@ -62,7 +62,7 @@ namespace SchoolAPI.Models
         [StringLength(100)]
         public string Password { get; set; }
 
-        public int? BoardId { get; set; }
+      
 
         public int? Language { get; set; }
 
