@@ -19,7 +19,7 @@ function MenuSubMenuController($scope, Service) {
         $scope.data = [];
       
         Service.Post("MenuSubMenu/GetRoleData").then(function (result) {
-          
+             
             $scope.RoleData = result.data;
             console.log(result.data);
         })
@@ -45,8 +45,9 @@ function MenuSubMenuController($scope, Service) {
         $scope.RoleId = "";
         $scope.DuplicateMsg = "";
         nodeids = [];
-        $scope.btnSave = true;
-        $('#m_tree_3').jstree("refresh");
+        $scope.btnSave = true; 
+        alert("hello4")
+        //$('#m_tree_3').jstree("open_all");
        
 
         $scope.msg = "";
@@ -69,7 +70,11 @@ function MenuSubMenuController($scope, Service) {
                     tie_selection: false // for checking without selecting and selecting without checking
                 },
                 plugins: ['checkbox']
-            })
+            }).bind("loaded.jstree", function (event, data) {
+                // you get two params - event & data - check the core docs for a detailed description
+                $(this).jstree("open_all");
+                $(this).jstree("deselect_all") ;
+            })    
 
             //var nodeids = [4,1,3];
             // var tree = $("#m_tree_3");
@@ -167,11 +172,11 @@ function MenuSubMenuController($scope, Service) {
         };
     
         $scope.btnSave = false;
-
+        alert("hello2")
         Service.Post("MenuSubMenu/GetMenuSubMenuDemo").then(function (result) {
             $scope.ParamUserLogin.Name = result.data.ModuleName
             $scope.ParamUserLogin.state = result.data.state
-            debugger;
+            //debugger;
            $('#m_tree_3').jstree({
             core: {
                 data: result.data,
@@ -186,21 +191,26 @@ function MenuSubMenuController($scope, Service) {
                 tie_selection: false // for checking without selecting and selecting without checking
             },
             plugins: ['checkbox']
-            })
+            }).bind("loaded.jstree", function (event, data) {
+                // you get two params - event & data - check the core docs for a detailed description
+                $(this).jstree("open_all");
+                $(this).jstree("deselect_all");
+            })    
            $scope.selectedid = 0;
 
            Service.Post("MenuSubMenu/GetSingleMenuSubMenu", JSON.stringify(data), $scope.UserCredentialModel).then(function (result) {
              
-               debugger;
+               //debugger;
                $scope.selectedid = result.data;
                var ids = $scope.selectedid;
-            
+               var nodeids = [];
 
                var string = ids.split(','); // <- split
                for (var i = 0; i < string.length; i++) {
                    nodeids.push(string[i]);
                }
 
+               console.log(nodeids)
 
                var tree = $("#m_tree_3");
                // IE
@@ -213,7 +223,7 @@ function MenuSubMenuController($scope, Service) {
            })
           
           
-
+            
 
 
         })
@@ -311,25 +321,3 @@ function MenuSubMenuController($scope, Service) {
         }
   
 }
-
-
-
-
-          
-          
-           
-             
-
-
-            
-            
-
-
-
-
-
-
-   
-
-
-
