@@ -177,6 +177,7 @@
                                                         <th>Email Id</th>
                                                         <th>User Prefix</th>                                                        
                                                         <th>Contact Person</th>
+                                                        <th>Board</th>
                                                         <th>Action</th>
                                                         <th>Status</th>
 
@@ -202,12 +203,15 @@
                                                        <td>
                                                            {{data.ContactPerson}}
                                                        </td>
+                                                       <td>
+                                                           {{data.Board}}
+                                                       </td>
                                                       
                                                        <td>
                                                            <div class="action-link">
                                                                @*<a class="print-icon" href="javascript:void(0);" data-toggle="m-tooltip" title="Print" data-html="true"><i class="la la-print"></i></a>
     <a class="view-icon" href="javascript:void(0);" data-toggle="m-tooltip" title="View"><i class="la la-eye"></i></a>*@
-                                                               <a class="edit-icon" ng-click="Verify(data.SchoolId)" data-toggle="m-tooltip" title="Edit" data-wizard-action="first"><i class="la la-edit"></i></a>
+                                                               <a class="edit-icon" ng-click="Verify(data.SchoolId,data.BoardId)" data-toggle="m-tooltip" title="Edit" data-wizard-action="first"><i class="la la-edit"></i></a>
                                                                @*<a class="delete-icon" ng-click="Delete(data.SchoolId)" data-toggle="m-tooltip" title="Deactive"><i class="la la-trash-o"></i></a>*@
 
                                                            </div>
@@ -390,7 +394,7 @@
                                                                     <div class="col-xl-8 col-lg-8">
                                                                         <select class="form-control" value="{{LanguageId}}" ng-model="Language">
                                                                             <option value="0">--Select--</option>
-                                                                            <option ng-repeat="s in data" value="{{s.LanguageId}}">{{s.Language}}</option>
+                                                                            <option ng-repeat="s in data" value="{{s.LanguageId}}" ng-selected="s.LanguageId==LanguageId">{{s.Language}}</option>
 
                                                                         </select>
                                                                     </div>
@@ -448,7 +452,7 @@
                                                                     <div class="col-xl-8 col-lg-8">
                                                                         <select class="form-control"  value="{{FeeTemplateId}}" ng-model="FeeTemplateId">
                                                                             <option value="0" selected>--Select--</option>
-                                                                            <option ng-repeat="s in Fee" value="{{s.TemplateId}}" ng-selected="{{s.selected==TemplateTypeId}}">{{s.Name}}</option>
+                                                                            <option ng-repeat="s in Fee" value="{{s.TemplateId}}" ng-selected="s.TemplateId == FeeTemplateId">{{s.Name}}</option>
 
                                                                         </select>
                                                                         
@@ -465,7 +469,7 @@
                                                                     <div class="col-xl-8 col-lg-8">
                                                                         <select class="form-control" value="{{LoginTemplateId}}" ng-model="LoginTemplateId">
                                                                             <option value="0" selected>--Select--</option>
-                                                                            <option ng-repeat="s in Login" value="{{s.TemplateId}}" ng-selected="{{s.selected==LoginTemplateId}}">{{s.Name}}</option>
+                                                                            <option ng-repeat="s in Login" value="{{s.TemplateId}}" ng-selected="s.TemplateId == LoginTemplateId">{{s.Name}}</option>
 
                                                                         </select>
                                                                     </div>
@@ -483,7 +487,7 @@
                                                                     <div class="col-xl-8 col-lg-8">
                                                                         <select class="form-control" value="{{ExamTemplateId}}" ng-model="ExamTemplateId">
                                                                             <option value="0" selected>--Select--</option>
-                                                                            <option ng-repeat="s in Exam" value="{{s.TemplateId}}">{{s.Name}}</option>
+                                                                            <option ng-repeat="s in Exam" value="{{s.TemplateId}}" ng-selected="s.TemplateId == ExamTemplateId">{{s.Name}}</option>
 
                                                                         </select>
                                                                     </div>
@@ -613,14 +617,18 @@
                                                                 </div>
                                                             </div>*@
                                                             <div class="col-xl-6">
-                                                                <div class="form-group row" ng-init="GetBoard()">
-                                                                    <label class="col-xl-4 col-lg-4 col-form-label">Board<span class="required-star">*</span></label>
-                                                                    <div class="col-xl-8 col-lg-8">
-                                                                        <select class="form-control" value="{{BoardId}}" ng-model="BoardId">
-                                                                            <option selected>--Select--</option>
-                                                                            <option  ng-repeat="s in board"  value="{{s.BoardId}}">{{s.BoardName}}</option>
+                                                                <div class="form-group m-form__group row" ng-init="GetBoard()">
+                                                                    <label for="example-text-input" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-form-label">Board<span class="required-star">*</span></label>
+                                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                                                        <div class="m-checkbox-inline">
+                                                                            <div class="row mb-2 m-0">
+                                                                                <label ng-repeat="s in board" class="m-checkbox col-lg-2 col-md-3 col-sm-3">{{s.BoardName}}
+                                                                                    <input type="checkbox" id="{{s.BoardId}}" value="{{s.BoardId}}" ng-model="s.Selected" ng-checked="checkID(s.BoardId)" ng-click="change(s,s.Selected)" > 
+                                                                                    <span></span>
+                                                                                </label>
 
-                                                                        </select>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>                                                          
