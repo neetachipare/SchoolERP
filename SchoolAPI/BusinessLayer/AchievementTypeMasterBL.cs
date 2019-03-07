@@ -28,7 +28,6 @@ namespace SchoolAPI.BusinessLayer
                     db.TblAchievementTypeMasters.Add(objTbl);
                     db.SaveChanges();
                     msg = "Achievement Type Added Successfully!";
-
                 }
                 else
                 {

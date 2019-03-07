@@ -51,7 +51,7 @@ function AchievementTypeMasterController($scope, Service)
     }
 
     $scope.Add = function (AchievementType) {
-        debugger;
+        
         var data = {
             AchievementType: AchievementType
         };
@@ -59,16 +59,13 @@ function AchievementTypeMasterController($scope, Service)
             Service.Post("AchievementTypeMaster/AddAchievementTypeMaster", JSON.stringify(data)).then(function (response) {
 
                 if (response.data.IsSucess) {
-                    debugger;
                     $scope.Clear();
                     $scope.IsVisible = false;
                     $scope.Initialize();
                     alert(response.data.ResultData);
                 }
                 else {
-                    debugger;
                     alert(response.data.Message);
-                   
                 }
 
             });
@@ -76,7 +73,7 @@ function AchievementTypeMasterController($scope, Service)
     }
 
     $scope.Update = function (AchievementTypeID, AchievementType) {
-        debugger;
+       
         var data = {
             AchievementTypeID: AchievementTypeID,
             AchievementType: AchievementType
@@ -85,15 +82,14 @@ function AchievementTypeMasterController($scope, Service)
             Service.Post("AchievementTypeMaster/UpdateAchievementTypeMaster", JSON.stringify(data)).then(function (response) {
 
                 if (response.data.IsSucess) {
-                    debugger;
+                   
                     $scope.Clear();
                     $scope.IsVisible = false;
                     $scope.Initialize();
                     alert(response.data.ResultData);
-                    
                 }
                 else {
-                    debugger;
+                   
                     alert(response.data.Message);
                 }
 
@@ -102,7 +98,6 @@ function AchievementTypeMasterController($scope, Service)
     }
     
     $scope.Delete = function (AchievementTypeID) {
-        debugger;
         var data = {
 
             AchievementTypeID: AchievementTypeID
@@ -118,7 +113,6 @@ function AchievementTypeMasterController($scope, Service)
         if (confirm == true) {
             Service.Post("AchievementTypeMaster/DeleteAchievementTypeMaster", JSON.stringify(data)).then(function (response) {
 
-                debugger;
                 if (response.data)
                     $scope.Initialize();
                 alert(response.data.ResultData);
