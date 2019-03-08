@@ -11,6 +11,18 @@ namespace SchoolAPI.BusinessLayer
     public class MenuBussiness
     {
         SchoolERPContext db = new SchoolERPContext();
+
+
+        public object GetSiteMenu()
+        {
+            var menu = db.TblModuleMasters.Where(r=>r.Status==1).ToList();
+           // var menu = db.View_MenuList.Where(r => r.Status == 1).ToList();
+            return menu;
+        }
+
+
+
+
         public object GetMenu()
         {
             List<ResultForMenu> lt = new List<ResultForMenu>();

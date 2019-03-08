@@ -18,61 +18,70 @@
        }
 
            .m-menu__nav li {
-               position: relative;
+               /*position: relative;*/
                z-index: 1;
            }
 
            .m-menu__nav a {
                display: block;
-               border-bottom: 1px solid #fff;
-               padding: 5px 10px;
+               border-bottom: 0px solid #fff;
+               padding: 0px 0px;
                color: #000;
                text-decoration: none;
                transition: all .3s ease;
            }
-
-               .m-menu__nav a:hover 
+               .m-menu__nav a:hover
                {
-                   background-color: white;
-                      
+                   background-color: aqua;  
                }
 
-           .m-menu__nav ul li ul li:hover {
-               background-color: aqua;
-              
-           }
-          
-
+      
    </style>
     <script type="text/javascript">
 
+        function ChangeColor(obj) {
+            debugger;
+                     
+            //obj.style.backgroundColor = "aqua";
+        }
+        $(document).ready(function () {
+            debugger;
+            $('#linkA').on('click', function () {
+                $(this).addClass('m-menu__item--active');
+            });
 
-      
+        });
    </script>
+    <style>
+     
+    </style>
 </head>
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default" ng-app="ERP">
 
     @using System.Configuration;
    
-    <div ng-controller="SideBarController">
+    <div ng-controller="SideBarController" style="width:20%">
         <form id="" name="form" class="m-form m-form--fit m-form--label-align-right">
             <div ng-init="Initialize()" id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1" m-menu-scrollable="0" m-menu-dropdown-timeout="500">
-              
-
+                <ul class="m-menu__nav">
+                    <li class="m-menu__item  m-menu__item--parent m-menu__item--active" aria-haspopup="true">
+                        <a href="#" class="m-menu__link m-menu__toggle"><span class="m-menu__item-here"></span><i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">Dashboard</span></a>
+                    </li>
+                </ul>
                 <ul class="m-menu__nav">
                   
-                    <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" ng-repeat="s in SiteMenu | filter:{ParentModuleId : 0 }" ng-include="'categoryTree'"  >
+                    <li class="m-menu__item  m-menu__item--parent "  aria-haspopup="true" ng-repeat="s in SiteMenu | filter:{ParentModuleId : 0 }" ng-include="'categoryTree'"  >
                        
                     </li>
                 </ul>
                 <script type="text/ng-template" id="categoryTree">
 
-                    <a href="{{s.ActionName}}" class="m-menu__link m-menu__toggle" id="linkA" ><span class="m-menu__item-here"></span><i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">{{s.ModuleName}}</span></a>
+                    <a href="{{s.ActionName}}" class="m-menu__link m-menu__toggle" id="linkA" onclick="ChangeColor(this);"><span class="m-menu__item-here" ></span><i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">{{s.ModuleName}}</span></a>
                     <div class="m-menu__submenu">
                         <span class="m-menu__arrow"></span>
                         <ul class="m-menu__subnav" ng-if="(SiteMenu | filter:{ParentModuleId : s.ModuleId }).length >0">
                              @*it executes only when ParentModuleId has ModuleId*@
-                             <li class="m-menu__item  " aria-haspopup="true" ng-repeat="s in SiteMenu | filter:{ParentModuleId : s.ModuleId}:true" ng-include="'categoryTree'"><a href="" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">{{s.ModuleName}}</span></a></li>
+                             <li class="m-menu__item"  m-menu-submenu-toggle="hover" aria-haspopup="true" ng-repeat="s in SiteMenu | filter:{ParentModuleId : s.ModuleId}:true" ng-include="'categoryTree'"><a href="" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">{{s.ModuleName}}</span></a></li>
                         </ul>
                     </div>
                 </script>
