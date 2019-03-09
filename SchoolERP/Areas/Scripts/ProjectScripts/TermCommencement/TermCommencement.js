@@ -40,6 +40,8 @@ function TermCommencementController($scope, Service) {
             $scope.TermName = result.data.ResultData.TermName;
             $scope.TermID = result.data.ResultData.TermID;
             $scope.TermCommID = result.data.ResultData.TermCommID;
+            $scope.StartDate = result.data.ResultData.StartDate;
+            $scope.EndDate = result.data.ResultData.EndDate;
             //$scope.UnitID = result.data.ResultData.UnitID;
 
             // $scope.Students = result.data.ResultData;
@@ -63,13 +65,20 @@ function TermCommencementController($scope, Service) {
         $scope.Initialize();
         $scope.TermCommID = "";
         $scope.TermName = "";
+        $scope.TermID = "";
+        $scope.StartDate = "";
+        $scope.EndDate = "";
 
     }
     $scope.Add = function (TermID, TermCommID) {
         debugger
+        var StartDate = $('#m_datepicker_1').val();
+        var EndDate = $('#m_datepicker_2').val();
         var data = {
             TermID: TermID,
-            TermCommID: TermCommID
+            TermCommID: TermCommID,
+            StartDate: StartDate,
+            EndDate: EndDate
 
         };
         if ($scope.form.$valid) {
@@ -103,9 +112,13 @@ function TermCommencementController($scope, Service) {
     }
 
     $scope.AddUpdate = function (TermID, TermCommID) {
+        var StartDate = $('#m_datepicker_1').val();
+        var EndDate = $('#m_datepicker_2').val();
         var data = {
             TermID: TermID,
-            TermCommID: TermCommID
+            TermCommID: TermCommID,
+            StartDate: StartDate,
+            EndDate: EndDate
 
         };
         if ($scope.form.$valid) {
@@ -147,11 +160,11 @@ function TermCommencementController($scope, Service) {
         };
 
         if (event.target.checked == false) {
-            var confirm = window.confirm("Do you want to deactive the Unit?");
+            var confirm = window.confirm("Do you want to deactive the Term?");
 
         }
         else {
-            var confirm = window.confirm("Do you want to active the Unit?");
+            var confirm = window.confirm("Do you want to active the Term?");
         }
         if (confirm == true) {
             Service.Post("TermMaster/DeleteTermCommencement", JSON.stringify(data)).then(function (response) {

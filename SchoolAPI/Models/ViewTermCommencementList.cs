@@ -15,9 +15,11 @@ namespace SchoolAPI.Models
 
         public long? TermID { get; set; }
 
-        public DateTime? StartDate { get; set; }
+        [StringLength(30)]
+        public string StartDate { get; set; }
 
-        public DateTime? EndDate { get; set; }
+        [StringLength(30)]
+        public string EndDate { get; set; }
 
         public int? Status { get; set; }
 

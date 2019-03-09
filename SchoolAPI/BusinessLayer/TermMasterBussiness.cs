@@ -291,6 +291,8 @@ namespace SchoolAPI.BusinessLayer
             {
                 Tbl_TermCommencementDate obj = new Tbl_TermCommencementDate();
                  obj.TermID = b.TermID;
+                obj.StartDate = b.StartDate;
+                obj.EndDate = b.EndDate;
                 obj.Status = 1;
                 obj.CreatedBy = 1;
                 obj.CreatedDate = System.DateTime.Today.Date;
@@ -367,6 +369,8 @@ namespace SchoolAPI.BusinessLayer
             {
                 Tbl_TermCommencementDate obj = new Tbl_TermCommencementDate();
                 data.TermID = b.TermID;
+                data.StartDate = b.StartDate;
+                data.EndDate = b.EndDate;
                 data.ModifiedBy = null;
                 data.ModifiedDate = System.DateTime.Today.Date;
                 db.SaveChanges();

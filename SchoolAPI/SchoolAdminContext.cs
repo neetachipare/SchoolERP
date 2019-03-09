@@ -46,8 +46,31 @@ namespace SchoolAPI
         public virtual DbSet<Tbl_Board_Master> Tbl_Board_Master { get; set; }
         public virtual DbSet<Tbl_TermCommencementDate> Tbl_TermCommencementDate { get; set; }
         public virtual DbSet<ViewTermCommencementList> ViewTermCommencementLists { get; set; }
-
-         protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public virtual DbSet<Tbl_FeeType_Master> Tbl_FeeType_Master { get; set; }
+        public virtual DbSet<ViewFeeTypeList> ViewFeeTypeLists { get; set; }
+        public virtual DbSet<Tbl_ExprienceType_Master> Tbl_ExprienceType_Master { get; set; }
+        public virtual DbSet<ViewExperienceTypeList> ViewExperienceTypeLists { get; set; }
+        public virtual DbSet<Tbl_CommitteeType_Master> Tbl_CommitteeType_Master { get; set; }
+        public virtual DbSet<ViewCommitteeList> ViewCommitteeLists { get; set; }
+        public virtual DbSet<Tbl_CommitteeMaster> Tbl_CommitteeMaster { get; set; }
+        public virtual DbSet<ViewCommitteMasterList> ViewCommitteMasterLists { get; set; }
+        public virtual DbSet<Tbl_SMTPConfiguration> Tbl_SMTPConfiguration { get; set; }
+        public virtual DbSet<ViewSMTPList> ViewSMTPLists { get; set; }
+        public virtual DbSet<Tbl_Widget_Master> Tbl_Widget_Master { get; set; }
+        public virtual DbSet<ViewWidgetList> ViewWidgetLists { get; set; }
+        public virtual DbSet<Tbl_Role_Master> Tbl_Role_Master { get; set; }
+        public virtual DbSet<ViewRoleList> ViewRoleLists { get; set; }
+        public virtual DbSet<Tbl_Shift_Master> Tbl_Shift_Master { get; set; }
+        public virtual DbSet<ViewShiftList> ViewShiftLists { get; set; }
+        public virtual DbSet<Tbl_Shift_Details> Tbl_Shift_Details { get; set; }
+        public virtual DbSet<ViewShiftDetailsList> ViewShiftDetailsLists { get; set; }
+        public virtual DbSet<Tbl_EventType_Master> Tbl_EventType_Master { get; set; }
+        public virtual DbSet<ViewEventTypeList> ViewEventTypeLists { get; set; }
+        public virtual DbSet<Tbl_EventMaster> Tbl_EventMaster { get; set; }
+        public virtual DbSet<ViewEventMasterList> ViewEventMasterLists { get; set; }
+        public virtual DbSet<Tbl_NotificationType> Tbl_NotificationType { get; set; }
+        public virtual DbSet<ViewNotificationTypeList> ViewNotificationTypeLists { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }
     }
