@@ -483,6 +483,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\SchoolAdmin\Controllers\CasteController.cs" />
     <Compile Include="Areas\SchoolAdmin\Controllers\DepartmentController.cs" />
+    <Compile Include="Areas\SchoolAdmin\Controllers\EmployeeMasterController.cs" />
     <Compile Include="Areas\SchoolAdmin\Controllers\SchoolMasterController.cs" />
     <Compile Include="Areas\SchoolAdmin\SchoolAdminAreaRegistration.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\AchievementTypeMasterController.cs" />
@@ -626,6 +627,19 @@
     <Content Include="Areas\SuperAdmin\Views\AchievementTypeMaster\Index.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\SchoolAchievementDetails\Index.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\SideBar\Index.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\EmployeeMaster\Index.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\CommitteeMaster.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\CommitteeType.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\EventMaster.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\EventType.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\ExperienceType.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\FeeTypeMaster.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\NotificationType.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\RoleMaster.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\ShiftDetails.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\ShiftMaster.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\SMTPMaster.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\SchoolMaster\WidgetMaster.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Login\ForgetPass.cshtml" />
