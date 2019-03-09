@@ -42,9 +42,10 @@ function TemplateMasterController($scope, Service) {
             //$scope.tbl_grievance_list = result.data;
 
             $scope.Menulist = result.data.ResultData;
-
+            
             console.log(result.data);
 
+             
         })
 
     }
@@ -71,14 +72,23 @@ function TemplateMasterController($scope, Service) {
             $scope.TemplateId = result.data.TemplateId;
             Service.Post("TemplateMaster/GetMenuDetails", JSON.stringify(data), $scope.UserCredentialModel).then(function (result) {
                 debugger;
-                $scope.MenuDetails = result.data;
+                $scope.MenuDetails = result.data; 
+                for (var i = 0; i < $scope.Menulist.length; i++) {
+                    $scope.Menulist[i].Selected = false;
+                }
                 for (var i = 0; i < $scope.MenuDetails.length; i++)
                 {
+
+                    for (var j = 0; j < $scope.Menulist.length; j++) {
+                        if ($scope.Menulist[j].ModuleId == $scope.MenuDetails[i].ModuleId) {
+                            $scope.Menulist[j].Selected = true;
+                        }
+                    }
                     $scope.change($scope.MenuDetails[i], true);
                 }
                 
             })
-            $scope.Initialize();
+            //$scope.Initialize();
         })
     }
 
@@ -114,7 +124,7 @@ function TemplateMasterController($scope, Service) {
     $scope.lst = [];
     $scope.str = "No Selected Menus !";
     $scope.change = function (s, active) {
-
+         
         debugger;
         if (active)
            $scope.lst.push(s.ModuleName);
@@ -127,6 +137,7 @@ function TemplateMasterController($scope, Service) {
                 
 
             }
+
         
     };
     //$scope.AddUpdate = function (TemplateId, TemplateTypeId, Menu, BtnStatus) {
@@ -140,7 +151,8 @@ function TemplateMasterController($scope, Service) {
                 MenuListIds += ModuleId + ",";
             }
         }
-       
+
+
         //alert(MenuListIds);
         var data = {
             TemplateId: TemplateId,
