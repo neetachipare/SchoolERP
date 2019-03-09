@@ -116,9 +116,9 @@ namespace SchoolAPI.BusinessLayer
 
                  db.TblSchools.Add(obj);
                 db.SaveChanges();
-                //CopyDB objDB = new CopyDB();
-                //string name = school.SchoolName.Replace(" ", "") + "DB";
-                //objDB.Copydata(name.ToUpper());
+                CopyDB objDB = new CopyDB();
+                string name = school.SchoolName.Replace(" ", "") + "DB";
+                objDB.Copydata(name.ToUpper());
                 var details= db.TblSchools.FirstOrDefault(r => r.SchoolName == school.SchoolName);
                 TblBoardDetail board = new TblBoardDetail();
                 string[] ids = json1.Split(',');
@@ -230,21 +230,41 @@ namespace SchoolAPI.BusinessLayer
 
             TblBoardDetail board = new TblBoardDetail();
             string[] ids = json1.Split(',');
-            //var boarddata= db.TblBoardDetails.Where(r => r.SchoolId == info.SchoolId).FirstOrDefault();
+            var boarddata= db.TblBoardDetails.Where(r => r.SchoolId == info.SchoolId).FirstOrDefault();
             //var getinfo = db.TblBoardDetails.Where(r => r.SchoolId == info.SchoolId && r.BoardId==boarddata.BoardId).FirstOrDefault();
-            for (int i = 0; i < ids.Length; i++)
+            if(boarddata==null)
             {
-                board.SchoolId = data.SchoolId;
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    board.SchoolId = data.SchoolId;
 
-                board.BoardId = Convert.ToInt64(ids[i].Replace("[", "").Replace("]", ""));
-                board.CreatedBy = 1;
-                board.CreatedDate = System.DateTime.Today.Date;
-                board.ModifiedBy = null;
-                board.ModifiedDate = System.DateTime.Today.Date;
-                
-                db.TblBoardDetails.Add(board);
-                db.SaveChanges();
+                    board.BoardId = Convert.ToInt64(ids[i].Replace("[", "").Replace("]", ""));
+                    board.CreatedBy = 1;
+                    board.CreatedDate = System.DateTime.Today.Date;
+                    board.ModifiedBy = null;
+                    board.ModifiedDate = System.DateTime.Today.Date;
+
+                    db.TblBoardDetails.Add(board);
+                    db.SaveChanges();
+                }
             }
+            else
+            {
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    board.SchoolId = boarddata.SchoolId;
+
+                    board.BoardId = Convert.ToInt64(ids[i].Replace("[", "").Replace("]", ""));
+                    board.CreatedBy = 1;
+                    board.CreatedDate = System.DateTime.Today.Date;
+                    board.ModifiedBy = null;
+                    board.ModifiedDate = System.DateTime.Today.Date;
+
+                    //db.TblBoardDetails.Add(board);
+                    db.SaveChanges();
+                }
+            }
+           
             if (httpRequest.Files.Count == 0) 
             {
                 db.SaveChanges();

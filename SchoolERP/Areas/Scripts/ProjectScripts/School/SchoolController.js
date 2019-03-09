@@ -127,18 +127,17 @@ function SchoolController($scope, Service) {
         $scope.IsVisible = true;
         $scope.Visible = false;
         $scope.lstid = [];
-        for (var i = 0; i < $scope.board.length; i++) {
-            if ($scope.board[i].Selected) {
+        for (var i = 0; i < $scope.board.length; i++) {           
+          if ($scope.board[i].Selected) {
                 var id = $scope.board[i].BoardId;
                 alert(id);
                 $scope.lstid.push(id);
-                
-            }
-            
+
+          }
         }
-        //if (i === 0) {
-        //    $scope.lst = [0];
-        //}
+        if (id == undefined) {
+            $scope.lstid = [0];
+        }
         Info = {
             SchoolName: $scope.SchoolName,
             PhoneNo: $scope.PhoneNo,
@@ -397,6 +396,7 @@ function SchoolController($scope, Service) {
         $scope.Logo = "";
         $scope.Banner = "";
         $scope.SchoolId = "";
+        $scope.lstid = "";
         $scope.Initialize();
         $scope.reloadRoute();
     }

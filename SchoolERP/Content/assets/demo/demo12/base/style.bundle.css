@@ -37252,7 +37252,7 @@ td > .m-checkbox.m-checkbox--single {
 
     .m-form .m-form__section:first-child,
     .m-form .m-form__section.m-form__section--first {
-        margin-top: 0
+        margin-top: -27px
     }
 
     .m-form .m-form__section:last-child,
@@ -39087,7 +39087,7 @@ td > .m-checkbox.m-checkbox--single {
 }
 
     .m-wizard.m-wizard--3 .m-wizard__head {
-        padding: 5rem 4rem
+        padding: 5rem 1rem
     }
 
         .m-wizard.m-wizard--3 .m-wizard__head .m-wizard__progress {
@@ -39120,8 +39120,8 @@ td > .m-checkbox.m-checkbox--single {
                 }
 
                     .m-wizard.m-wizard--3 .m-wizard__head .m-wizard__nav .m-wizard__steps .m-wizard__step .m-wizard__step-info .m-wizard__step-number > span {
-                        width: 4rem;
-                        height: 4rem;
+                        width: 2rem;
+                        height: 2rem;
                         border-radius: 100%;
                         -webkit-box-pack: center;
                         -ms-flex-pack: center;
@@ -39147,7 +39147,7 @@ td > .m-checkbox.m-checkbox--single {
                     .m-wizard.m-wizard--3 .m-wizard__head .m-wizard__nav .m-wizard__steps .m-wizard__step .m-wizard__step-info .m-wizard__step-line > span {
                         margin-left: 0.8rem;
                         margin-right: 0.7rem;
-                        width: 2.6rem;
+                        width: 0.6rem;
                         height: 0.32rem;
                         display: block;
                         border-radius: .6rem

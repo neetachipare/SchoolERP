@@ -4,21 +4,18 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Configuration;
+using SchoolAPI;
+using SchoolAPI.ResultModel;
 
 namespace New_project.Models
 {
     public class CopyDB
     {
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["SchoolERPContext"].ConnectionString);
-
+        SchoolERPContext db = new SchoolERPContext();
         public void Copydata(string name)
         {
-            SqlCommand cmd = new SqlCommand("SPCOPYERPDB", con);
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@DBNAME", name);
-            con.Open();
-            cmd.ExecuteReader();
-            con.Close();
+            var results = db.Database.SqlQuery<Result>("SPCOPYERPDB @DBNAME", new SqlParameter("@DBNAME", name)).ToList();
+           
         }
     }
 

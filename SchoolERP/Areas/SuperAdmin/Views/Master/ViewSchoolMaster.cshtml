@@ -614,7 +614,7 @@
 
                                                                         </select>
                                                                     </div>
-                                                                </div>
+                                                                </div>+
                                                             </div>*@
                                                             <div class="col-xl-6">
                                                                 <div class="form-group m-form__group row" ng-init="GetBoard()">
@@ -623,7 +623,7 @@
                                                                         <div class="m-checkbox-inline">
                                                                             <div class="row mb-2 m-0">
                                                                                 <label ng-repeat="s in board" class="m-checkbox col-lg-2 col-md-3 col-sm-3">{{s.BoardName}}
-                                                                                    <input type="checkbox" id="{{s.BoardId}}" value="{{s.BoardId}}" ng-model="s.Selected" ng-checked="checkID(s.BoardId)" ng-click="change(s,s.Selected)" > 
+                                                                                    <input type="checkbox" id="{{s.BoardId}}" value="{{s.BoardId}}" ng-model="s.Selected" ng-checked="checkID(s.BoardId)" ng-true-value="true" ng-click="change(s,s.Selected)" > 
                                                                                     <span></span>
                                                                                 </label>
 

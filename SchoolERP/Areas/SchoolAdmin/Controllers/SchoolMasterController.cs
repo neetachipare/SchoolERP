@@ -45,6 +45,54 @@ namespace SchoolERP.Areas.SchoolAdmin.Controllers
         {
             return View();
         }
+        public ActionResult FeeTypeMaster()
+        {
+            return View();
+        }
+        public ActionResult ExperienceType()
+        {
+            return View();
+        }
+        public ActionResult CommitteeType()
+        {
+            return View();
+        }
+        public ActionResult CommitteeMaster()
+        {
+            return View();
+        }
+        public ActionResult SMTPMaster()
+        {
+            return View();
+        }
+        public ActionResult WidgetMaster()
+        {
+            return View();
+        }
+        public ActionResult RoleMaster()
+        {
+            return View();
+        }
+        public ActionResult ShiftMaster()
+        {
+            return View();
+        }
+        public ActionResult ShiftDetails()
+        {
+            return View();
+        }
+        public ActionResult EventType()
+        {
+            return View();
+        }
+        public ActionResult EventMaster()
+        {
+            return View();
 
+        }
+        public ActionResult NotificationType()
+        {
+            return View();
+        }
     }
 }
