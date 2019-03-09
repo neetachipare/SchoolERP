@@ -1,0 +1,146 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+    <!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
+    <link href="~/Content/assets/demo/demo12/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/assets/css/custom.css" rel="stylesheet" type="text/css" />
+   <style>
+       .m-menu__nav, .m-menu__nav ul {
+           margin: 0;
+           padding: 0;
+           list-style: none;
+           
+       }
+
+           .m-menu__nav li {
+               /*position: relative;*/
+               z-index: 1;
+           }
+
+           .m-menu__nav a {
+               display: block;
+               border-bottom: 0px solid #fff;
+               padding: 0px 0px;
+               color: #000;
+               text-decoration: none;
+               transition: all .3s ease;
+           }
+               .m-menu__nav a:hover
+               {
+                   background-color: aqua;  
+               }
+
+      
+   </style>
+    <script type="text/javascript">
+
+        function ChangeColor(obj) {
+            debugger;
+                     
+            //obj.style.backgroundColor = "aqua";
+        }
+        $(document).ready(function () {
+            debugger;
+            $('#linkA').on('click', function () {
+                $(this).addClass('m-menu__item--active');
+            });
+
+        });
+   </script>
+    <style>
+     
+    </style>
+</head>
+<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default" ng-app="ERP">
+
+    @using System.Configuration;
+   
+    <div ng-controller="SideBarController" style="width:20%">
+        <form id="" name="form" class="m-form m-form--fit m-form--label-align-right">
+            <div ng-init="Initialize()" id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1" m-menu-scrollable="0" m-menu-dropdown-timeout="500">
+                <ul class="m-menu__nav">
+                    <li class="m-menu__item  m-menu__item--parent m-menu__item--active" aria-haspopup="true">
+                        <a href="#" class="m-menu__link m-menu__toggle"><span class="m-menu__item-here"></span><i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">Dashboard</span></a>
+                    </li>
+                </ul>
+                <ul class="m-menu__nav">
+                  
+                    <li class="m-menu__item  m-menu__item--parent "  aria-haspopup="true" ng-repeat="s in SiteMenu | filter:{ParentModuleId : 0 }" ng-include="'categoryTree'"  >
+                       
+                    </li>
+                </ul>
+                <script type="text/ng-template" id="categoryTree">
+
+                    <a href="{{s.ActionName}}" class="m-menu__link m-menu__toggle" id="linkA" onclick="ChangeColor(this);"><span class="m-menu__item-here" ></span><i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">{{s.ModuleName}}</span></a>
+                    <div class="m-menu__submenu">
+                        <span class="m-menu__arrow"></span>
+                        <ul class="m-menu__subnav" ng-if="(SiteMenu | filter:{ParentModuleId : s.ModuleId }).length >0">
+                             @*it executes only when ParentModuleId has ModuleId*@
+                             <li class="m-menu__item"  m-menu-submenu-toggle="hover" aria-haspopup="true" ng-repeat="s in SiteMenu | filter:{ParentModuleId : s.ModuleId}:true" ng-include="'categoryTree'"><a href="" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">{{s.ModuleName}}</span></a></li>
+                        </ul>
+                    </div>
+                </script>
+            </div>
+        </form>
+        <hr />
+
+
+        <!-- BEGIN: Aside Menu -->
+        @*<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1" m-menu-scrollable="0" m-menu-dropdown-timeout="500">
+            <ul class="m-menu__nav ">
+                <li class="m-menu__item  m-menu__item--active" aria-haspopup="true">
+                    <a href="dashboard.html" class="m-menu__link"><span class="m-menu__item-here"></span><i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">Dashboard</span></a>
+                </li>
+                <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                    <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                        <span class="m-menu__item-here"></span>
+                        <i class="m-menu__link-icon flaticon-layers"></i>
+                        <span class="m-menu__link-text">Master</span><i class="m-menu__ver-arrow la la-angle-right"></i>
+                    </a>
+                    <div class="m-menu__submenu ">
+                        <span class="m-menu__arrow"></span>
+                        <ul class="m-menu__subnav">
+                            <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+                                <span class="m-menu__link"><span class="m-menu__item-here"></span><span class="m-menu__link-text">Master</span></span>
+                            </li>
+                            <li class="m-menu__item " aria-haspopup="true"><a href="@Url.Action("Board","Master")" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">New Board</span></a></li>
+                            <li class="m-menu__item " aria-haspopup="true"><a href="@Url.Action("Language","Master")" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">New Language</span></a></li>
+
+                        </ul>
+                    </div>
+                </li>
+
+
+            </ul>
+
+
+
+        </div>*@
+
+        <!-- END: Aside Menu -->
+
+
+
+
+
+
+    </div>
+    <!-- END: Aside Menu -->
+    <script src="@Url.Content("~/Content/angularjs/scripts/angular.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Areas/Scripts/ProjectScripts/SideBar/SideBar.js")"></script>
+    <script src="@Url.Content("~/Scripts/CommonScript/Service.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Areas/Scripts/ProjectScripts/SideBar/SideBarController.js")" type="text/javascript"></script>
+    <script src="~/Content/assets/plugins/jquery/dist/jquery.min.js"></script>
+    <script>
+                var baseURL = "@ConfigurationManager.AppSettings["BaseUrlPath"].ToString()";
+    </script>
+    <!--begin::Global Theme Bundle -->
+    <script src="~/Content/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+    <script src="~/Content/assets/demo/demo12/base/scripts.bundle.js" type="text/javascript"></script>
+</body>
+</html>
