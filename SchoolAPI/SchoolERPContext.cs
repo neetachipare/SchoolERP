@@ -12,13 +12,7 @@ namespace SchoolAPI
             : base("name=SchoolERPContext")
         {
         }
-        public virtual DbSet<ViewSchoolAchievementDetail> ViewSchoolAchievementDetails { get; set; }
-
-        public virtual DbSet<TblSchoolAchievementDetail> TblSchoolAchievementDetails { get; set; }
-       
-        public virtual DbSet<TblAchievementTypeMaster> TblAchievementTypeMasters { get; set; }
-        public virtual DbSet<ViewAchievementTypeMaster> ViewAchievementTypeMasters { get; set; }
-        public virtual DbSet<TblBoard> TblBoards { get; set; }
+               public virtual DbSet<TblBoard> TblBoards { get; set; }
         public virtual DbSet<TblBoardDetail> TblBoardDetails { get; set; }
 
         public virtual DbSet<TblLanguage> TblLanguages { get; set; }

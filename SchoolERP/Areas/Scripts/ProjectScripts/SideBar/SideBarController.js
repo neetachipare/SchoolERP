@@ -9,8 +9,7 @@ function SideBarController($scope, Service) {
    
     $scope.SiteMenu = [];
     $scope.Initialize = function () {
-        debugger;
-       
+        
        Service.Post("SideBar/GetSiteMenu").then(function (result) {
            debugger;
            $scope.SiteMenu = result.data;

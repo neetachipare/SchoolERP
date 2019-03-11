@@ -13,8 +13,15 @@ namespace SchoolAPI
             : base("name=SchoolAdminContext1")
         {
         }
+        public virtual DbSet<ViewSchoolAchievementDetail> ViewSchoolAchievementDetails { get; set; }
 
-         //public virtual DbSet<Tbl_District> Tbl_District { get; set; }
+        public virtual DbSet<TblSchoolAchievementDetail> TblSchoolAchievementDetails { get; set; }
+
+        public virtual DbSet<TblAchievementTypeMaster> TblAchievementTypeMasters { get; set; }
+
+        public virtual DbSet<ViewAchievementTypeMaster> ViewAchievementTypeMasters { get; set; }
+
+        //public virtual DbSet<Tbl_District> Tbl_District { get; set; }
         //public virtual DbSet<Tbl_State> Tbl_State { get; set; }
         //public virtual DbSet<Tbl_Taluka> Tbl_Taluka { get; set; }
         public virtual DbSet<Tbl_Religion_Master> TblReligionMasters { get; set; }
