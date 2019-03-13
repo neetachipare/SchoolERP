@@ -10,7 +10,7 @@ namespace SchoolAPI.BusinessLayer
 {
     public class SchoolAchievementDetailsBL
     {
-        SchoolERPContext db = new SchoolERPContext();
+        SchoolAdminContext db = new SchoolAdminContext();
         string msg = "";
 
 

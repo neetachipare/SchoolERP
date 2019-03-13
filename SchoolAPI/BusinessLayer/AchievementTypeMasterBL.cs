@@ -10,7 +10,7 @@ namespace SchoolAPI.BusinessLayer
 {
     public class AchievementTypeMasterBL
     {
-        SchoolERPContext db = new SchoolERPContext();
+        SchoolAdminContext db = new SchoolAdminContext();
         string msg = "";
         public object AddAchievementTypeMaster(AchievementTypeMasterParam obj)
         {

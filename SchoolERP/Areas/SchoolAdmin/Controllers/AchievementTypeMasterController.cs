@@ -4,12 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SchoolERP.Areas.SuperAdmin.Controllers
+namespace SchoolERP.Areas.SchoolAdmin.Controllers
 {
-    public class SideBarController : Controller
+    public class AchievementTypeMasterController : Controller
     {
-        // GET: SuperAdmin/SideBar
-       
+        // GET: SuperAdmin/AchievementTypeMaster
         public ActionResult Index()
         {
             return View();

@@ -52,6 +52,10 @@ function TemplateMasterController($scope, Service) {
 
     $scope.ShowHide = function (TemplateId) {
         debugger;
+        $scope.str = "";
+        $scope.lst = [];
+        $scope.TemplateTypeId = "";
+       
         $scope.btnUpdate = true;
         $scope.btnSave = false;
         $scope.IsVisible = true;
@@ -65,13 +69,15 @@ function TemplateMasterController($scope, Service) {
         Service.Post("TemplateMaster/GetSingleTemplateMasterInfo", JSON.stringify(data), $scope.UserCredentialModel).then(function (result) {
 
             debugger;
-
+            $scope.str = "";
+            $scope.lst = [];
             $scope.ViewGetStudentInfoes = result.data;
             $scope.Name = result.data.Name;
             $scope.TemplateTypeId = result.data.TemplateTypeId;
             $scope.TemplateId = result.data.TemplateId;
             Service.Post("TemplateMaster/GetMenuDetails", JSON.stringify(data), $scope.UserCredentialModel).then(function (result) {
                 debugger;
+                
                 $scope.MenuDetails = result.data; 
                 for (var i = 0; i < $scope.Menulist.length; i++) {
                     $scope.Menulist[i].Selected = false;
@@ -116,9 +122,11 @@ function TemplateMasterController($scope, Service) {
         $scope.Name = null;
         $scope.TemplateId = null;
         $scope.IsVisible = false;
-      
-            
-        //$scope.Initialize();
+        $scope.str = "No Selected Menus !";
+        $scope.lst = [];
+        $scope.TemplateTypeId = "";
+        $scope.MenuDetails = [];
+        $scope.Initialize();
    
     }
     $scope.lst = [];

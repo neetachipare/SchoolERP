@@ -57,6 +57,8 @@ namespace SchoolAPI.BusinessLayer
         {
             try
             {
+                TblTemplatesMaster objTemplate = new TblTemplatesMaster();
+
                 string msg = "";
                 if (TP.BtnStatus == "Save")
                 {
@@ -65,8 +67,7 @@ namespace SchoolAPI.BusinessLayer
                     {
                         return new Error() { IsError = true, Message = "Template Name Already Exists!" };
                     }
-                    TblTemplatesMaster objTemplate = new TblTemplatesMaster();
-                    
+                   
                     objTemplate.Name = TP.Name.ToUpper();
                     objTemplate.TemplateTypeId = TP.TemplateTypeId;
                     objTemplate.CreatedBy = TP.CreatedBy;
@@ -101,13 +102,11 @@ namespace SchoolAPI.BusinessLayer
                     objTempalte.TemplateTypeId = TP.TemplateTypeId;
                     db.SaveChanges();
 
-
-
-                    var o = new TblTemplateModule { TemplateId = TP.TemplateId };
-                    db.TblTemplateModules.Attach(o);
-                    db.TblTemplateModules.Remove(o);
+                 
+                    db.TblTemplateModules.RemoveRange(db.TblTemplateModules.Where(c => c.TemplateId == TP.TemplateId));
+                   
                     db.SaveChanges();
-
+                    
                     TblTemplateModule objTemplateModule = new TblTemplateModule();
 
                     string MenuIds = TP.MenuListIds.Trim(',');
@@ -122,13 +121,11 @@ namespace SchoolAPI.BusinessLayer
                         db.TblTemplateModules.Add(objTemplateModule);
                         db.SaveChanges();
                     }
-
                     msg = "Template Master Updated Successfully!";
                 }
 
                 return new Result() { IsSucess = true, ResultData = msg };
-
-
+                
             }
             catch (Exception ex)
             {
