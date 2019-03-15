@@ -15,7 +15,7 @@ namespace SchoolAPI.API
            [httpPost]
           public object AddSection([FromBody]SectionParam SectionParam)
           {
-            SectionMasterBussiness Add = new SectionMasterBussiness();
+			  SectionMasterBussiness Add = new SectionMasterBussiness();
            
               var result = Add.SaveSection(SectionParam);
             return result;
