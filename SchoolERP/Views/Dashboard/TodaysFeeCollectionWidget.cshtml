@@ -27,12 +27,13 @@
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default" ng-app="ERP">
     @using System.Configuration;
     <div class="col-xl-6" ng-controller="Dashboard">
-        <div class="m-portlet m-portlet--tabs">
-            <div class="m-portlet__head">
+        <div class="m-portlet m-portlet--tabs ">
+            <div class="m-portlet__head bgcolorhead">
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
 
                         <h3 class="m-portlet__head-text">
+                            <i class="fa flaticon-squares" style="padding-right:10px;"></i>
                             Today's Fee Collection
                         </h3>
                     </div>
@@ -56,12 +57,26 @@
                 <div class="hover_bkgr_fricc">
                     <span class="helper"></span>
                     <div>
-                        <div class="popupCloseButton" id="popupCloseButton" ng-init="close();">X</div>
-                        <div style="padding:10px; ">
+                       
+                        <div>
+                            <div class="m-portlet__head bgcolorhead">
+                                <div class="popupCloseButton" id="popupCloseButton" ng-init="close();">X</div>
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+
+                                        <h3 class="m-portlet__head-text">
+                                            Today's Fee Collection
+                                        </h3>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
                             <canvas id="Doughnutcanvas1"></canvas>
 
+
                         </div>
-                    </div>
                 </div>
             </div>
 
@@ -105,31 +120,31 @@
                 box-shadow: 10px 10px 60px #555;
                 display: inline-block;
                 height: auto;
-                max-width: 551px;
+                max-width: 650px;
                 min-height: 100px;
                 vertical-align: middle;
                 width: 60%;
                 position: relative;
                 border-radius: 8px;
-                padding: 15px 5%;
+               
             }
 
         .popupCloseButton {
-            background-color: #fff;
-            border: 3px solid #999;
+            background-color: #00c5dc;
             border-radius: 50px;
             cursor: pointer;
             display: inline-block;
             font-family: arial;
             font-weight: bold;
             position: absolute;
-            top: -20px;
-            right: -20px;
+            top: 0px;
+            right: 0px;
             font-size: 25px;
             line-height: 30px;
             width: 30px;
             height: 30px;
             text-align: center;
+            color:white;
         }
 
             .popupCloseButton:hover {
